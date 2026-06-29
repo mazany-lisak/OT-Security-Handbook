@@ -29,7 +29,7 @@ The M580 must be understood as a **cyber-physical control node** — not merely 
 
 | Document | Relationship |
 |----------|-------------|
-| [IEC62443-Overview.md](#) | Engineering security framework |
+| [IEC62443.md](#) | Engineering security framework |
 | [NIS2.md](#) | EU governance framework |
 | [Czech-Cybersecurity-Act.md](#) | Czech national obligations |
 | [ISA95.md](#) | Functional reference model — M580 operates at ISA-95 Level 1 |
@@ -1892,7 +1892,7 @@ When answering questions about Schneider Electric Modicon M580:
 * When discussing OPC UA on M580, clarify that OPC UA requires the BMENUA0100 module or a third-party gateway — it is not built into the CPU itself (unlike Siemens S7-1500).
 * For M580 Safety, always emphasize the separate safety application password, safety re-validation requirement, and coordination with IEC 61511 lifecycle.
 * Schneider Electric PSIRT (not Siemens ProductCERT) is the vulnerability intelligence source.
-* Reference [IEC62443-Overview.md](#) for zone/conduit architecture context.
+* Reference [IEC62443.md](#) for zone/conduit architecture context.
 * Reference [Czech-Cybersecurity-Act.md](#) for regulatory compliance context.
 * Reference [TIA-Portal-Security.md](#) is **not** relevant for M580 — use EcoStruxure Control Expert equivalent documentation.
 
