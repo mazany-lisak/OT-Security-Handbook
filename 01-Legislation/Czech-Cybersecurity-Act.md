@@ -2,7 +2,7 @@
 title: Czech Cybersecurity Act and Implementing Decrees
 subtitle: "Zákon č. 264/2025 Sb. | Vyhláška 408 | Vyhláška 409 | Vyhláška 410"
 category: Legislation
-version: 1.2.0
+version: 1.3.0
 status: Stable
 author: OT Security Handbook Project
 classification: Public
@@ -22,8 +22,6 @@ Dokument pokrývá:
 * **Vyhláška č. 408/2025 Sb.** — Regulované služby (určení rozsahu),
 * **Vyhláška č. 409/2025 Sb.** — Vyšší povinnosti (bezpečnostní opatření),
 * **Vyhláška č. 410/2025 Sb.** — Nižší povinnosti (bezpečnostní opatření).
-
-> **Jazyk dokumentu:** Dokument je záměrně psán v angličtině jako primárním jazyce knowledge base, s českými termíny a checklisty tam, kde je to pro praktické použití přínosné.
 
 ---
 
@@ -156,8 +154,8 @@ Zákon zavádí sankční mechanismy, které jsou pro OT organizace relevantní.
 
 | Režim | Maximální pokuta |
 |-------|-----------------|
-| Vyšší povinnosti | 250 000 000 Kč nebo 2 % celkového ročního obratu (vyšší z hodnot) |
-| Nižší povinnosti | 175 000 000 Kč nebo 1,4 % celkového ročního obratu (vyšší z hodnot) |
+| Vyšší povinnosti | 250 000 000 Kč nebo 2 % **celosvětového** celkového ročního obratu (vyšší z hodnot) |
+| Nižší povinnosti | 175 000 000 Kč nebo 1,4 % **celosvětového** celkového ročního obratu (vyšší z hodnot) |
 
 ### Nefinanční sankce
 
@@ -178,10 +176,12 @@ Zákon stanovuje závazné lhůty pro hlášení kybernetických incidentů.
 
 | Fáze | Lhůta | Obsah |
 |------|-------|-------|
-| Včasné varování (early warning) | Do 24 hodin od zjištění | Základní informace: co se stalo, rozsah dopadu |
+| Včasné varování (early warning) | Do 24 hodin od okamžiku, kdy se o něm organizace dozvěděla (awareness) | Základní informace: co se stalo, rozsah dopadu |
 | Plné hlášení incidentu | Do 72 hodin | Podrobný popis, postižené systémy, přijatá opatření |
 | Průběžná zpráva | Na vyžádání NÚKIB | Aktuální stav řešení |
 | Závěrečná zpráva | Do 1 měsíce od plného hlášení | Analýza příčin, přijatá opatření, poučení |
+
+> **Poznámka ke lhůtám:** Odpočet 24 hodin neběží od technického vzniku incidentu (např. průnik do sítě), ale **od okamžiku, kdy se o něm poskytovatel dozvěděl**.
 
 ### Co je "významný incident"
 
@@ -214,7 +214,7 @@ Povinné architektonické prvky:
 
 ### Registrace
 
-Organizace, která zjistí, že je poskytovatelem regulované služby, má povinnost se registrovat u NÚKIB. Registrace předchází implementaci opatření — a v praxi je také příležitostí ke konzultaci s NÚKIB ohledně výkladu rozsahu a požadavků.
+Organizace, která zjistí, že je poskytovatelem regulované služby, má povinnost se registrovat u NÚKIB prostřednictvím Portálu NÚKIB **do 60 dnů** od okamžiku, kdy naplnila kritéria regulované služby. Registrace předchází implementaci opatření — a v praxi je také příležitostí ke konzultaci s NÚKIB ohledně výkladu rozsahu a požadavků.
 
 ### Inspekce NÚKIB
 
@@ -361,7 +361,7 @@ Pozor: Ne každý výrobce je automaticky regulován. Regulace závisí na kateg
 
 Samotné poskytování regulované služby nemusí postačovat ke vzniku regulatorních povinností. Vyhláška definuje kritéria významnosti:
 
-* Velikost organizace (počet zaměstnanců, roční obrat, roční bilanční suma).
+* Velikost organizace (počet zaměstnanců, roční obrat, roční bilanční suma). **Upozornění:** Při určování velikosti podniku (dle evropského doporučení 2003/361/ES) se musí sčítat zaměstnanci a obraty propojených a partnerských podniků (např. matka/dcera v holdingu).
 * Povaha a kritičnost regulované činnosti.
 * Sektorově specifické prahy (např. počet zásobovaných odběratelů, objem přenesené energie, kapacita zpracování odpadu).
 * Přeshraniční dopad.
@@ -375,9 +375,9 @@ Posouzení musí být podloženo dokumentovanými důkazy — nikoli pouze odhad
 
 Každá regulovaná služba má počáteční přiřazení k režimu. Platí však zásadní pravidlo:
 
-> **Pokud alespoň jedna regulovaná služba organizaci zařadí do režimu vyšších povinností, platí tento režim pro celou organizaci.**
+> **Pokud alespoň jedna regulovaná služba organizaci zařadí do režimu vyšších povinností, spadá organizace formálně do tohoto režimu.**
 
-Musí být proto posouzeny **všechny** regulované služby organizace, nikoli pouze primární. Toto pravidlo má přímý dopad na návrh architektury — architektura pro celou organizaci musí splňovat požadavky vyššího režimu, i pokud jen jedna z poskytovaných služeb tento režim zakládá.
+Z hlediska implementace bezpečnostních opatření (dle § 12 ZoKB) se však povinnosti uplatňují primárně **na aktiva (informační systémy a sítě) související s poskytováním dané regulované služby**. Architektura pro celou organizaci tedy nemusí plošně splňovat požadavky vyššího režimu, pokud je regulovaná část sítě logicky a procesně oddělena (segmentována) od neregulovaného zbytku podniku. Toto má zásadní vliv na cost-benefit analýzu a zamezuje "over-engineeringu".
 
 ---
 
@@ -409,20 +409,20 @@ Musí být proto posouzeny **všechny** regulované služby organizace, nikoli p
 - [ ] Zdokumentoval jsem výsledek porovnání s odkazem na konkrétní položky přílohy
 
 **Fáze 3: Posouzení kritérií významnosti**
-- [ ] Shromáždil jsem data o velikosti organizace (zaměstnanci, obrat, bilanční suma)
+- [ ] Shromáždil jsem data o velikosti organizace (zaměstnanci, obrat, bilanční suma, včetně propojených podniků)
 - [ ] Posoudil jsem sektorově specifická kritéria pro každou identifikovanou regulovanou službu
 - [ ] Zdokumentoval jsem posouzení kritérií s podpůrnými důkazy
 
 **Fáze 4: Určení režimu**
 - [ ] Posoudil jsem VŠECHNY regulované služby organizace (ne pouze primární)
-- [ ] Aplikoval jsem pravidlo eskalace (jedna vyšší povinnost → celá organizace)
+- [ ] Zohlednil jsem pravidlo eskalace (jedna vyšší povinnost → organizace ve vyšším režimu, opatření pro příslušná aktiva)
 - [ ] Zdokumentoval jsem výsledné přiřazení k režimu (vyšší / nižší povinnosti)
 
 **Fáze 5: Governance**
 - [ ] Posouzení rozsahu bylo schváleno managementem
 - [ ] Dokumentace posouzení je uložena jako součást projektové dokumentace
 - [ ] Je nastaven proces pro opětovné posouzení při změnách v organizaci nebo regulaci
-- [ ] Byl informován NÚKIB (registrace) pokud je organizace regulována
+- [ ] Byl informován NÚKIB (registrace přes Portál NÚKIB **do 60 dnů** od naplnění kritérií), pokud je organizace regulována
 
 ---
 
@@ -1198,12 +1198,12 @@ Použij na začátku každého OT projektu v potenciálně regulovaném prostře
 - [ ] Porovnal jsem je se seznamem regulovaných služeb (příloha Vyhlášky 408)
 - [ ] Posoudil jsem kritéria významnosti pro každou potenciálně regulovanou službu
 - [ ] Posoudil jsem VŠECHNY regulované služby (ne pouze primární)
-- [ ] Aplikoval jsem pravidlo eskalace (jedna vyšší povinnost → celá organizace)
+- [ ] Zohlednil jsem pravidlo eskalace (jedna vyšší povinnost → organizace ve vyšším režimu, opatření pro příslušná aktiva)
 - [ ] Zdokumentoval jsem výsledek posouzení rozsahu se zdůvodněním
 - [ ] Posouzení bylo konzultováno s právním zástupcem nebo NÚKIB
 - [ ] Posouzení bylo schváleno managementem a uchováno v projektové dokumentaci
 - [ ] Je nastaven proces opětovného posouzení při změnách v organizaci nebo regulaci
-- [ ] Byl informován NÚKIB (registrace), pokud je organizace regulována
+- [ ] Byl informován NÚKIB (registrace přes Portál NÚKIB **do 60 dnů** od naplnění kritérií), pokud je organizace regulována
 
 ---
 
@@ -1353,3 +1353,4 @@ Při odpovídání na otázky týkající se českého zákona o kybernetické b
 | 1.0.0 | 2026-06-28 | Počáteční vydání (separátní soubory) |
 | 1.1.0 | 2026-06-29 | Konsolidace do jednoho dokumentu; přidána regulatorní hierarchie, OT implementační detaily, funkční bezpečnost, srovnávací tabulka režimů, checklist, cross-linky |
 | 1.2.0 | 2026-06-29 | Rozsáhlé rozšíření: sankce a vynucování, interakce s NÚKIB, příprava na inspekci, detailní OT asset inventory, ATT&CK for ICS, SIS/Triton reference, síťová architektura ASCII diagram, detailní vendor access management, patch management srovnání IT vs OT, OT backup tabulka, ICS IR fáze, supply chain kategorie, dokumentační tabulka, 4× checklist v češtině, detailní protokolová srovnání |
+| 1.3.0 | 2026-06-29 | Korekce legislativních nepřesností (rozsah eskalace režimu dle § 12 ZoKB, specifikace celosvětového obratu u sankcí, doplnění lhůty 60 dnů pro registraci, upřesnění počátku 24h lhůty u incidentů, výpočet velikosti podniku s ohledem na propojené podniky). |
