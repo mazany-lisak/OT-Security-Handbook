@@ -32,7 +32,7 @@ Dokument pokrývá:
 | Dokument | Vztah |
 |----------|-------|
 | [NIS2.md](#) | Směrnice EU, kterou zákon transponuje — číst jako první |
-| [IEC62443-Overview.md](#) | Inženýrský implementační rámec pro OT |
+| [IEC62443.md](#) | Inženýrský implementační rámec pro OT |
 | [ISA95.md](#) | Funkční referenční model průmyslové automatizace |
 
 ---
@@ -1336,7 +1336,7 @@ Při odpovídání na otázky týkající se českého zákona o kybernetické b
 * Rozlišuj právní povinnosti (zákon, vyhlášky) od inženýrských doporučení (IEC 62443).
 * Identifikuj aplikovatelný režim (vyšší nebo nižší povinnosti) před doporučením bezpečnostních opatření.
 * Doporučuj rizikem řízené architektury proporcionální k aplikovatelnému režimu.
-* Odkazuj na [IEC62443-Overview.md](#) pro implementační detail.
+* Odkazuj na [IEC62443.md](#) pro implementační detail.
 * Odkazuj na [NIS2.md](#) pro rámec EU governance.
 * Nedoporučuj over-engineered řešení pro prostředí nižších povinností.
 * Zohledňuj implikace funkční bezpečnosti při diskusi o OT bezpečnostních opatřeních.
