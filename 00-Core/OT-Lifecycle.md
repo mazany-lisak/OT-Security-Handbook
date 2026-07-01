@@ -1,26 +1,21 @@
 ---
-
 title: OT System Lifecycle
-
 category: Core
-
-version: 1.0.0
-
+version: 1.1.0
 status: Stable
-
 author: OT Security Handbook Project
-
 classification: Public
-
-last_reviewed: 2026-06-28
-
-## review_cycle: Annual
+last_reviewed: 2026-07-01
+review_cycle: Annual
+---
 
 # Purpose
 
 This document describes the lifecycle of Operational Technology (OT) systems from initial concept through decommissioning.
 
 It provides a lifecycle-oriented engineering perspective that integrates cybersecurity into every phase of an industrial system rather than treating it as a standalone activity.
+
+> **Scope note (Core reference model).** This document is the **lifecycle reference model** for the handbook. Phase-specific *operational execution* (e.g. change management, maintenance procedures, acceptance testing) is documented in the Operations layer and referenced here (see [Change-Management.md](Change-Management.md), [FAT.md](FAT.md), [SAT.md](SAT.md)).
 
 ---
 
@@ -38,7 +33,7 @@ During that time:
 
 A secure architecture must therefore be designed for change.
 
-Cybersecurity should accompany the system throughout its entire lifecycle.
+Cybersecurity should accompany the system throughout its entire lifecycle. Because IACS lifespans routinely exceed twenty years, **compensating controls**—not just native device capabilities—are an accepted and often necessary approach for legacy systems.
 
 ---
 
@@ -112,7 +107,7 @@ Typical activities:
 * Backup architecture
 * Monitoring architecture
 
-Architecture decisions made here influence the entire lifecycle.
+Architecture decisions made here influence the entire lifecycle. Apply [OT-Architecture-Principles.md](OT-Architecture-Principles.md) and the risk-assessment output (IEC 62443-3-2) described in [IEC62443.md](IEC62443.md).
 
 ---
 
@@ -147,7 +142,7 @@ Typical testing includes:
 * Backup restoration testing
 * Disaster recovery testing
 
-Testing should validate both expected operation and failure scenarios.
+Testing should validate both expected operation and failure scenarios. See [FAT.md](FAT.md) and [SAT.md](SAT.md).
 
 ---
 
@@ -183,7 +178,7 @@ Typical activities:
 * Configuration backup
 * Documentation updates
 
-Every maintenance activity should follow change management procedures.
+Every maintenance activity should follow change management procedures (see [Change-Management.md](Change-Management.md)).
 
 ---
 
@@ -298,17 +293,28 @@ Avoid recommending solutions that optimize only the implementation phase.
 
 ---
 
+# Sources / Grounding
+
+* **IEC 62443-4-1** — secure product development lifecycle (concept → release → maintenance) for suppliers.
+* **IEC 62443-2-1** — asset-owner IACS security **program** (operate/maintain governance).
+* **IEC 62443-2-3** — patch management in the IACS environment; **IEC 62443-2-4** — security requirements for service providers/integrators.
+* **NIST SP 800-82 Rev. 3** — lifecycle approach to OT security; recognition of 20+ year IACS lifespans and acceptance of compensating controls for legacy systems.
+
+> See [IEC62443.md](IEC62443.md) for the standards detail; phase-level operational procedures live in the Operations layer.
+
+---
+
 # Related Documents
 
-* OT-Security-Philosophy.md
-* OT-Architecture-Principles.md
-* Security-Decision-Framework.md
-* Risk-Management-Principles.md
-* NIS2.md
-* IEC62443-Overview.md
-* FAT.md
-* SAT.md
-* Change-Management.md
+* [OT-Security-Philosophy.md](OT-Security-Philosophy.md)
+* [OT-Architecture-Principles.md](OT-Architecture-Principles.md)
+* [Security-Decision-Framework.md](Security-Decision-Framework.md)
+* [Risk-Management-Principles.md](Risk-Management-Principles.md)
+* [NIS2.md](NIS2.md)
+* [IEC62443.md](IEC62443.md)
+* [FAT.md](FAT.md)
+* [SAT.md](SAT.md)
+* [Change-Management.md](Change-Management.md)
 
 ---
 
@@ -317,3 +323,4 @@ Avoid recommending solutions that optimize only the implementation phase.
 | Version | Date       | Description     |
 | ------- | ---------- | --------------- |
 | 1.0.0   | 2026-06-28 | Initial release |
+| 1.1.0   | 2026-07-01 | Resolved committed git merge conflict and de-duplicated content; fixed malformed YAML front matter; corrected `IEC62443-Overview.md` → `IEC62443.md`; added Core reference-model scope note; grounded phases in IEC 62443-4-1/-2-1/-2-3/-2-4 and NIST SP 800-82 Rev. 3 (Sources/Grounding), incl. legacy/compensating-controls note; added Core and phase cross-links (FAT.md, SAT.md, Change-Management.md retained as forthcoming Operations documents) |

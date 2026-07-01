@@ -1,20 +1,13 @@
 ---
-
 title: OT Security Philosophy
-
 category: Core
-
-version: 1.0.0
-
+version: 1.1.0
 status: Stable
-
 author: OT Security Handbook Project
-
 classification: Public
-
-last_reviewed: 2026-06-28
-
-## review_cycle: Annual
+last_reviewed: 2026-07-01
+review_cycle: Annual
+---
 
 # Purpose
 
@@ -55,6 +48,8 @@ A common engineering hierarchy is:
 
 Every recommendation in this handbook should be evaluated against this order.
 
+> **Canonical priority hierarchy.** This Safety → Availability → Integrity → Confidentiality order is the **single source of truth** for prioritisation across the handbook. The [Security-Decision-Framework.md](Security-Decision-Framework.md) expands it into an operational eight-level ordering (adding environmental protection, process stability, operational efficiency and cost) for trade-off decisions; that expansion refines—but never reorders—the four priorities above. This inversion of the IT CIA triad is consistent with NIST SP 800-82 Rev. 3, whose OT consequence categories are safety, environmental release, production impact and equipment damage.
+
 ---
 
 # Risk-Based Security
@@ -72,7 +67,7 @@ A risk assessment should consider:
 * Existing controls
 * Recovery capability
 
-The objective is to reduce risk to an acceptable level—not eliminate all risk.
+The objective is to reduce risk to an acceptable level—not eliminate all risk. See [Risk-Management-Principles.md](Risk-Management-Principles.md) for the underlying risk principles.
 
 ---
 
@@ -90,7 +85,7 @@ Recommended decision sequence:
 6. Select technologies.
 7. Validate the solution.
 
-Choosing products before understanding the process often leads to unnecessary complexity.
+Choosing products before understanding the process often leads to unnecessary complexity. The structured method is defined in [Security-Decision-Framework.md](Security-Decision-Framework.md), and the architectural principles that shape step 5 are in [OT-Architecture-Principles.md](OT-Architecture-Principles.md).
 
 ---
 
@@ -190,13 +185,29 @@ When answering OT-related questions:
 
 ---
 
+# Sources / Grounding
+
+This philosophy is consistent with, and draws on, recognised OT security doctrine:
+
+* **NIST SP 800-82 Rev. 3** — *Guide to Operational Technology (OT) Security* (2023): safety-first posture; OT consequence categories (safety, environmental release, production impact, equipment damage).
+* **ISA/IEC 62443** — the IACS security framework (defense in depth; zones and conduits; foundational requirements). See [IEC62443.md](IEC62443.md).
+* **ISO 31000** — risk-management principles underpinning the risk-based approach. See [Risk-Management-Principles.md](Risk-Management-Principles.md).
+
+> These are foundational references; specific normative requirements live in the standards documents. Defer to the current standard texts for authoritative detail.
+
+---
+
 # Related Documents
 
-* NIS2.md
-* Czech-Cybersecurity-Act.md
-* IEC62443-Overview.md
-* Risk-Assessment.md
-* Network-Segmentation.md
+* [OT-Architecture-Principles.md](OT-Architecture-Principles.md)
+* [Security-Decision-Framework.md](Security-Decision-Framework.md)
+* [Risk-Management-Principles.md](Risk-Management-Principles.md)
+* [OT-Lifecycle.md](OT-Lifecycle.md)
+* [NIS2.md](NIS2.md)
+* [Czech-Cybersecurity-Act.md](Czech-Cybersecurity-Act.md)
+* [IEC62443.md](IEC62443.md)
+* [Risk-Assessment.md](Risk-Assessment.md)
+* [Network-Segmentation.md](Network-Segmentation.md)
 
 ---
 
@@ -205,3 +216,4 @@ When answering OT-related questions:
 | Version | Date       | Description     |
 | ------- | ---------- | --------------- |
 | 1.0.0   | 2026-06-28 | Initial release |
+| 1.1.0   | 2026-07-01 | Resolved committed git merge conflict and de-duplicated content; fixed malformed YAML front matter; corrected `IEC62443-Overview.md` → `IEC62443.md`; designated the Safety→Availability→Integrity→Confidentiality hierarchy as the canonical single source of truth (referenced by Security-Decision-Framework.md); added Sources/Grounding (NIST SP 800-82 Rev. 3, IEC 62443, ISO 31000); added Core cross-links (OT-Architecture-Principles.md, Security-Decision-Framework.md, Risk-Management-Principles.md, OT-Lifecycle.md) |

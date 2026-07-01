@@ -1,20 +1,13 @@
 ---
-
 title: Security Decision Framework
-
 category: Core
-
-version: 1.0.0
-
+version: 1.1.0
 status: Stable
-
 author: OT Security Handbook Project
-
 classification: Public
-
-last_reviewed: 2026-06-28
-
-## review_cycle: Annual
+last_reviewed: 2026-07-01
+review_cycle: Annual
+---
 
 # Purpose
 
@@ -130,7 +123,7 @@ Consider:
 * Existing safeguards
 * Recovery capability
 
-The goal is informed decision-making rather than maximum security.
+The goal is informed decision-making rather than maximum security. The underlying principles are in [Risk-Management-Principles.md](Risk-Management-Principles.md).
 
 ---
 
@@ -178,7 +171,7 @@ Typical design decisions include:
 * Backup architecture
 * Recovery strategy
 
-The architecture should satisfy both operational and cybersecurity requirements.
+The architecture should satisfy both operational and cybersecurity requirements. Apply the principles in [OT-Architecture-Principles.md](OT-Architecture-Principles.md); implement trust boundaries via [Network-Segmentation.md](Network-Segmentation.md) and [Firewall-Design.md](Firewall-Design.md).
 
 ---
 
@@ -192,7 +185,7 @@ Capability:
 
 * Industrial Firewall
 
-Possible products:
+Possible products (illustrative only, not endorsements):
 
 * Fortinet
 * Palo Alto Networks
@@ -200,7 +193,7 @@ Possible products:
 * Phoenix Contact
 * Hirschmann
 
-The handbook intentionally recommends capabilities before products.
+The handbook intentionally recommends **capabilities before products** (see [OT-Security-Philosophy.md](OT-Security-Philosophy.md) → *Vendor Neutrality*).
 
 ---
 
@@ -234,7 +227,7 @@ When objectives conflict, use the following order:
 7. Operational Efficiency
 8. Cost Optimization
 
-This hierarchy should guide architectural trade-offs.
+> **Relationship to the canonical hierarchy.** This eight-level ordering is the **operational expansion** of the canonical four-level priority hierarchy (Safety → Availability → Integrity → Confidentiality) defined in [OT-Security-Philosophy.md](OT-Security-Philosophy.md), which remains the single source of truth. Human Safety, Environmental Protection and Process Stability elaborate "Safety"; Operational Efficiency and Cost Optimization sit *below* the four security priorities and must never override them.
 
 ---
 
@@ -287,15 +280,27 @@ If information is missing, ask clarifying questions rather than making assumptio
 
 ---
 
+# Sources / Grounding
+
+* **NIST SP 800-82 Rev. 3** (§4) — tiered OT risk management feeding architecture and control selection.
+* **IEC 62443-3-2** — security risk assessment and system design producing zones/conduits, Target Security Levels and a Cybersecurity Requirements Specification. See [IEC62443.md](IEC62443.md).
+* **OT priority hierarchy** — per [OT-Security-Philosophy.md](OT-Security-Philosophy.md) (canonical source).
+
+> The framework is an engineering decision aid; normative requirements live in the standards documents.
+
+---
+
 # Related Documents
 
-* OT-Security-Philosophy.md
-* OT-Architecture-Principles.md
-* Risk-Management-Principles.md
-* Risk-Assessment.md
-* Network-Segmentation.md
-* Identity-Management.md
-* IEC62443-Overview.md
+* [OT-Security-Philosophy.md](OT-Security-Philosophy.md)
+* [OT-Architecture-Principles.md](OT-Architecture-Principles.md)
+* [Risk-Management-Principles.md](Risk-Management-Principles.md)
+* [OT-Lifecycle.md](OT-Lifecycle.md)
+* [Risk-Assessment.md](Risk-Assessment.md)
+* [Network-Segmentation.md](Network-Segmentation.md)
+* [Firewall-Design.md](Firewall-Design.md)
+* [Identity-Management.md](Identity-Management.md)
+* [IEC62443.md](IEC62443.md)
 
 ---
 
@@ -304,3 +309,4 @@ If information is missing, ask clarifying questions rather than making assumptio
 | Version | Date       | Description     |
 | ------- | ---------- | --------------- |
 | 1.0.0   | 2026-06-28 | Initial release |
+| 1.1.0   | 2026-07-01 | Resolved committed git merge conflict and de-duplicated content; fixed malformed YAML front matter; corrected `IEC62443-Overview.md` → `IEC62443.md`; reconciled the eight-level Decision Priorities with the canonical four-level hierarchy in OT-Security-Philosophy.md (single source of truth); clarified vendor examples as illustrative (vendor-neutrality); added Sources/Grounding (NIST SP 800-82 Rev. 3, IEC 62443-3-2); added Core and implementation cross-links |
