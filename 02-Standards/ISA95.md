@@ -1,11 +1,11 @@
 ---
 title: ISA-95 — Enterprise-Control System Integration Standard
 category: Standards
-version: 1.2.0
+version: 1.3.0
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-06-29
+last_reviewed: 2026-07-01
 review_cycle: Annual
 ---
 
@@ -34,9 +34,10 @@ This document covers:
 
 | Document | Relationship |
 |----------|-------------|
-| [NIS2.md](#) | Regulatory framework — ISA-95 helps identify which systems fall within regulatory scope |
-| [Czech-Cybersecurity-Act.md](#) | National obligations — ISA-95 informs asset inventory and regulatory scope determination |
-| [IEC62443-Overview.md](#) | Security framework — IEC 62443 secures the systems and flows that ISA-95 defines |
+| [NIS2.md](NIS2.md) | Regulatory framework — ISA-95 helps identify which systems fall within regulatory scope |
+| [Czech-Cybersecurity-Act.md](Czech-Cybersecurity-Act.md) | National obligations — ISA-95 informs asset inventory and regulatory scope determination |
+| [IEC62443.md](IEC62443.md) | Security framework — IEC 62443 secures the systems and flows that ISA-95 defines |
+| [Purdue-Model.md](Purdue-Model.md) | Network-trust reference architecture (PERA) — the same level numbering seen from a *network trust boundary* perspective (L0–L5 + L3.5), the complement to this functional view |
 
 ---
 
@@ -447,7 +448,7 @@ Safety PLCs (used in Safety Instrumented Systems — SIS) require treatment fund
 * **Separate engineering environment**: SIS engineering workstations must be separate from BPCS engineering workstations. No shared accounts, no shared tools, no shared network paths.
 * **No remote access to SIS**: Remote access to SIS should be architecturally prohibited. If unavoidable, requires additional approval, physical presence of authorized personnel, and enhanced audit logging.
 * **Firmware integrity**: SIS firmware and configuration must be verified against known-good baseline periodically.
-* **Reference**: The Triton/TRISIS (2017) attack demonstrated that nation-state actors will specifically target SIS to defeat safety protections. See [IEC62443-Overview.md](#) for full technical analysis.
+* **Reference**: The Triton/TRISIS (2017) attack demonstrated that nation-state actors will specifically target SIS to defeat safety protections. See [IEC62443.md](IEC62443.md) for full technical analysis.
 
 ---
 
@@ -731,6 +732,8 @@ ISA-95 and the Purdue Reference Model for Plant Hierarchical Control (PERA) are 
 | Primary domain | Network architecture | Manufacturing information systems |
 | OT security use | Defines where firewalls go | Defines what goes behind the firewalls and why |
 
+> **Single source of truth.** This document is authoritative for the **functional** hierarchy (Levels 0–4: systems, responsibilities, information flows, ownership). The **network-trust** reference architecture — the same level numbering interpreted as trust boundaries, including **Level 5 (enterprise/cloud)** and modern extensions (IIoT, edge, remote engineering) that ISA-95 does not model — is maintained in **[Purdue-Model.md](Purdue-Model.md)**. Refer there for network/trust detail rather than duplicating it here.
+
 ## How They Work Together
 
 **Step 1: Use ISA-95** to identify systems, their functions, and information flows. Answer: "What exists? What does it do? What information moves between which systems?"
@@ -772,7 +775,7 @@ IEC 62443-4-2 → Component selection verification (SL-C ≥ SL-T)
 
 # Sector-Specific ISA-95 Architecture Variants
 
-The ISA-95 model applies universally, but its implementation varies significantly by industrial sector. Understanding sector-specific patterns is essential for correct scope determination (see [Czech-Cybersecurity-Act.md](#)) and zone design.
+The ISA-95 model applies universally, but its implementation varies significantly by industrial sector. Understanding sector-specific patterns is essential for correct scope determination (see [Czech-Cybersecurity-Act.md](Czech-Cybersecurity-Act.md)) and zone design.
 
 ## Electric Power and Utilities
 
@@ -882,7 +885,7 @@ A complete OT asset inventory should be structured by ISA-95 level to facilitate
 | Cross-cutting | OT IDS/NDR | Vendor (Claroty, Nozomi, Dragos), version, monitored segments |
 | Cross-cutting | Wireless AP (if any) | Vendor, model, FW version, security standard, zone |
 
-This structure should align with the asset inventory required by [Czech-Cybersecurity-Act.md](#) (Decree 409/410) and feed directly into the Zone partitioning in [IEC62443-Overview.md](#).
+This structure should align with the asset inventory required by [Czech-Cybersecurity-Act.md](Czech-Cybersecurity-Act.md) (Decree 409/410) and feed directly into the Zone partitioning in [IEC62443.md](IEC62443.md).
 
 ---
 
@@ -1095,7 +1098,7 @@ When answering ISA-95-related questions:
 * When discussing MES integration, emphasize the write-path security requirement (OPC UA Sign+Encrypt, allowlisted nodes, audit logging).
 * When discussing OPC DA: recommend migration to OPC UA; where OPC DA must remain, always recommend terminating before firewall on an OPC aggregation server.
 * When discussing Level 1 security: emphasize that zone isolation is the primary control for PLCs/RTUs with no native security.
-* Always recommend using ISA-95 analysis as input to IEC 62443 zone/conduit design — refer to [IEC62443-Overview.md](#).
+* Always recommend using ISA-95 analysis as input to IEC 62443 zone/conduit design — refer to [IEC62443.md](IEC62443.md).
 * Reference sector-specific patterns when the organization's industry context is known.
 * Do not describe ISA-95 as a security standard — it is a functional reference model.
 
@@ -1108,3 +1111,4 @@ When answering ISA-95-related questions:
 | 1.0.0 | 2026-06-28 | Initial release |
 | 1.1.0 | 2026-06-29 | Added security context per level, information flow tables, protocol table, asset inventory table, Purdue comparison, functional/security integration guidance, cross-links |
 | 1.2.0 | 2026-06-29 | Major expansion: ISA-95 standard parts table; detailed system inventory per level with vendor examples; Industrial DMZ (L3.5) as dedicated section; OPC DA vs OPC UA security comparison; protocol deep-dive (Modbus TCP, EtherNet/IP/CIP, PROFINET, IEC 61850, DNP3, OPC UA, OPC DA); 4 integration architecture patterns (Historian, MES, Vendor Remote Access, Security Monitoring/Log Flow); sector-specific ISA-95 variants (Power, Water, Process Industry, Discrete Manufacturing); detailed information ownership table; information flow criticality analysis; extended OT asset inventory with metadata requirements; 4× checklist in Czech language |
+| 1.3.0 | 2026-07-01 | Clarified single-source-of-truth split with Purdue-Model.md (this document authoritative for the functional hierarchy; network-trust view delegated to Purdue-Model.md); added Purdue-Model.md cross-link in Related Documents and in the Purdue relationship section; normalized all cross-reference links (removed dead `#` anchors; corrected `IEC62443-Overview.md` → `IEC62443.md`) |
