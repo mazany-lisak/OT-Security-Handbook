@@ -1,7 +1,7 @@
 ---
 title: Security Decision Framework
 category: Core
-version: 1.1.0
+version: 1.1.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
@@ -123,7 +123,7 @@ Consider:
 * Existing safeguards
 * Recovery capability
 
-The goal is informed decision-making rather than maximum security. The underlying principles are in [Risk-Management-Principles.md](Risk-Management-Principles.md).
+The goal is informed decision-making rather than maximum security. The underlying principles are in [Risk-Management-Principles.md](Risk-Management-Principles.md); risk-based control selection and vulnerability prioritisation are in [Risk-Based-Security.md](Risk-Based-Security.md).
 
 ---
 
@@ -295,6 +295,7 @@ If information is missing, ask clarifying questions rather than making assumptio
 * [OT-Security-Philosophy.md](OT-Security-Philosophy.md)
 * [OT-Architecture-Principles.md](OT-Architecture-Principles.md)
 * [Risk-Management-Principles.md](Risk-Management-Principles.md)
+* [Risk-Based-Security.md](Risk-Based-Security.md)
 * [OT-Lifecycle.md](OT-Lifecycle.md)
 * [Risk-Assessment.md](Risk-Assessment.md)
 * [Network-Segmentation.md](Network-Segmentation.md)
@@ -310,3 +311,4 @@ If information is missing, ask clarifying questions rather than making assumptio
 | ------- | ---------- | --------------- |
 | 1.0.0   | 2026-06-28 | Initial release |
 | 1.1.0   | 2026-07-01 | Resolved committed git merge conflict and de-duplicated content; fixed malformed YAML front matter; corrected `IEC62443-Overview.md` → `IEC62443.md`; reconciled the eight-level Decision Priorities with the canonical four-level hierarchy in OT-Security-Philosophy.md (single source of truth); clarified vendor examples as illustrative (vendor-neutrality); added Sources/Grounding (NIST SP 800-82 Rev. 3, IEC 62443-3-2); added Core and implementation cross-links |
+| 1.1.1   | 2026-07-01 | Added reciprocal cross-link to the applied strategy [Risk-Based-Security.md](Risk-Based-Security.md) (Step 4 and Related Documents) |

@@ -1,7 +1,7 @@
 ---
 title: Risk Management Principles
 category: Core
-version: 1.1.0
+version: 1.1.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
@@ -17,7 +17,7 @@ It provides an engineering perspective rather than a compliance methodology.
 
 The objective is to support consistent architectural decision-making throughout the lifecycle of industrial systems.
 
-> **Scope note (Core, not Operations).** This document covers the **principles** of risk management. The **operational execution** — running risk assessments, maintaining a risk register, and periodic reassessment — is an Operate/Maintain activity documented separately (see [Risk-Assessment.md](Risk-Assessment.md)) and governed by IEC 62443-2-1 / 62443-3-2.
+> **Scope note (Core, not Operations).** This document covers the **principles** of risk management. The **operational execution** — running risk assessments, maintaining a risk register, and periodic reassessment — is an Operate/Maintain activity documented separately (see [Risk-Assessment.md](Risk-Assessment.md)) and governed by IEC 62443-2-1 / 62443-3-2. The **applied strategy** of selecting and prioritising security controls by risk (including vulnerability triage) is in [Risk-Based-Security.md](Risk-Based-Security.md).
 
 ---
 
@@ -261,6 +261,7 @@ When information is incomplete, ask clarifying questions before assessing risk.
 * [OT-Security-Philosophy.md](OT-Security-Philosophy.md)
 * [OT-Architecture-Principles.md](OT-Architecture-Principles.md)
 * [Security-Decision-Framework.md](Security-Decision-Framework.md)
+* [Risk-Based-Security.md](Risk-Based-Security.md)
 * [OT-Lifecycle.md](OT-Lifecycle.md)
 * [Risk-Assessment.md](Risk-Assessment.md)
 * [IEC62443.md](IEC62443.md)
@@ -275,3 +276,4 @@ When information is incomplete, ask clarifying questions before assessing risk.
 | ------- | ---------- | --------------- |
 | 1.0.0   | 2026-06-28 | Initial release |
 | 1.1.0   | 2026-07-01 | Resolved committed git merge conflict and de-duplicated content; fixed malformed YAML front matter; corrected `IEC62443-Overview.md` → `IEC62443.md`; added a Core-vs-Operations scope note (principles here; execution in Risk-Assessment.md); added an OT-consequence (safety/operational) section; noted ISO 31000 lineage of risk-treatment options; added Sources/Grounding (ISO 31000, ISO/IEC 27005, IEC 62443-2-1/-3-2, NIST SP 800-30/800-82 Rev. 3); added Core cross-links |
+| 1.1.1   | 2026-07-01 | Added reciprocal cross-link to the applied strategy [Risk-Based-Security.md](Risk-Based-Security.md) (scope note and Related Documents) |

@@ -1,7 +1,7 @@
 ---
 title: OT Security Philosophy
 category: Core
-version: 1.1.0
+version: 1.1.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
@@ -67,7 +67,7 @@ A risk assessment should consider:
 * Existing controls
 * Recovery capability
 
-The objective is to reduce risk to an acceptable level—not eliminate all risk. See [Risk-Management-Principles.md](Risk-Management-Principles.md) for the underlying risk principles.
+The objective is to reduce risk to an acceptable level—not eliminate all risk. See [Risk-Management-Principles.md](Risk-Management-Principles.md) for the underlying risk principles and [Risk-Based-Security.md](Risk-Based-Security.md) for the applied control-selection strategy.
 
 ---
 
@@ -104,7 +104,7 @@ A secure OT architecture combines multiple independent layers, including:
 * Operational procedures
 * Security awareness
 
-The failure of one layer should not compromise the entire system.
+The failure of one layer should not compromise the entire system. See [Defense-in-Depth.md](Defense-in-Depth.md) for the layered model.
 
 ---
 
@@ -203,6 +203,9 @@ This philosophy is consistent with, and draws on, recognised OT security doctrin
 * [Security-Decision-Framework.md](Security-Decision-Framework.md)
 * [Risk-Management-Principles.md](Risk-Management-Principles.md)
 * [OT-Lifecycle.md](OT-Lifecycle.md)
+* [Zero-Trust-in-OT.md](Zero-Trust-in-OT.md)
+* [Defense-in-Depth.md](Defense-in-Depth.md)
+* [Risk-Based-Security.md](Risk-Based-Security.md)
 * [NIS2.md](NIS2.md)
 * [Czech-Cybersecurity-Act.md](Czech-Cybersecurity-Act.md)
 * [IEC62443.md](IEC62443.md)
@@ -217,3 +220,4 @@ This philosophy is consistent with, and draws on, recognised OT security doctrin
 | ------- | ---------- | --------------- |
 | 1.0.0   | 2026-06-28 | Initial release |
 | 1.1.0   | 2026-07-01 | Resolved committed git merge conflict and de-duplicated content; fixed malformed YAML front matter; corrected `IEC62443-Overview.md` → `IEC62443.md`; designated the Safety→Availability→Integrity→Confidentiality hierarchy as the canonical single source of truth (referenced by Security-Decision-Framework.md); added Sources/Grounding (NIST SP 800-82 Rev. 3, IEC 62443, ISO 31000); added Core cross-links (OT-Architecture-Principles.md, Security-Decision-Framework.md, Risk-Management-Principles.md, OT-Lifecycle.md) |
+| 1.1.1   | 2026-07-01 | Added reciprocal cross-links to the 03-Architecture strategy documents (Defense-in-Depth.md, Risk-Based-Security.md, Zero-Trust-in-OT.md) in the relevant sections and Related Documents |
