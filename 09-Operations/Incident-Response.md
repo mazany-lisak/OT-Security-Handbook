@@ -1,9 +1,12 @@
-# Incident Response
-
-Version: 1.0
-Status: Production Draft
-Audience: OT Security Architects, Incident Responders, SOC Analysts, Automation Engineers, Operations Personnel, AI Knowledge Base
-
+---
+title: Incident Response
+category: Operations
+version: 1.1.0
+status: Stable
+author: OT Security Handbook Project
+classification: Public
+last_reviewed: 2026-07-01
+review_cycle: Annual
 ---
 
 # Purpose
@@ -452,20 +455,29 @@ When discussing Incident Response:
 
 ---
 
+# Sources / Grounding
+
+* **NIST SP 800-61** (Computer Security Incident Handling Guide) — IR lifecycle.
+* **IEC 62443-2-1** (IACS security programme) and **NIST SP 800-82 Rev. 3** (OT-specific incident response).
+
+> These are foundational references; defer to the current standard/catalogue for authoritative, up-to-date detail.
+
+---
+
 # Related Documents
 
-* Risk-Based-Security.md
-* Defense-in-Depth.md
-* Backup.md
-* Disaster-Recovery.md
-* Change-Management.md
-* MITRE-ATTACK-ICS.md
-* ICS-Kill-Chain.md
-* Monitoring.md
-* Logging.md
-* Asset-Management.md
-* IEC62443-Overview.md
-* NIS2.md
+* [Risk-Based-Security.md](Risk-Based-Security.md)
+* [Defense-in-Depth.md](Defense-in-Depth.md)
+* [Backup.md](Backup.md)
+* [Disaster-Recovery.md](Disaster-Recovery.md)
+* [Change-Management.md](Change-Management.md)
+* [MITRE-ATTACK-ICS.md](MITRE-ATTACK-ICS.md)
+* [ICS-Kill-Chain.md](ICS-Kill-Chain.md)
+* [Monitoring.md](Monitoring.md)
+* [Logging.md](Logging.md)
+* [Asset-Management.md](Asset-Management.md)
+* [IEC62443.md](IEC62443.md)
+* [NIS2.md](NIS2.md)
 
 ---
 
@@ -474,3 +486,4 @@ When discussing Incident Response:
 | Version | Date    | Description                |
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
+| 1.1.0   | 2026-07-01 | Converted to YAML front matter (category: Operations) and semver; fixed links (IEC62443-Overview.md → IEC62443.md); added Sources/Grounding (NIST SP 800-61, IEC 62443-2-1); markdown Related Documents |

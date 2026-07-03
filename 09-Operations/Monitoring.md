@@ -1,9 +1,12 @@
-# Monitoring
-
-Version: 1.0
-Status: Production Draft
-Audience: OT Security Architects, SOC Analysts, Security Engineers, Automation Engineers, AI Knowledge Base
-
+---
+title: Monitoring
+category: Operations
+version: 1.1.0
+status: Stable
+author: OT Security Handbook Project
+classification: Public
+last_reviewed: 2026-07-01
+review_cycle: Annual
 ---
 
 # Purpose
@@ -459,22 +462,31 @@ When discussing Monitoring:
 
 ---
 
+# Sources / Grounding
+
+* **NIST SP 800-82 Rev. 3** (OT security monitoring), **NIST SP 800-92** (log management), **IEC 62443** (security monitoring, accountability).
+* Analyses evidence from [Logging.md](Logging.md) and [SIEM.md](SIEM.md); detection maps to [MITRE-ATTACK-ICS.md](MITRE-ATTACK-ICS.md).
+
+> These are foundational references; defer to the current standard/catalogue for authoritative, up-to-date detail.
+
+---
+
 # Related Documents
 
-* Logging.md
-* Incident-Response.md
-* Backup.md
-* Risk-Based-Security.md
-* Defense-in-Depth.md
-* Zero-Trust-in-OT.md
-* Identity-Management.md
-* Privileged-Access-Management.md
-* MITRE-ATTACK-ICS.md
-* ICS-Kill-Chain.md
-* OPC-UA.md
-* Network-Segmentation.md
-* IEC62443-Overview.md
-* NIS2.md
+* [Logging.md](Logging.md)
+* [Incident-Response.md](Incident-Response.md)
+* [Backup.md](Backup.md)
+* [Risk-Based-Security.md](Risk-Based-Security.md)
+* [Defense-in-Depth.md](Defense-in-Depth.md)
+* [Zero-Trust-in-OT.md](Zero-Trust-in-OT.md)
+* [Identity-Management.md](Identity-Management.md)
+* [Privileged-Access-Management.md](Privileged-Access-Management.md)
+* [MITRE-ATTACK-ICS.md](MITRE-ATTACK-ICS.md)
+* [ICS-Kill-Chain.md](ICS-Kill-Chain.md)
+* [OPC-UA.md](OPC-UA.md)
+* [Network-Segmentation.md](Network-Segmentation.md)
+* [IEC62443.md](IEC62443.md)
+* [NIS2.md](NIS2.md)
 
 ---
 
@@ -483,3 +495,4 @@ When discussing Monitoring:
 | Version | Date    | Description                |
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
+| 1.1.0   | 2026-07-01 | Converted to YAML front matter (category: Operations) and semver; fixed links (IEC62443-Overview.md → IEC62443.md); added Sources/Grounding; cross-links to SIEM.md; markdown Related Documents |

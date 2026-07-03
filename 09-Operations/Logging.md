@@ -1,9 +1,12 @@
-# Logging
-
-Version: 1.0
-Status: Production Draft
-Audience: OT Security Architects, SOC Analysts, Security Engineers, Automation Engineers, System Administrators, AI Knowledge Base
-
+---
+title: Logging
+category: Operations
+version: 1.1.0
+status: Stable
+author: OT Security Handbook Project
+classification: Public
+last_reviewed: 2026-07-01
+review_cycle: Annual
 ---
 
 # Purpose
@@ -435,20 +438,29 @@ When discussing Logging:
 
 ---
 
+# Sources / Grounding
+
+* **NIST SP 800-92** (log management), **IEC 62443** (accountability, auditability), **NIST SP 800-82 Rev. 3**.
+* Logs are correlated and analysed via [Monitoring.md](Monitoring.md) and [SIEM.md](SIEM.md).
+
+> These are foundational references; defer to the current standard/catalogue for authoritative, up-to-date detail.
+
+---
+
 # Related Documents
 
-* Monitoring.md
-* SIEM.md
-* Incident-Response.md
-* Threat-Hunting.md
-* Detection-Engineering.md
-* Asset-Management.md
-* Identity-Management.md
-* Privileged-Access-Management.md
-* OPC-UA.md
-* MITRE-ATTACK-ICS.md
-* IEC62443-Overview.md
-* NIS2.md
+* [Monitoring.md](Monitoring.md)
+* [SIEM.md](SIEM.md)
+* [Incident-Response.md](Incident-Response.md)
+* [Threat-Hunting.md](Threat-Hunting.md)
+* [Detection-Engineering.md](Detection-Engineering.md)
+* [Asset-Management.md](Asset-Management.md)
+* [Identity-Management.md](Identity-Management.md)
+* [Privileged-Access-Management.md](Privileged-Access-Management.md)
+* [OPC-UA.md](OPC-UA.md)
+* [MITRE-ATTACK-ICS.md](MITRE-ATTACK-ICS.md)
+* [IEC62443.md](IEC62443.md)
+* [NIS2.md](NIS2.md)
 
 ---
 
@@ -457,3 +469,4 @@ When discussing Logging:
 | Version | Date    | Description                |
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
+| 1.1.0   | 2026-07-01 | Converted to YAML front matter (category: Operations) and semver; fixed links (IEC62443-Overview.md → IEC62443.md); added Sources/Grounding; cross-links to SIEM.md; markdown Related Documents |

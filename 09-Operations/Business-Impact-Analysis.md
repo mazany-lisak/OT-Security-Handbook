@@ -1,9 +1,12 @@
-# Business Impact Analysis (BIA)
-
-Version: 1.0
-Status: Production Draft
-Audience: OT Security Architects, Business Continuity Managers, Operations Managers, Security Engineers, Automation Engineers, AI Knowledge Base
-
+---
+title: Business Impact Analysis (BIA)
+category: Operations
+version: 1.1.0
+status: Stable
+author: OT Security Handbook Project
+classification: Public
+last_reviewed: 2026-07-01
+review_cycle: Annual
 ---
 
 # Purpose
@@ -466,19 +469,28 @@ When discussing Business Impact Analysis:
 
 ---
 
+# Sources / Grounding
+
+* **ISO 22301** and **NIST SP 800-34** — Business Impact Analysis; RTO / RPO / MTD.
+* Foundation for [Business-Continuity.md](Business-Continuity.md), [Disaster-Recovery.md](Disaster-Recovery.md) and [Backup.md](Backup.md).
+
+> These are foundational references; defer to the current standard/catalogue for authoritative, up-to-date detail.
+
+---
+
 # Related Documents
 
-* Business-Continuity.md
-* Disaster-Recovery.md
-* Disaster-Recovery-Plan.md
-* Backup.md
-* Incident-Response.md
-* Risk-Based-Security.md
-* Asset-Management.md
-* Change-Management.md
-* Recovery-Testing.md
-* IEC62443-Overview.md
-* NIS2.md
+* [Business-Continuity.md](Business-Continuity.md)
+* [Disaster-Recovery.md](Disaster-Recovery.md)
+* [Disaster-Recovery-Plan.md](Disaster-Recovery-Plan.md)
+* [Backup.md](Backup.md)
+* [Incident-Response.md](Incident-Response.md)
+* [Risk-Based-Security.md](Risk-Based-Security.md)
+* [Asset-Management.md](Asset-Management.md)
+* [Change-Management.md](Change-Management.md)
+* [Recovery-Testing.md](Recovery-Testing.md)
+* [IEC62443.md](IEC62443.md)
+* [NIS2.md](NIS2.md)
 
 ---
 
@@ -487,3 +499,4 @@ When discussing Business Impact Analysis:
 | Version | Date    | Description                |
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
+| 1.1.0   | 2026-07-01 | Converted to YAML front matter (category: Operations) and semver; fixed links (IEC62443-Overview.md → IEC62443.md); added Sources/Grounding; markdown Related Documents |

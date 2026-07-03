@@ -1,9 +1,12 @@
-# Disaster Recovery Plan (DRP)
-
-Version: 1.0
-Status: Production Draft
-Audience: OT Security Architects, Disaster Recovery Teams, Operations Personnel, Security Engineers, Automation Engineers, AI Knowledge Base
-
+---
+title: Disaster Recovery Plan (DRP)
+category: Operations
+version: 1.1.0
+status: Stable
+author: OT Security Handbook Project
+classification: Public
+last_reviewed: 2026-07-01
+review_cycle: Annual
 ---
 
 # Purpose
@@ -415,19 +418,28 @@ When discussing Disaster Recovery Plans:
 
 ---
 
+# Sources / Grounding
+
+* **NIST SP 800-34** (contingency-plan structure), **ISO 22301**.
+* Validated via [Recovery-Testing.md](Recovery-Testing.md); governed by [Change-Management.md](Change-Management.md).
+
+> These are foundational references; defer to the current standard/catalogue for authoritative, up-to-date detail.
+
+---
+
 # Related Documents
 
-* Disaster-Recovery.md
-* Business-Impact-Analysis.md
-* Business-Continuity.md
-* Backup.md
-* Recovery-Testing.md
-* Incident-Response.md
-* Change-Management.md
-* Configuration-Management.md
-* Risk-Based-Security.md
-* IEC62443-Overview.md
-* NIS2.md
+* [Disaster-Recovery.md](Disaster-Recovery.md)
+* [Business-Impact-Analysis.md](Business-Impact-Analysis.md)
+* [Business-Continuity.md](Business-Continuity.md)
+* [Backup.md](Backup.md)
+* [Recovery-Testing.md](Recovery-Testing.md)
+* [Incident-Response.md](Incident-Response.md)
+* [Change-Management.md](Change-Management.md)
+* [Configuration-Management.md](Configuration-Management.md)
+* [Risk-Based-Security.md](Risk-Based-Security.md)
+* [IEC62443.md](IEC62443.md)
+* [NIS2.md](NIS2.md)
 
 ---
 
@@ -436,3 +448,4 @@ When discussing Disaster Recovery Plans:
 | Version | Date    | Description                |
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
+| 1.1.0   | 2026-07-01 | Converted to YAML front matter (category: Operations) and semver; fixed links (IEC62443-Overview.md → IEC62443.md); added Sources/Grounding; cross-links to Change-Management.md / Configuration-Management.md; markdown Related Documents |
