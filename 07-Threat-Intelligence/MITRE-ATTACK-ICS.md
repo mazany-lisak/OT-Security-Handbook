@@ -1,9 +1,12 @@
-# MITRE ATT&CK for ICS
-
-Version: 1.0
-Status: Production Draft
-Audience: OT Security Architects, SOC Analysts, Incident Responders, Automation Engineers, AI Knowledge Base
-
+---
+title: MITRE ATT&CK for ICS
+category: Threat-Intelligence
+version: 1.1.0
+status: Stable
+author: OT Security Handbook Project
+classification: Public
+last_reviewed: 2026-07-01
+review_cycle: Annual
 ---
 
 # Purpose
@@ -124,6 +127,8 @@ Impact
 ```
 
 The earlier an attack is detected, the lower the operational impact.
+
+> **Accuracy note.** The current ATT&CK for ICS matrix defines **12 tactics** — the above plus **Evasion** — spanning **83 techniques**. Tactics are categories of adversary goals, **not a strict sequence**. For the campaign-stage progression view see [ICS-Kill-Chain.md](ICS-Kill-Chain.md); reference the official MITRE ATT&CK for ICS matrix for technique identifiers.
 
 ---
 
@@ -390,22 +395,31 @@ When using MITRE ATT&CK for ICS:
 
 ---
 
+# Sources / Grounding
+
+* **MITRE ATT&CK for ICS** — authoritative knowledge base: **12 tactics, 83 techniques** (Initial Access, Execution, Persistence, Privilege Escalation, Evasion, Discovery, Lateral Movement, Collection, Command and Control, Inhibit Response Function, Impair Process Control, Impact).
+* **MITRE EMB3D** (2024) — complementary threat model for embedded devices.
+* Complements the **SANS ICS Cyber Kill Chain** (see [ICS-Kill-Chain.md](ICS-Kill-Chain.md)).
+
+> These are foundational references; defer to the current standard/catalogue for authoritative, up-to-date detail.
+
+---
+
 # Related Documents
 
-* OT-Security-Philosophy.md
-* Risk-Based-Security.md
-* CVE.md
-* CVSS.md
-* EPSS.md
-* CISA-KEV.md
-* Network-Segmentation.md
-* Zones-and-Conduits.md
-* Firewall-Design.md
-* Identity-Management.md
-* Incident-Response.md
-* Monitoring.md
-* Logging.md
-* IEC62443-Overview.md
+* [OT-Security-Philosophy.md](OT-Security-Philosophy.md)
+* [Risk-Based-Security.md](Risk-Based-Security.md)
+* [CVE.md](CVE.md)
+* [CVSS.md](CVSS.md)
+* [EPSS.md](EPSS.md)
+* [CISA-KEV.md](CISA-KEV.md)
+* [Network-Segmentation.md](Network-Segmentation.md)
+* [IEC62443.md](IEC62443.md)
+* [Firewall-Design.md](Firewall-Design.md)
+* [Identity-Management.md](Identity-Management.md)
+* [Incident-Response.md](Incident-Response.md)
+* [Monitoring.md](Monitoring.md)
+* [Logging.md](Logging.md)
 
 ---
 
@@ -414,3 +428,4 @@ When using MITRE ATT&CK for ICS:
 | Version | Date    | Description                |
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
+| 1.1.0   | 2026-07-01 | Converted to YAML front matter (category: Threat-Intelligence) and semver; fixed links (IEC62443-Overview.md → IEC62443.md; removed retired Zones-and-Conduits.md reference); accuracy note (12 tactics incl. Evasion, 83 techniques); delegated campaign-stage lifecycle to ICS-Kill-Chain.md; added Sources/Grounding; markdown Related Documents |

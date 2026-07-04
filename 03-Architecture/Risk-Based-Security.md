@@ -1,20 +1,21 @@
-# Risk-Based Security
-
-Version: 1.0
-Status: Production Draft
-Audience: OT Security Architects, Security Engineers, Automation Engineers, Compliance Officers, AI Knowledge Base
-
+---
+title: Risk-Based Security
+category: Architecture
+version: 1.1.0
+status: Stable
+author: OT Security Handbook Project
+classification: Public
+last_reviewed: 2026-07-01
+review_cycle: Annual
 ---
 
 # Purpose
 
-Risk-Based Security is the foundational decision-making methodology for designing, operating and improving secure Industrial Automation and Control Systems (IACS).
+Risk-Based Security is the architectural **strategy** of selecting, prioritising and tuning security controls according to risk—so that effort and control strength are concentrated where the consequence to safety and operations is greatest, and not applied uniformly.
 
-The objective is **not** to eliminate all risk.
+It is one of the three complementary architectural strategies: [Defense-in-Depth.md](Defense-in-Depth.md) answers *how to layer* controls, [Zero-Trust-in-OT.md](Zero-Trust-in-OT.md) answers *which identities to trust and when*, and this document answers ***which controls are actually needed, and in what priority***.
 
-Instead, the objective is to understand, prioritize and reduce risk to an acceptable level while maintaining safe and reliable industrial operations.
-
-Every architectural recommendation within this handbook assumes a risk-based approach.
+> **Scope — applied strategy, not first principles.** This document assumes the risk **principles** defined in [Risk-Management-Principles.md](Risk-Management-Principles.md) (what risk is, the risk cycle, treatment options, residual risk) and the decision **method** in [Security-Decision-Framework.md](Security-Decision-Framework.md) (the eight-step sequence). It does **not** repeat them. It focuses on the *applied* strategy: risk-based control selection, the security-vs-operational-risk trade-off, and **vulnerability prioritisation** (CVSS / EPSS / CISA KEV) in an OT context. Consequence prioritisation follows the canonical hierarchy in [OT-Security-Philosophy.md](OT-Security-Philosophy.md).
 
 ---
 
@@ -22,383 +23,91 @@ Every architectural recommendation within this handbook assumes a risk-based app
 
 This document describes:
 
-* Risk-Based Security principles
-* Risk assessment
-* Risk treatment
-* Decision making
-* Architectural prioritization
-* Operational trade-offs
-* Relationship with standards and regulations
+* Risk-based control **selection and prioritisation**
+* Security vs operational risk trade-offs
+* Vulnerability prioritisation and triage (CVSS, EPSS, CISA KEV, context)
+* Applied worked examples
 
-Vendor-specific methodologies are intentionally excluded.
+Risk fundamentals, the risk cycle and risk treatment are in [Risk-Management-Principles.md](Risk-Management-Principles.md). The decision sequence is in [Security-Decision-Framework.md](Security-Decision-Framework.md). Vendor-specific methodologies are intentionally excluded.
 
 ---
 
 # Security Philosophy
 
-Absolute security does not exist.
-
-Every architecture contains:
-
-* vulnerabilities,
-* operational constraints,
-* business limitations,
-* human factors,
-* unknown risks.
-
-Attempting to eliminate all risk usually creates unacceptable operational complexity.
-
-Good architecture balances security with operational reality.
+Absolute security does not exist. Every architecture contains vulnerabilities, operational constraints, business limitations, human factors and unknown risks. Attempting to eliminate all risk usually creates unacceptable operational complexity. **Good architecture balances security with operational reality**—it reduces the risks that matter most, at acceptable operational cost.
 
 ---
 
-# Why Risk-Based Security Matters
+# Why Risk-Based Security Matters in OT
 
-Industrial environments differ fundamentally from enterprise IT.
-
-Security decisions may affect:
-
-* Human safety
-* Environmental protection
-* Process stability
-* Production continuity
-* Regulatory compliance
-* Financial performance
-
-Therefore, security decisions must consider both cyber risk and operational consequences.
+Security decisions in OT may affect human safety, environmental protection, process stability, production continuity, regulatory compliance and financial performance. Because a control can itself harm safety or availability, controls must be chosen on the basis of **total organisational risk**, not cyber risk alone, and applied where they buy the most risk reduction per unit of operational impact.
 
 ---
 
-# What is Risk?
+# Risk-Based Control Selection and Prioritisation
 
-Within the context of this handbook, risk is the combination of:
+The core of the strategy: **do not apply identical controls everywhere.** Concentrate the strongest controls on the highest-consequence assets and conduits, and accept lighter controls (or compensating controls) elsewhere.
 
-* Threat
-* Vulnerability
-* Likelihood
-* Consequence
-
-Risk cannot be evaluated by considering only vulnerabilities.
-
-Operational context is equally important.
+* Match control strength to the asset's consequence and exposure (e.g. an SIS or a remotely reachable controller warrants stronger controls than an isolated lab HMI).
+* Prefer the control that reduces the **greatest risk with the least operational impact**.
+* Prioritise consequence in the canonical order (Human Safety → Environmental Protection → Process Stability → Availability → Integrity → Confidentiality → Operational Efficiency → Cost), per [OT-Security-Philosophy.md](OT-Security-Philosophy.md) and [Security-Decision-Framework.md](Security-Decision-Framework.md). **Cost alone should rarely determine security priorities.**
+* Where an asset cannot be hardened (legacy), shift to **compensating controls** (segmentation, monitoring, restricted access) rather than forcing an unfeasible fix.
 
 ---
 
-# Components of Risk
-
-Effective risk assessment requires understanding:
-
-## Assets
-
-What must be protected?
-
-Examples include:
-
-* PLCs
-* SCADA systems
-* Historians
-* Engineering workstations
-* Safety systems
-* Network infrastructure
-
----
-
-## Threats
-
-Who or what could cause harm?
-
-Examples include:
-
-* External attackers
-* Insider threats
-* Human error
-* Hardware failure
-* Software defects
-* Supply chain compromise
-
----
-
-## Vulnerabilities
-
-What weaknesses exist?
-
-Examples include:
-
-* Legacy protocols
-* Weak authentication
-* Flat networks
-* Unsupported operating systems
-* Shared administrator accounts
-
----
-
-## Consequences
-
-What happens if the threat succeeds?
-
-Possible impacts include:
-
-* Personnel injury
-* Environmental damage
-* Production loss
-* Equipment damage
-* Regulatory penalties
-* Reputation loss
-
----
-
-# Risk Is Context
+# Risk Is Context, Not a Score
 
 A CVSS score alone does not determine operational risk.
 
-Example:
-
-A vulnerability with a high CVSS score affecting an isolated engineering workstation may represent lower operational risk than a medium-severity vulnerability affecting a Safety Instrumented System (SIS).
-
-Context always matters.
+Example: a vulnerability with a high CVSS score on an isolated engineering workstation may represent **lower** operational risk than a medium-severity vulnerability affecting a Safety Instrumented System (SIS). Exposure, exploitability and consequence—not severity alone—determine priority.
 
 ---
 
-# Risk Treatment
+# Vulnerability Prioritisation and Triage
 
-Organizations typically have four options:
+When many vulnerabilities compete for limited maintenance windows, prioritise using complementary signals rather than CVSS alone:
 
-## Mitigate
+* **CVSS (severity)** — describes *technical severity* under assumed conditions; it is **not** a measure of the likelihood of exploitation or of operational risk in *your* environment.
+* **EPSS (exploit probability)** — an empirical probability that a vulnerability will be exploited in the wild in the near term; helps rank the large volume of high-CVSS items.
+* **CISA KEV (Known Exploited Vulnerabilities)** — a catalogue of vulnerabilities *actually being exploited*; presence here strongly elevates priority.
+* **Operational context** — exposure (Internet/remote-reachable vs. isolated), asset criticality/consequence (SIS vs. lab), existing compensating controls, and the operational cost/risk of patching (downtime, revalidation).
 
-Reduce the risk through technical or organizational controls.
-
-Examples:
-
-* Network segmentation
-* MFA
-* Monitoring
-* Hardening
-
----
-
-## Transfer
-
-Transfer part of the risk.
-
-Examples:
-
-* Insurance
-* Contractual obligations
-* Managed services
-
-Responsibility cannot be completely transferred.
-
----
-
-## Accept
-
-Accept the residual risk.
-
-Acceptance should be:
-
-* documented,
-* justified,
-* approved by management,
-* periodically reviewed.
-
----
-
-## Avoid
-
-Eliminate the activity creating the risk.
-
-Examples:
-
-* Removing unnecessary remote access
-* Eliminating unsupported systems
-* Decommissioning obsolete services
-
----
-
-# Risk Prioritization
-
-Not every risk deserves the same response.
-
-Architects should prioritize according to:
-
-1. Human safety
-2. Environmental protection
-3. Operational continuity
-4. Regulatory obligations
-5. Financial impact
-6. Reputation
-
-Cost alone should rarely determine security priorities.
+The output is a **prioritised, context-aware remediation plan**, not a raw CVSS-ordered list. Patch timing must respect maintenance windows and change management ([Change-Management.md](Change-Management.md)); where immediate patching is infeasible, apply compensating controls and document the residual risk (per [Risk-Management-Principles.md](Risk-Management-Principles.md)).
 
 ---
 
 # Security vs Operational Risk
 
-Security controls may themselves introduce risk.
+Security controls may themselves introduce risk. Examples:
 
-Examples include:
+* Firewalls or DPI increasing latency on deterministic networks.
+* Anti-malware disrupting PLC engineering tools.
+* Authentication delaying emergency operator response.
+* Patching causing production downtime or invalidating vendor certification.
 
-* Firewalls increasing latency
-* Antivirus disrupting PLC engineering
-* Authentication delaying emergency response
-* Patching causing production downtime
-
-Architectural decisions should reduce total organizational risk rather than cyber risk alone.
+Architectural decisions should reduce **total** risk (cyber *plus* operational *plus* safety), not cyber risk alone. A control that raises operational or safety risk more than it lowers cyber risk is a net loss.
 
 ---
 
-# Residual Risk
+# Relationship with Defense in Depth and Zero Trust
 
-No architecture completely eliminates risk.
+The three strategies are complementary:
 
-After implementing controls, residual risk remains.
+* **Risk-Based Security** decides *which* controls are needed and in what priority.
+* **Defense in Depth** ([Defense-in-Depth.md](Defense-in-Depth.md)) decides *how* controls are layered so no single failure is catastrophic.
+* **Zero Trust** ([Zero-Trust-in-OT.md](Zero-Trust-in-OT.md)) decides *which identities* are trusted, when and under what conditions.
 
-Residual risk should be:
-
-* understood,
-* documented,
-* monitored,
-* periodically reassessed.
-
-Residual risk is not failure.
-
-It is an expected outcome of mature risk management.
+Risk determines priorities; Defense in Depth and Zero Trust shape implementation.
 
 ---
 
-# Continuous Risk Assessment
+# Relationship with Standards and Regulation
 
-Risk changes continuously.
+* **IEC 62443** is fundamentally risk-based (Security Levels, zones & conduits, the 62443-3-2 risk assessment). Controls should be selected per identified risk, not applied uniformly. See [IEC62443.md](IEC62443.md).
+* **NIS2** requires risk-management measures *appropriate to the organisation's circumstances*—it deliberately avoids prescribing identical controls for everyone; Risk-Based Security is the methodology that satisfies this. See [NIS2.md](NIS2.md) and [Czech-Cybersecurity-Act.md](Czech-Cybersecurity-Act.md).
+* **MITRE ATT&CK** describes attacker behaviour; risk assessment determines whether those techniques are relevant, which assets they threaten and which controls are justified. Threat intelligence informs—but does not replace—risk assessment.
 
-Examples include:
-
-* New vulnerabilities
-* Firmware updates
-* New suppliers
-* Network changes
-* New regulations
-* New attack techniques
-
-Risk assessment should therefore be a continuous operational process rather than a one-time project activity.
-
----
-
-# Relationship with IEC 62443
-
-IEC 62443 is fundamentally risk-based.
-
-Examples include:
-
-* Security Levels
-* Zones & Conduits
-* System Requirements
-* Risk Assessment
-
-Architectural controls should be selected according to identified risks rather than applied uniformly.
-
----
-
-# Relationship with NIS2
-
-NIS2 requires organizations to implement risk management measures appropriate to their circumstances.
-
-The directive intentionally avoids prescribing identical technical controls for every organization.
-
-Risk-Based Security therefore provides the decision-making methodology supporting NIS2 compliance.
-
----
-
-# Relationship with MITRE ATT&CK
-
-MITRE ATT&CK describes attacker behaviour.
-
-Risk assessment determines:
-
-* whether those techniques are relevant,
-* which assets they threaten,
-* which controls are justified.
-
-Threat intelligence should inform—but not replace—risk assessment.
-
----
-
-# Relationship with Defense in Depth
-
-Defense in Depth answers:
-
-> **How should security controls be layered?**
-
-Risk-Based Security answers:
-
-> **Which controls are actually needed?**
-
-The two concepts are complementary.
-
-Risk determines priorities.
-
-Defense in Depth determines implementation.
-
----
-
-# Common Design Mistakes
-
-Typical mistakes include:
-
-* Prioritizing CVSS scores without operational context.
-* Treating compliance as risk management.
-* Ignoring safety impacts.
-* Performing risk assessments only during audits.
-* Using identical security controls everywhere.
-* Ignoring residual risk.
-* Focusing exclusively on technology.
-
----
-
-# Architect Notes
-
-Experienced architects rarely begin by asking:
-
-"What security product should we buy?"
-
-Instead, they ask:
-
-* What are we protecting?
-* Why is it important?
-* What could realistically happen?
-* Which consequence is unacceptable?
-* Which control reduces the greatest amount of risk with the least operational impact?
-
-Good architecture is the result of informed trade-offs.
-
-Not maximal security.
-
----
-
-# Decision Framework
-
-Recommended decision sequence:
-
-```text
-Business Objective
-        ↓
-Asset Identification
-        ↓
-Threat Assessment
-        ↓
-Vulnerability Assessment
-        ↓
-Risk Evaluation
-        ↓
-Architecture Design
-        ↓
-Control Selection
-        ↓
-Residual Risk Review
-        ↓
-Continuous Improvement
-```
-
-Every architectural decision should be traceable back to an identified business objective and risk.
+Compliance **supports** risk management; it does not replace it.
 
 ---
 
@@ -408,18 +117,14 @@ Every architectural decision should be traceable back to an identified business 
 
 **Situation:** A PLC does not support encrypted communications.
 
-**Poor recommendation:**
-
-> Replace the PLC immediately.
+**Poor recommendation:** Replace the PLC immediately.
 
 **Risk-based recommendation:**
 
-* Assess operational criticality.
-* Evaluate vendor support.
-* Implement network segmentation.
-* Restrict engineering access.
+* Assess operational criticality and vendor support.
+* Implement network segmentation and restrict engineering access.
 * Monitor communications.
-* Plan phased modernization.
+* Plan phased modernisation.
 
 ---
 
@@ -427,18 +132,14 @@ Every architectural decision should be traceable back to an identified business 
 
 **Situation:** A vendor requires remote maintenance.
 
-**Poor recommendation:**
-
-> Disable remote access permanently.
+**Poor recommendation:** Disable remote access permanently.
 
 **Risk-based recommendation:**
 
-* Use VPN with MFA.
-* Restrict access to maintenance windows.
-* Require approval.
-* Record sessions.
-* Monitor activities.
-* Review access periodically.
+* VPN with MFA, restricted to maintenance windows.
+* Require approval; record sessions; monitor activity; review access periodically.
+
+(See [Secure-Remote-Access.md](Secure-Remote-Access.md) and [Zero-Trust-in-OT.md](Zero-Trust-in-OT.md).)
 
 ---
 
@@ -448,13 +149,44 @@ Every architectural decision should be traceable back to an identified business 
 
 **Questions before deciding:**
 
-* Is the historian Internet-accessible?
-* Is exploitation realistic?
-* Does CISA KEV include the vulnerability?
-* What is the EPSS score?
-* What operational impact would patching have?
+* Is the historian Internet- or remote-accessible?
+* Is exploitation realistic (EPSS)?
+* Is it listed in CISA KEV?
+* What operational impact would patching have (downtime, revalidation)?
 
-The appropriate response depends on context, not solely on the CVSS score.
+The appropriate response depends on **context, not solely the CVSS score.**
+
+---
+
+# Common Design Mistakes
+
+* Prioritising CVSS scores without operational context (ignoring EPSS/KEV/exposure).
+* Treating compliance as risk management.
+* Ignoring safety impacts.
+* Using identical security controls everywhere.
+* Letting a control's own operational risk go unaccounted.
+* Ignoring residual risk.
+
+---
+
+# Architect Notes
+
+Experienced architects rarely begin with "What security product should we buy?" They ask: *What are we protecting? Why does it matter? What could realistically happen? Which consequence is unacceptable? Which control reduces the greatest risk with the least operational impact?* Good architecture is the result of informed trade-offs—not maximal security.
+
+---
+
+# Decision Support
+
+Before selecting or prioritising a control, determine:
+
+1. Which asset/consequence is being protected, and how exposed is it?
+2. Is the threat realistic (threat intel, EPSS, KEV)?
+3. Does the control reduce more risk than it introduces (operational + safety)?
+4. Is a lighter compensating control sufficient given existing layers?
+5. What residual risk remains, and who accepts it?
+6. Does the priority follow the canonical consequence hierarchy?
+
+(For the full assessment sequence see [Security-Decision-Framework.md](Security-Decision-Framework.md); for principles see [Risk-Management-Principles.md](Risk-Management-Principles.md).)
 
 ---
 
@@ -462,31 +194,42 @@ The appropriate response depends on context, not solely on the CVSS score.
 
 When applying Risk-Based Security:
 
-* Begin by understanding business and operational objectives.
-* Distinguish between cyber risk and operational risk.
-* Never recommend technical controls without understanding the industrial process.
-* Explain trade-offs between security, availability and safety.
-* Encourage documenting residual risk.
-* Map recommendations to IEC 62443, NIS2 and organizational governance where appropriate.
+* Assume the risk principles ([Risk-Management-Principles.md](Risk-Management-Principles.md)) and decision method ([Security-Decision-Framework.md](Security-Decision-Framework.md)); focus on applied control selection and prioritisation.
+* Distinguish cyber risk from operational risk; never recommend controls without understanding the process.
+* For vulnerabilities, combine CVSS with **EPSS, CISA KEV and operational context**—never rank by CVSS alone.
+* Explain trade-offs between security, availability and safety; encourage documenting residual risk.
 * Explain that compliance supports—but does not replace—risk management.
+
+---
+
+# Sources / Grounding
+
+* **ISO 31000** — risk-management principles and process (foundational; see [Risk-Management-Principles.md](Risk-Management-Principles.md)).
+* **IEC 62443-3-2** — IACS security risk assessment (zones/conduits, Target Security Levels). See [IEC62443.md](IEC62443.md).
+* **NIST SP 800-30 / SP 800-82 Rev. 3** — risk assessment and OT risk management (consequence-based).
+* **CVSS** (FIRST) — technical severity; **EPSS** (FIRST) — exploit-probability scoring; **CISA KEV** — known-exploited-vulnerabilities catalogue. Used together for context-aware prioritisation.
+
+> Risk-Based Security is an architectural strategy; the underlying principles, process and normative requirements live in the referenced documents and standards.
 
 ---
 
 # Related Documents
 
-* OT-Security-Philosophy.md
-* Defense-in-Depth.md
-* NIS2.md
-* Czech-Cybersecurity-Act.md
-* IEC62443-Overview.md
-* MITRE-ATTACK-ICS.md
-* ICS-Kill-Chain.md
-* CVE.md
-* CVSS.md
-* EPSS.md
-* CISA-KEV.md
-* Zones-and-Conduits.md
-* Identity-Management.md
+* [OT-Security-Philosophy.md](OT-Security-Philosophy.md)
+* [OT-Architecture-Principles.md](OT-Architecture-Principles.md)
+* [Risk-Management-Principles.md](Risk-Management-Principles.md)
+* [Security-Decision-Framework.md](Security-Decision-Framework.md)
+* [Defense-in-Depth.md](Defense-in-Depth.md)
+* [Zero-Trust-in-OT.md](Zero-Trust-in-OT.md)
+* [Risk-Assessment.md](Risk-Assessment.md)
+* [IEC62443.md](IEC62443.md)
+* [NIS2.md](NIS2.md)
+* [Czech-Cybersecurity-Act.md](Czech-Cybersecurity-Act.md)
+* [MITRE-ATTACK-ICS.md](MITRE-ATTACK-ICS.md)
+* [CVSS.md](CVSS.md)
+* [EPSS.md](EPSS.md)
+* [CISA-KEV.md](CISA-KEV.md)
+* [Change-Management.md](Change-Management.md)
 
 ---
 
@@ -495,3 +238,4 @@ When applying Risk-Based Security:
 | Version | Date    | Description                |
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
+| 1.1.0   | 2026-07-01 | Refactored into the applied risk-based **strategy** for the 03-Architecture layer: delegated risk fundamentals/treatment/residual-risk to Risk-Management-Principles.md and the decision sequence to Security-Decision-Framework.md (removed duplicated first-principles content); sharpened and retained the unique content — risk-based control selection & prioritisation, security-vs-operational-risk trade-off, and **vulnerability triage (CVSS + EPSS + CISA KEV + context)** with worked examples; converted to YAML front matter (category: Architecture) and semver; corrected links (`IEC62443-Overview.md` → `IEC62443.md`, removed retired `Zones-and-Conduits.md`); added Sources/Grounding and strategy-trio cross-links; markdown Related Documents |

@@ -1,9 +1,12 @@
-# Backup
-
-Version: 1.0
-Status: Production Draft
-Audience: OT Security Architects, Security Engineers, Automation Engineers, System Administrators, AI Knowledge Base
-
+---
+title: Backup
+category: Operations
+version: 1.1.0
+status: Stable
+author: OT Security Handbook Project
+classification: Public
+last_reviewed: 2026-07-01
+review_cycle: Annual
 ---
 
 # Purpose
@@ -471,20 +474,29 @@ When discussing Backup:
 
 ---
 
+# Sources / Grounding
+
+* **ISO 22301** (BCMS), **NIST SP 800-34** (Contingency Planning), **IEC 62443** (recovery, system integrity).
+* RTO/RPO are defined by [Business-Impact-Analysis.md](Business-Impact-Analysis.md).
+
+> These are foundational references; defer to the current standard/catalogue for authoritative, up-to-date detail.
+
+---
+
 # Related Documents
 
-* Disaster-Recovery.md
-* Incident-Response.md
-* Patch-Management.md
-* Change-Management.md
-* Asset-Management.md
-* Risk-Based-Security.md
-* Defense-in-Depth.md
-* Identity-Management.md
-* PKI.md
-* Certificates.md
-* IEC62443-Overview.md
-* NIS2.md
+* [Disaster-Recovery.md](Disaster-Recovery.md)
+* [Incident-Response.md](Incident-Response.md)
+* [Patch-Management.md](Patch-Management.md)
+* [Change-Management.md](Change-Management.md)
+* [Asset-Management.md](Asset-Management.md)
+* [Risk-Based-Security.md](Risk-Based-Security.md)
+* [Defense-in-Depth.md](Defense-in-Depth.md)
+* [Identity-Management.md](Identity-Management.md)
+* [PKI.md](PKI.md)
+* [Certificates.md](Certificates.md)
+* [IEC62443.md](IEC62443.md)
+* [NIS2.md](NIS2.md)
 
 ---
 
@@ -493,3 +505,4 @@ When discussing Backup:
 | Version | Date    | Description                |
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
+| 1.1.0   | 2026-07-01 | Converted to YAML front matter (category: Operations) and semver; fixed links (IEC62443-Overview.md → IEC62443.md); added Sources/Grounding; markdown Related Documents |

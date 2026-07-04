@@ -1,9 +1,12 @@
-# Disaster Recovery
-
-Version: 1.0
-Status: Production Draft
-Audience: OT Security Architects, Disaster Recovery Managers, Security Engineers, Automation Engineers, Operations Managers, AI Knowledge Base
-
+---
+title: Disaster Recovery
+category: Operations
+version: 1.1.0
+status: Stable
+author: OT Security Handbook Project
+classification: Public
+last_reviewed: 2026-07-01
+review_cycle: Annual
 ---
 
 # Purpose
@@ -415,19 +418,28 @@ When discussing Disaster Recovery:
 
 ---
 
+# Sources / Grounding
+
+* **ISO/IEC 27031**, **NIST SP 800-34**, **IEC 62443** (availability, recovery).
+* Driven by [Business-Impact-Analysis.md](Business-Impact-Analysis.md); executed via [Disaster-Recovery-Plan.md](Disaster-Recovery-Plan.md).
+
+> These are foundational references; defer to the current standard/catalogue for authoritative, up-to-date detail.
+
+---
+
 # Related Documents
 
-* Business-Impact-Analysis.md
-* Business-Continuity.md
-* Disaster-Recovery-Plan.md
-* Backup.md
-* Recovery-Testing.md
-* Incident-Response.md
-* Change-Management.md
-* Configuration-Management.md
-* Risk-Based-Security.md
-* IEC62443-Overview.md
-* NIS2.md
+* [Business-Impact-Analysis.md](Business-Impact-Analysis.md)
+* [Business-Continuity.md](Business-Continuity.md)
+* [Disaster-Recovery-Plan.md](Disaster-Recovery-Plan.md)
+* [Backup.md](Backup.md)
+* [Recovery-Testing.md](Recovery-Testing.md)
+* [Incident-Response.md](Incident-Response.md)
+* [Change-Management.md](Change-Management.md)
+* [Configuration-Management.md](Configuration-Management.md)
+* [Risk-Based-Security.md](Risk-Based-Security.md)
+* [IEC62443.md](IEC62443.md)
+* [NIS2.md](NIS2.md)
 
 ---
 
@@ -436,3 +448,4 @@ When discussing Disaster Recovery:
 | Version | Date    | Description                |
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
+| 1.1.0   | 2026-07-01 | Converted to YAML front matter (category: Operations) and semver; fixed links (IEC62443-Overview.md → IEC62443.md); added Sources/Grounding; markdown Related Documents |

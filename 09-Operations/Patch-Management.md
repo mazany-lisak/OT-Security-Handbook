@@ -1,9 +1,12 @@
-# Patch Management
-
-Version: 1.0
-Status: Production Draft
-Audience: OT Security Architects, Security Engineers, Automation Engineers, System Administrators, AI Knowledge Base
-
+---
+title: Patch Management
+category: Operations
+version: 1.1.0
+status: Stable
+author: OT Security Handbook Project
+classification: Public
+last_reviewed: 2026-07-01
+review_cycle: Annual
 ---
 
 # Purpose
@@ -280,7 +283,7 @@ Risk Assessment
 Patch Decision
 ```
 
-Patching should never be based on CVSS alone.
+Patching should never be based on CVSS alone. The consolidated prioritisation workflow is in [Vulnerability-Management.md](Vulnerability-Management.md).
 
 ---
 
@@ -442,20 +445,29 @@ When discussing Patch Management:
 
 ---
 
+# Sources / Grounding
+
+* **NIST SP 800-40** (patch management), **IEC 62443-2-3** (patch management in the IACS environment).
+* Prioritisation inputs (CVE / CVSS v4.0 / EPSS / CISA KEV) are consolidated in [Vulnerability-Management.md](Vulnerability-Management.md).
+
+> These are foundational references; defer to the current standard/catalogue for authoritative, up-to-date detail.
+
+---
+
 # Related Documents
 
-* Risk-Based-Security.md
-* CVE.md
-* CVSS.md
-* EPSS.md
-* CISA-KEV.md
-* Vulnerability-Management.md
-* Asset-Management.md
-* Change-Management.md
-* Defense-in-Depth.md
-* MITRE-ATTACK-ICS.md
-* IEC62443-Overview.md
-* NIS2.md
+* [Risk-Based-Security.md](Risk-Based-Security.md)
+* [CVE.md](CVE.md)
+* [CVSS.md](CVSS.md)
+* [EPSS.md](EPSS.md)
+* [CISA-KEV.md](CISA-KEV.md)
+* [Vulnerability-Management.md](Vulnerability-Management.md)
+* [Asset-Management.md](Asset-Management.md)
+* [Change-Management.md](Change-Management.md)
+* [Defense-in-Depth.md](Defense-in-Depth.md)
+* [MITRE-ATTACK-ICS.md](MITRE-ATTACK-ICS.md)
+* [IEC62443.md](IEC62443.md)
+* [NIS2.md](NIS2.md)
 
 ---
 
@@ -464,3 +476,4 @@ When discussing Patch Management:
 | Version | Date    | Description                |
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
+| 1.1.0   | 2026-07-01 | Converted to YAML front matter (category: Operations) and semver; fixed links (IEC62443-Overview.md → IEC62443.md); added Sources/Grounding (NIST SP 800-40, IEC 62443-2-3); cross-link to Vulnerability-Management.md; markdown Related Documents |

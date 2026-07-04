@@ -1,9 +1,12 @@
-# ICS Kill Chain
-
-Version: 1.0
-Status: Production Draft
-Audience: OT Security Architects, SOC Analysts, Incident Responders, Automation Engineers, AI Knowledge Base
-
+---
+title: ICS Kill Chain
+category: Threat-Intelligence
+version: 1.1.0
+status: Stable
+author: OT Security Handbook Project
+classification: Public
+last_reviewed: 2026-07-01
+review_cycle: Annual
 ---
 
 # Purpose
@@ -106,6 +109,8 @@ Operational Impact
 ```
 
 The exact sequence varies between incidents, but the progression illustrates increasing proximity to the physical process.
+
+> **Authoritative source.** The foundational model is the **SANS ICS Cyber Kill Chain** (Michael Assante & Robert M. Lee, 2015), an adaptation of the Lockheed Martin Cyber Kill Chain, structured in **two stages** — Stage 1 (IT intrusion) and Stage 2 (ICS attack development & execution). The phased model above is a practitioner synthesis consistent with that work; see [MITRE-ATTACK-ICS.md](MITRE-ATTACK-ICS.md) for the technique-level view.
 
 ---
 
@@ -417,20 +422,28 @@ When using the ICS Kill Chain:
 
 ---
 
+# Sources / Grounding
+
+* **SANS ICS Cyber Kill Chain** — Michael Assante & Robert M. Lee (2015); an adaptation of the **Lockheed Martin Cyber Kill Chain**, structured in **two stages** (Stage 1: IT intrusion; Stage 2: ICS attack development & execution).
+* Complements **MITRE ATT&CK for ICS** (see [MITRE-ATTACK-ICS.md](MITRE-ATTACK-ICS.md)).
+
+> These are foundational references; defer to the current standard/catalogue for authoritative, up-to-date detail.
+
+---
+
 # Related Documents
 
-* MITRE-ATTACK-ICS.md
-* Risk-Based-Security.md
-* Defense-in-Depth.md
-* Zones-and-Conduits.md
-* Network-Segmentation.md
-* Firewall-Design.md
-* Identity-Management.md
-* Secure-Remote-Access.md
-* Incident-Response.md
-* Monitoring.md
-* Logging.md
-* IEC62443-Overview.md
+* [MITRE-ATTACK-ICS.md](MITRE-ATTACK-ICS.md)
+* [Risk-Based-Security.md](Risk-Based-Security.md)
+* [Defense-in-Depth.md](Defense-in-Depth.md)
+* [IEC62443.md](IEC62443.md)
+* [Network-Segmentation.md](Network-Segmentation.md)
+* [Firewall-Design.md](Firewall-Design.md)
+* [Identity-Management.md](Identity-Management.md)
+* [Secure-Remote-Access.md](Secure-Remote-Access.md)
+* [Incident-Response.md](Incident-Response.md)
+* [Monitoring.md](Monitoring.md)
+* [Logging.md](Logging.md)
 
 ---
 
@@ -439,3 +452,4 @@ When using the ICS Kill Chain:
 | Version | Date    | Description                |
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
+| 1.1.0   | 2026-07-01 | Converted to YAML front matter (category: Threat-Intelligence) and semver; fixed links (IEC62443-Overview.md → IEC62443.md; removed retired Zones-and-Conduits.md reference); added authoritative-source note (SANS Assante & Lee 2015, two-stage); added Sources/Grounding; markdown Related Documents |

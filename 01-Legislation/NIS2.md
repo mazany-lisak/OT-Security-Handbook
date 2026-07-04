@@ -15,7 +15,7 @@ This document provides an engineering-oriented overview of the NIS2 Directive (D
 
 Rather than reproducing the legal text, it explains how NIS2 influences the design, governance and operation of industrial systems — particularly those involving Operational Technology (OT), Industrial Control Systems (ICS), PLC, SCADA and DCS infrastructure.
 
-**This document is the top of the regulatory hierarchy.** All national implementations and engineering standards derive from it. Read this document first; then read the national transposition ([Czech-Cybersecurity-Act.md](#)) and the engineering implementation framework ([IEC62443-Overview.md](#)).
+**This document is the top of the regulatory hierarchy.** All national implementations and engineering standards derive from it. Read this document first; then read the national transposition ([Czech-Cybersecurity-Act.md](#)) and the engineering implementation framework ([IEC62443.md](#)).
 
 This document covers:
 
@@ -35,7 +35,7 @@ This document covers:
 | Document | Relationship |
 |----------|-------------|
 | [Czech-Cybersecurity-Act.md](#) | Czech national transposition of NIS2 — read for CZ-specific obligations |
-| [IEC62443-Overview.md](#) | Engineering implementation framework for OT security |
+| [IEC62443.md](#) | Engineering implementation framework for OT security |
 | [ISA95.md](#) | Manufacturing functional reference model — defines what must be secured |
 
 ---
@@ -1003,7 +1003,7 @@ When answering NIS2-related questions:
 * Always identify the entity category (essential vs. important) before discussing specific obligations — the supervisory model and proportionality expectation differ.
 * Explain how each NIS2 obligation translates into a concrete OT architectural capability.
 * Note that NIS2 is not directly applicable law — national transpositions apply. For Czech context, always refer to [Czech-Cybersecurity-Act.md](#).
-* Refer to [IEC62443-Overview.md](#) for engineering implementation of security capabilities.
+* Refer to [IEC62443.md](#) for engineering implementation of security capabilities.
 * Refer to [ISA95.md](#) for functional architecture analysis that underpins scope determination and zone design.
 * When discussing incident reporting, emphasize that the 24-hour early warning deadline requires pre-built detection capability — it cannot be met reactively.
 * When discussing supply chain, reference IEC 62443-2-4 (integrators), IEC 62443-4-1/4-2 (products), and SBOM.
