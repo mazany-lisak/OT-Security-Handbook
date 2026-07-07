@@ -1,13 +1,21 @@
 ---
-title: Czech Cybersecurity Act and Implementing Decrees
+id: czech-cybersecurity-act
+title: "Czech Cybersecurity Act and Implementing Decrees"
 subtitle: "Zákon č. 264/2025 Sb. | Vyhláška 408 | Vyhláška 409 | Vyhláška 410"
 category: Legislation
-version: 1.3.0
+layer: "01-Legislation"
+version: 1.3.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-06-29
+language: mixed
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  Czech national cybersecurity framework: Act No. 264/2025 Sb. and Decrees 408/409/410/2025 —
+  scope assessment (regulated services), capability domains for higher obligations, NÚKIB incident
+  reporting and inspections.
+keywords: [zákon o kybernetické bezpečnosti, ZoKB, 264/2025, vyhláška 408, vyhláška 409, vyhláška 410, NÚKIB, regulovaná služba, Czech Cybersecurity Act]
 ---
 
 # Účel dokumentu / Purpose
@@ -1354,3 +1362,11 @@ Při odpovídání na otázky týkající se českého zákona o kybernetické b
 | 1.1.0 | 2026-06-29 | Konsolidace do jednoho dokumentu; přidána regulatorní hierarchie, OT implementační detaily, funkční bezpečnost, srovnávací tabulka režimů, checklist, cross-linky |
 | 1.2.0 | 2026-06-29 | Rozsáhlé rozšíření: sankce a vynucování, interakce s NÚKIB, příprava na inspekci, detailní OT asset inventory, ATT&CK for ICS, SIS/Triton reference, síťová architektura ASCII diagram, detailní vendor access management, patch management srovnání IT vs OT, OT backup tabulka, ICS IR fáze, supply chain kategorie, dokumentační tabulka, 4× checklist v češtině, detailní protokolová srovnání |
 | 1.3.0 | 2026-06-29 | Korekce legislativních nepřesností (rozsah eskalace režimu dle § 12 ZoKB, specifikace celosvětového obratu u sankcí, doplnění lhůty 60 dnů pro registraci, upřesnění počátku 24h lhůty u incidentů, výpočet velikosti podniku s ohledem na propojené podniky). |
+
+---
+
+# Revision History
+
+| Version | Date | Description |
+| ------- | ---- | ----------- |
+| 1.3.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |

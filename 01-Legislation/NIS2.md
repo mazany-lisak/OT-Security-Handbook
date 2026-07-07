@@ -1,12 +1,20 @@
 ---
-title: NIS2 Directive (EU 2022/2555)
+id: nis2
+title: "NIS2 Directive (EU 2022/2555)"
 category: Legislation
-version: 1.2.0
+layer: "01-Legislation"
+version: 1.2.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-06-29
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  Engineering-oriented overview of the NIS2 Directive (EU 2022/2555): scope and entity categories,
+  Article 20/21/23 obligations with OT-specific implementation, supervision, penalties and sector
+  implications.
+keywords: [NIS2, směrnice 2022/2555, essential entities, important entities, incident reporting, hlášení incidentů, Article 21, supply chain]
 ---
 
 # Purpose
@@ -1020,3 +1028,4 @@ When answering NIS2-related questions:
 | 1.0.0 | 2026-06-28 | Initial release |
 | 1.1.0 | 2026-06-29 | Added regulatory hierarchy, entity categories table, enforcement penalties, architectural implications table, NIS2/IEC62443 comparison, cross-links |
 | 1.2.0 | 2026-06-29 | Major expansion: NIS1 vs NIS2 comparison table; size thresholds; detailed Annex I/II sector tables with OT presence; article-by-article analysis (Art. 20, 21, 22, 23, 32, 33, 34); OT policy framework per Article 21(2); OT backup table; OT vulnerability management IT vs OT comparison; OT training matrix by role; OT MFA application table; cryptography application table for OT; significant incident OT examples; real-world OT incident pattern table; NIS2 obligation → architecture → engineering standard mapping; sector-specific OT implications (energy, transport, water, manufacturing, healthcare); relationship with CER Directive, CRA, GDPR, Machinery Regulation; non-financial sanctions; business case analysis; 5× checklist in Czech language |
+| 1.2.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |
