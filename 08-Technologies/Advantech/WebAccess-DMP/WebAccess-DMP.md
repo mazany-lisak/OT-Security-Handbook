@@ -1,9 +1,22 @@
-# Advantech WebAccess/DMP – Architecture Overview
-
-Version: 1.0
-Status: Production Draft
-Audience: OT Security Architects, Network Engineers, OT Administrators, Automation Engineers, AI Knowledge Base
-
+---
+id: webaccess-dmp
+title: "Advantech WebAccess/DMP — Device Management Platform"
+category: Technologies
+layer: "08-Technologies/Advantech/WebAccess-DMP"
+vendor: "Advantech"
+product: "WebAccess/DMP"
+version: 1.1.0
+status: Stable
+author: OT Security Handbook Project
+classification: Public
+language: en
+last_reviewed: 2026-07-07
+review_cycle: Annual
+summary: >-
+  Advantech WebAccess/DMP device-management platform: centralized provisioning (Zero Touch),
+  digital twin, VPN and firmware management for ICR router fleets, deployment models (SaaS vs
+  on-premises) and security architecture.
+keywords: [WebAccess/DMP, Advantech, device management, Zero Touch Provisioning, digital twin, fleet management, ICR routers]
 ---
 
 # Purpose
@@ -408,22 +421,21 @@ When discussing Advantech WebAccess/DMP:
 
 # Related Documents
 
-* Purdue-Model.md
-* Network-Segmentation.md
-* Zero-Trust-in-OT.md
-* Identity-Management.md
-* PKI.md
-* Certificates.md
-* MFA.md
-* Privileged-Access-Management.md
-* Monitoring.md
-* Logging.md
-* SIEM.md
-* Backup.md
-* Disaster-Recovery.md
-* Risk-Based-Security.md
-* IEC62443-Overview.md
-
+* [Purdue-Model.md](../../../02-Standards/Purdue-Model.md)
+* [Network-Segmentation.md](../../../04-Network/Network-Segmentation.md)
+* [Zero-Trust-in-OT.md](../../../03-Architecture/Zero-Trust-in-OT.md)
+* [Identity-Management.md](../../../05-Identity/Identity-Management.md)
+* [PKI.md](../../../05-Identity/PKI.md)
+* [Certificates.md](../../../05-Identity/Certificates.md)
+* [MFA.md](../../../05-Identity/MFA.md)
+* [Privileged-Access-Management.md](../../../05-Identity/Privileged-Access-Management.md)
+* [Monitoring.md](../../../09-Operations/Monitoring.md)
+* [Logging.md](../../../09-Operations/Logging.md)
+* [SIEM.md](../../../09-Operations/SIEM.md)
+* [Backup.md](../../../09-Operations/Backup.md)
+* [Disaster-Recovery.md](../../../09-Operations/Disaster-Recovery.md)
+* [Risk-Based-Security.md](../../../03-Architecture/Risk-Based-Security.md)
+* [IEC62443.md](../../../02-Standards/IEC62443.md)
 ---
 
 # Revision History
@@ -431,3 +443,4 @@ When discussing Advantech WebAccess/DMP:
 | Version | Date    | Description                |
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
+| 1.1.0 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings; migrated from draft header (no front matter) to canonical schema |

@@ -1,12 +1,20 @@
 ---
-title: Risk Management Principles
+id: risk-management-principles
+title: "Risk Management Principles"
 category: Core
-version: 1.1.1
+layer: "00-Core"
+version: 1.1.2
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-07-01
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  Principles of cybersecurity risk management in OT: the risk cycle, context-dependent risk, OT
+  consequence categories (safety, environmental, production, equipment), treatment options and
+  residual risk.
+keywords: [risk management, řízení rizik, residual risk, zbytkové riziko, ISO 31000, consequence categories, risk treatment]
 ---
 
 # Purpose
@@ -17,7 +25,7 @@ It provides an engineering perspective rather than a compliance methodology.
 
 The objective is to support consistent architectural decision-making throughout the lifecycle of industrial systems.
 
-> **Scope note (Core, not Operations).** This document covers the **principles** of risk management. The **operational execution** — running risk assessments, maintaining a risk register, and periodic reassessment — is an Operate/Maintain activity documented separately (see [Risk-Assessment.md](Risk-Assessment.md)) and governed by IEC 62443-2-1 / 62443-3-2. The **applied strategy** of selecting and prioritising security controls by risk (including vulnerability triage) is in [Risk-Based-Security.md](Risk-Based-Security.md).
+> **Scope note (Core, not Operations).** This document covers the **principles** of risk management. The **operational execution** — running risk assessments, maintaining a risk register, and periodic reassessment — is an Operate/Maintain activity documented separately (see [Risk-Assessment.md](../09-Operations/Risk-Assessment.md)) and governed by IEC 62443-2-1 / 62443-3-2. The **applied strategy** of selecting and prioritising security controls by risk (including vulnerability triage) is in [Risk-Based-Security.md](../03-Architecture/Risk-Based-Security.md).
 
 ---
 
@@ -249,10 +257,10 @@ When information is incomplete, ask clarifying questions before assessing risk.
 
 * **ISO 31000** — overarching risk-management principles and process; the risk-treatment options (reduce / transfer / avoid / accept, plus share).
 * **ISO/IEC 27005** — information-security risk-management process. The 2024 revision of **ISA/IEC 62443-2-1** aligns IACS risk-assessment methodology with ISO/IEC 27005 and **NIST SP 800-30**.
-* **IEC 62443-3-2** — IACS security risk assessment (zones/conduits, Target Security Levels, Cybersecurity Requirements Specification). See [IEC62443.md](IEC62443.md).
+* **IEC 62443-3-2** — IACS security risk assessment (zones/conduits, Target Security Levels, Cybersecurity Requirements Specification). See [IEC62443.md](../02-Standards/IEC62443.md).
 * **NIST SP 800-82 Rev. 3** (§4) — OT risk management; consequence categories (safety, environmental, production, equipment).
 
-> These are foundational references; the operational risk process and normative requirements are detailed in the standards and in [Risk-Assessment.md](Risk-Assessment.md).
+> These are foundational references; the operational risk process and normative requirements are detailed in the standards and in [Risk-Assessment.md](../09-Operations/Risk-Assessment.md).
 
 ---
 
@@ -261,12 +269,12 @@ When information is incomplete, ask clarifying questions before assessing risk.
 * [OT-Security-Philosophy.md](OT-Security-Philosophy.md)
 * [OT-Architecture-Principles.md](OT-Architecture-Principles.md)
 * [Security-Decision-Framework.md](Security-Decision-Framework.md)
-* [Risk-Based-Security.md](Risk-Based-Security.md)
+* [Risk-Based-Security.md](../03-Architecture/Risk-Based-Security.md)
 * [OT-Lifecycle.md](OT-Lifecycle.md)
-* [Risk-Assessment.md](Risk-Assessment.md)
-* [IEC62443.md](IEC62443.md)
-* [NIS2.md](NIS2.md)
-* [Czech-Cybersecurity-Act.md](Czech-Cybersecurity-Act.md)
+* [Risk-Assessment.md](../09-Operations/Risk-Assessment.md)
+* [IEC62443.md](../02-Standards/IEC62443.md)
+* [NIS2.md](../01-Legislation/NIS2.md)
+* [Czech-Cybersecurity-Act.md](../01-Legislation/Czech-Cybersecurity-Act.md)
 
 ---
 
@@ -277,3 +285,4 @@ When information is incomplete, ask clarifying questions before assessing risk.
 | 1.0.0   | 2026-06-28 | Initial release |
 | 1.1.0   | 2026-07-01 | Resolved committed git merge conflict and de-duplicated content; fixed malformed YAML front matter; corrected `IEC62443-Overview.md` → `IEC62443.md`; added a Core-vs-Operations scope note (principles here; execution in Risk-Assessment.md); added an OT-consequence (safety/operational) section; noted ISO 31000 lineage of risk-treatment options; added Sources/Grounding (ISO 31000, ISO/IEC 27005, IEC 62443-2-1/-3-2, NIST SP 800-30/800-82 Rev. 3); added Core cross-links |
 | 1.1.1   | 2026-07-01 | Added reciprocal cross-link to the applied strategy [Risk-Based-Security.md](Risk-Based-Security.md) (scope note and Related Documents) |
+| 1.1.2 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |

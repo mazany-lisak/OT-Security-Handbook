@@ -1,12 +1,20 @@
 ---
-title: Security Decision Framework
+id: security-decision-framework
+title: "Security Decision Framework"
 category: Core
-version: 1.1.1
+layer: "00-Core"
+version: 1.1.2
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-07-01
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  Structured eight-step decision sequence from business objective through process, assets, risk
+  and constraints to architecture and technology selection; operational expansion of the canonical
+  priority hierarchy.
+keywords: [decision framework, rozhodovací rámec, architecture before technology, decision priorities, technology selection]
 ---
 
 # Purpose
@@ -123,7 +131,7 @@ Consider:
 * Existing safeguards
 * Recovery capability
 
-The goal is informed decision-making rather than maximum security. The underlying principles are in [Risk-Management-Principles.md](Risk-Management-Principles.md); risk-based control selection and vulnerability prioritisation are in [Risk-Based-Security.md](Risk-Based-Security.md).
+The goal is informed decision-making rather than maximum security. The underlying principles are in [Risk-Management-Principles.md](Risk-Management-Principles.md); risk-based control selection and vulnerability prioritisation are in [Risk-Based-Security.md](../03-Architecture/Risk-Based-Security.md).
 
 ---
 
@@ -171,7 +179,7 @@ Typical design decisions include:
 * Backup architecture
 * Recovery strategy
 
-The architecture should satisfy both operational and cybersecurity requirements. Apply the principles in [OT-Architecture-Principles.md](OT-Architecture-Principles.md); implement trust boundaries via [Network-Segmentation.md](Network-Segmentation.md) and [Firewall-Design.md](Firewall-Design.md).
+The architecture should satisfy both operational and cybersecurity requirements. Apply the principles in [OT-Architecture-Principles.md](OT-Architecture-Principles.md); implement trust boundaries via [Network-Segmentation.md](../04-Network/Network-Segmentation.md) and [Firewall-Design.md](../04-Network/Firewall-Design.md).
 
 ---
 
@@ -283,7 +291,7 @@ If information is missing, ask clarifying questions rather than making assumptio
 # Sources / Grounding
 
 * **NIST SP 800-82 Rev. 3** (§4) — tiered OT risk management feeding architecture and control selection.
-* **IEC 62443-3-2** — security risk assessment and system design producing zones/conduits, Target Security Levels and a Cybersecurity Requirements Specification. See [IEC62443.md](IEC62443.md).
+* **IEC 62443-3-2** — security risk assessment and system design producing zones/conduits, Target Security Levels and a Cybersecurity Requirements Specification. See [IEC62443.md](../02-Standards/IEC62443.md).
 * **OT priority hierarchy** — per [OT-Security-Philosophy.md](OT-Security-Philosophy.md) (canonical source).
 
 > The framework is an engineering decision aid; normative requirements live in the standards documents.
@@ -295,13 +303,13 @@ If information is missing, ask clarifying questions rather than making assumptio
 * [OT-Security-Philosophy.md](OT-Security-Philosophy.md)
 * [OT-Architecture-Principles.md](OT-Architecture-Principles.md)
 * [Risk-Management-Principles.md](Risk-Management-Principles.md)
-* [Risk-Based-Security.md](Risk-Based-Security.md)
+* [Risk-Based-Security.md](../03-Architecture/Risk-Based-Security.md)
 * [OT-Lifecycle.md](OT-Lifecycle.md)
-* [Risk-Assessment.md](Risk-Assessment.md)
-* [Network-Segmentation.md](Network-Segmentation.md)
-* [Firewall-Design.md](Firewall-Design.md)
-* [Identity-Management.md](Identity-Management.md)
-* [IEC62443.md](IEC62443.md)
+* [Risk-Assessment.md](../09-Operations/Risk-Assessment.md)
+* [Network-Segmentation.md](../04-Network/Network-Segmentation.md)
+* [Firewall-Design.md](../04-Network/Firewall-Design.md)
+* [Identity-Management.md](../05-Identity/Identity-Management.md)
+* [IEC62443.md](../02-Standards/IEC62443.md)
 
 ---
 
@@ -312,3 +320,4 @@ If information is missing, ask clarifying questions rather than making assumptio
 | 1.0.0   | 2026-06-28 | Initial release |
 | 1.1.0   | 2026-07-01 | Resolved committed git merge conflict and de-duplicated content; fixed malformed YAML front matter; corrected `IEC62443-Overview.md` → `IEC62443.md`; reconciled the eight-level Decision Priorities with the canonical four-level hierarchy in OT-Security-Philosophy.md (single source of truth); clarified vendor examples as illustrative (vendor-neutrality); added Sources/Grounding (NIST SP 800-82 Rev. 3, IEC 62443-3-2); added Core and implementation cross-links |
 | 1.1.1   | 2026-07-01 | Added reciprocal cross-link to the applied strategy [Risk-Based-Security.md](Risk-Based-Security.md) (Step 4 and Related Documents) |
+| 1.1.2 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |

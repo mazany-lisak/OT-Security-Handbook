@@ -1,19 +1,27 @@
 ---
-title: OT Architecture Principles
+id: ot-architecture-principles
+title: "OT Architecture Principles"
 category: Core
-version: 1.0.0
+layer: "00-Core"
+version: 1.0.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-07-01
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  Fifteen vendor-neutral principles a secure OT architecture must embody: explicit trust
+  boundaries, defense in depth, least privilege, identity before connectivity, recoverability,
+  observability and full-lifecycle design.
+keywords: [architecture principles, architektonické principy, trust boundaries, least privilege, defense in depth, recoverability, vendor neutrality]
 ---
 
 # Purpose
 
 This document defines the **architectural principles** for designing secure Operational Technology (OT) systems.
 
-It sits between the *mindset* ([OT-Security-Philosophy.md](OT-Security-Philosophy.md)) and the *implementation* documents ([Network-Segmentation.md](Network-Segmentation.md), [Firewall-Design.md](Firewall-Design.md), [Identity-Management.md](Identity-Management.md)). The philosophy explains **why**; this document states the **principles** an architecture must embody; the implementation documents explain **how**; and the [Security-Decision-Framework.md](Security-Decision-Framework.md) sequences the decisions.
+It sits between the *mindset* ([OT-Security-Philosophy.md](OT-Security-Philosophy.md)) and the *implementation* documents ([Network-Segmentation.md](../04-Network/Network-Segmentation.md), [Firewall-Design.md](../04-Network/Firewall-Design.md), [Identity-Management.md](../05-Identity/Identity-Management.md)). The philosophy explains **why**; this document states the **principles** an architecture must embody; the implementation documents explain **how**; and the [Security-Decision-Framework.md](Security-Decision-Framework.md) sequences the decisions.
 
 These principles are technology- and vendor-neutral and apply throughout the system lifecycle ([OT-Lifecycle.md](OT-Lifecycle.md)).
 
@@ -49,7 +57,7 @@ Apply controls in proportion to risk; there is no single "secure architecture" f
 
 ## 4. Explicit Trust Boundaries
 
-Trust is never implicit. Group assets by shared security requirements into **zones**, and permit only defined, documented **conduits** between them. The concepts are owned by [IEC62443.md](IEC62443.md); the "where" is modelled by [Purdue-Model.md](Purdue-Model.md); the implementation is in [Network-Segmentation.md](Network-Segmentation.md).
+Trust is never implicit. Group assets by shared security requirements into **zones**, and permit only defined, documented **conduits** between them. The concepts are owned by [IEC62443.md](../02-Standards/IEC62443.md); the "where" is modelled by [Purdue-Model.md](../02-Standards/Purdue-Model.md); the implementation is in [Network-Segmentation.md](../04-Network/Network-Segmentation.md).
 
 ## 5. Defense in Depth
 
@@ -61,7 +69,7 @@ Grant the minimum access, connectivity and functionality required for the operat
 
 ## 7. Identity Before Connectivity
 
-Establish *who* (or *what*) before granting a path. Connectivity does not imply authorisation; a permanent tunnel is not permanent access. (See [Identity-Management.md](Identity-Management.md), [Secure-Remote-Access.md](Secure-Remote-Access.md).)
+Establish *who* (or *what*) before granting a path. Connectivity does not imply authorisation; a permanent tunnel is not permanent access. (See [Identity-Management.md](../05-Identity/Identity-Management.md), [Secure-Remote-Access.md](../04-Network/Secure-Remote-Access.md).)
 
 ## 8. Secure by Design and by Default
 
@@ -73,15 +81,15 @@ Prefer the simplest architecture that meets the requirement. Every extra service
 
 ## 10. Segment, Don't Flatten
 
-Flat OT networks are a primary weakness. Segment by process and safety function so that a single compromise cannot traverse the plant. VLANs alone are not segmentation — enforcement, identity and monitoring are required. (See [Network-Segmentation.md](Network-Segmentation.md).)
+Flat OT networks are a primary weakness. Segment by process and safety function so that a single compromise cannot traverse the plant. VLANs alone are not segmentation — enforcement, identity and monitoring are required. (See [Network-Segmentation.md](../04-Network/Network-Segmentation.md).)
 
 ## 11. Design for Recoverability
 
-Assume failure and compromise will occur. Ensure configuration, firmware, credentials and data can be restored to a *trusted* operational state, and that recovery is tested — not assumed. (See [Backup-and-Recovery.md](Backup-and-Recovery.md), [Recovery-Testing.md](Recovery-Testing.md).)
+Assume failure and compromise will occur. Ensure configuration, firmware, credentials and data can be restored to a *trusted* operational state, and that recovery is tested — not assumed. (See [Backup.md](../09-Operations/Backup.md), [Recovery-Testing.md](../09-Operations/Recovery-Testing.md).)
 
 ## 12. Design for Observability
 
-An architecture must be monitorable. Every trust boundary should produce security telemetry to a central point (SIEM), enabling detection, response and proof that controls remain effective. (See [Monitoring.md](Monitoring.md), [Logging.md](Logging.md).)
+An architecture must be monitorable. Every trust boundary should produce security telemetry to a central point (SIEM), enabling detection, response and proof that controls remain effective. (See [Monitoring.md](../09-Operations/Monitoring.md), [Logging.md](../09-Operations/Logging.md).)
 
 ## 13. Design for the Full Lifecycle
 
@@ -89,7 +97,7 @@ IACS run for decades. Favour designs that can be operated, maintained, patched, 
 
 ## 14. Manageability and Maintainability
 
-A control that cannot be sustained is not a control. Prefer architectures the organisation can actually operate, document and change under formal change management. (See [Change-Management.md](Change-Management.md).)
+A control that cannot be sustained is not a control. Prefer architectures the organisation can actually operate, document and change under formal change management. (See [Change-Management.md](../09-Operations/Change-Management.md).)
 
 ## 15. Vendor Neutrality
 
@@ -145,14 +153,14 @@ When answering architecture questions:
 * State the relevant principle(s) explicitly and tie recommendations to them.
 * Lead with trust boundaries, least privilege and defense in depth; keep field/PLC/safety assets inside isolated zones.
 * Never recommend a control that could compromise safety, determinism or recoverability.
-* Recommend **capabilities before products**; defer implementation detail to the Network/Firewall/Identity documents and standards detail to [IEC62443.md](IEC62443.md).
+* Recommend **capabilities before products**; defer implementation detail to the Network/Firewall/Identity documents and standards detail to [IEC62443.md](../02-Standards/IEC62443.md).
 * When principles conflict, resolve via the priority hierarchy and a documented risk-based decision, not a default preference.
 
 ---
 
 # Sources / Grounding
 
-* **ISA/IEC 62443** — zones and conduits, foundational requirements, defense in depth, secure lifecycle. See [IEC62443.md](IEC62443.md).
+* **ISA/IEC 62443** — zones and conduits, foundational requirements, defense in depth, secure lifecycle. See [IEC62443.md](../02-Standards/IEC62443.md).
 * **NIST SP 800-82 Rev. 3** — *Guide to OT Security*: segmentation, layered defense, safety-first consequence framing, lifecycle approach.
 * **ISO 31000** — risk-based decision-making underpinning proportionate control selection.
 
@@ -166,14 +174,14 @@ When answering architecture questions:
 * [Security-Decision-Framework.md](Security-Decision-Framework.md)
 * [Risk-Management-Principles.md](Risk-Management-Principles.md)
 * [OT-Lifecycle.md](OT-Lifecycle.md)
-* [IEC62443.md](IEC62443.md)
-* [Purdue-Model.md](Purdue-Model.md)
-* [Network-Segmentation.md](Network-Segmentation.md)
-* [Firewall-Design.md](Firewall-Design.md)
-* [Identity-Management.md](Identity-Management.md)
-* [Secure-Remote-Access.md](Secure-Remote-Access.md)
-* [Monitoring.md](Monitoring.md)
-* [Backup-and-Recovery.md](Backup-and-Recovery.md)
+* [IEC62443.md](../02-Standards/IEC62443.md)
+* [Purdue-Model.md](../02-Standards/Purdue-Model.md)
+* [Network-Segmentation.md](../04-Network/Network-Segmentation.md)
+* [Firewall-Design.md](../04-Network/Firewall-Design.md)
+* [Identity-Management.md](../05-Identity/Identity-Management.md)
+* [Secure-Remote-Access.md](../04-Network/Secure-Remote-Access.md)
+* [Monitoring.md](../09-Operations/Monitoring.md)
+* [Backup.md](../09-Operations/Backup.md)
 
 ---
 
@@ -182,3 +190,4 @@ When answering architecture questions:
 | Version | Date       | Description     |
 | ------- | ---------- | --------------- |
 | 1.0.0   | 2026-07-01 | Initial release — new Core keystone resolving the dangling `OT-Architecture-Principles.md` reference across the Core layer; defines 15 vendor-neutral OT architecture principles bridging OT-Security-Philosophy.md (mindset) and the implementation documents; grounded in ISA/IEC 62443, NIST SP 800-82 Rev. 3 and ISO 31000 |
+| 1.0.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |
