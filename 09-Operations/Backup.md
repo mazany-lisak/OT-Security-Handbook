@@ -1,12 +1,20 @@
 ---
-title: Backup
+id: backup
+title: "Backup"
 category: Operations
-version: 1.1.0
+layer: "09-Operations"
+version: 1.1.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-07-01
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  OT backup strategy: what to back up (PLC programs, SCADA projects, infrastructure and security
+  assets, documentation), RPO/RTO alignment, offline and immutable copies, validation and
+  restoration testing.
+keywords: [backup, zálohování, RPO, RTO, offline backup, immutable, PLC projects, restoration testing]
 ---
 
 # Purpose
@@ -32,7 +40,7 @@ This document describes:
 * Governance
 * Operational best practices
 
-Detailed disaster recovery planning is covered separately in **Disaster-Recovery.md**.
+Detailed disaster recovery planning is covered separately in **[Disaster-Recovery.md](Disaster-Recovery.md)**.
 
 ---
 
@@ -490,13 +498,13 @@ When discussing Backup:
 * [Patch-Management.md](Patch-Management.md)
 * [Change-Management.md](Change-Management.md)
 * [Asset-Management.md](Asset-Management.md)
-* [Risk-Based-Security.md](Risk-Based-Security.md)
-* [Defense-in-Depth.md](Defense-in-Depth.md)
-* [Identity-Management.md](Identity-Management.md)
-* [PKI.md](PKI.md)
-* [Certificates.md](Certificates.md)
-* [IEC62443.md](IEC62443.md)
-* [NIS2.md](NIS2.md)
+* [Risk-Based-Security.md](../03-Architecture/Risk-Based-Security.md)
+* [Defense-in-Depth.md](../03-Architecture/Defense-in-Depth.md)
+* [Identity-Management.md](../05-Identity/Identity-Management.md)
+* [PKI.md](../05-Identity/PKI.md)
+* [Certificates.md](../05-Identity/Certificates.md)
+* [IEC62443.md](../02-Standards/IEC62443.md)
+* [NIS2.md](../01-Legislation/NIS2.md)
 
 ---
 
@@ -506,3 +514,4 @@ When discussing Backup:
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
 | 1.1.0   | 2026-07-01 | Converted to YAML front matter (category: Operations) and semver; fixed links (IEC62443-Overview.md → IEC62443.md); added Sources/Grounding; markdown Related Documents |
+| 1.1.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |

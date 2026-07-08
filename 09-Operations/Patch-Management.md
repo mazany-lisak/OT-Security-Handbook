@@ -1,12 +1,20 @@
 ---
-title: Patch Management
+id: patch-management
+title: "Patch Management"
 category: Operations
-version: 1.1.0
+layer: "09-Operations"
+version: 1.1.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-07-01
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  Risk-based OT patching: the patch lifecycle from inventory and advisory review through testing,
+  approval and deployment to validation; rollback planning, vendor coordination, emergency
+  patching and compensating controls.
+keywords: [patch management, záplatování, testing, rollback, maintenance window, vendor advisory, emergency patching]
 ---
 
 # Purpose
@@ -456,18 +464,18 @@ When discussing Patch Management:
 
 # Related Documents
 
-* [Risk-Based-Security.md](Risk-Based-Security.md)
-* [CVE.md](CVE.md)
-* [CVSS.md](CVSS.md)
-* [EPSS.md](EPSS.md)
-* [CISA-KEV.md](CISA-KEV.md)
+* [Risk-Based-Security.md](../03-Architecture/Risk-Based-Security.md)
+* [CVE.md](../06-Vulnerability-Management/CVE.md)
+* [CVSS.md](../06-Vulnerability-Management/CVSS.md)
+* [EPSS.md](../06-Vulnerability-Management/EPSS.md)
+* [CISA-KEV.md](../06-Vulnerability-Management/CISA-KEV.md)
 * [Vulnerability-Management.md](Vulnerability-Management.md)
 * [Asset-Management.md](Asset-Management.md)
 * [Change-Management.md](Change-Management.md)
-* [Defense-in-Depth.md](Defense-in-Depth.md)
-* [MITRE-ATTACK-ICS.md](MITRE-ATTACK-ICS.md)
-* [IEC62443.md](IEC62443.md)
-* [NIS2.md](NIS2.md)
+* [Defense-in-Depth.md](../03-Architecture/Defense-in-Depth.md)
+* [MITRE-ATTACK-ICS.md](../07-Threat-Intelligence/MITRE-ATTACK-ICS.md)
+* [IEC62443.md](../02-Standards/IEC62443.md)
+* [NIS2.md](../01-Legislation/NIS2.md)
 
 ---
 
@@ -477,3 +485,4 @@ When discussing Patch Management:
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
 | 1.1.0   | 2026-07-01 | Converted to YAML front matter (category: Operations) and semver; fixed links (IEC62443-Overview.md → IEC62443.md); added Sources/Grounding (NIST SP 800-40, IEC 62443-2-3); cross-link to Vulnerability-Management.md; markdown Related Documents |
+| 1.1.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |

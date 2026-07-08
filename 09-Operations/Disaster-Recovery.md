@@ -1,12 +1,20 @@
 ---
-title: Disaster Recovery
+id: disaster-recovery
+title: "Disaster Recovery"
 category: Operations
-version: 1.1.0
+layer: "09-Operations"
+version: 1.1.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-07-01
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  Disaster Recovery as an architectural capability: restoring a Trusted Operational State,
+  recovery strategies and priorities, dependency mapping, recovery objectives and operational
+  validation before production resumes.
+keywords: [disaster recovery, obnova po havárii, trusted operational state, recovery strategy, dependencies, RTO, RPO]
 ---
 
 # Purpose
@@ -33,7 +41,7 @@ This document describes:
 * Governance
 * Continuous improvement
 
-Detailed operational recovery procedures are described separately in **Disaster-Recovery-Plan.md**.
+Detailed operational recovery procedures are described separately in **[Disaster-Recovery-Plan.md](Disaster-Recovery-Plan.md)**.
 
 ---
 
@@ -437,9 +445,9 @@ When discussing Disaster Recovery:
 * [Incident-Response.md](Incident-Response.md)
 * [Change-Management.md](Change-Management.md)
 * [Configuration-Management.md](Configuration-Management.md)
-* [Risk-Based-Security.md](Risk-Based-Security.md)
-* [IEC62443.md](IEC62443.md)
-* [NIS2.md](NIS2.md)
+* [Risk-Based-Security.md](../03-Architecture/Risk-Based-Security.md)
+* [IEC62443.md](../02-Standards/IEC62443.md)
+* [NIS2.md](../01-Legislation/NIS2.md)
 
 ---
 
@@ -449,3 +457,4 @@ When discussing Disaster Recovery:
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
 | 1.1.0   | 2026-07-01 | Converted to YAML front matter (category: Operations) and semver; fixed links (IEC62443-Overview.md → IEC62443.md); added Sources/Grounding; markdown Related Documents |
+| 1.1.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |

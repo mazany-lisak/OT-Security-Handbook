@@ -1,48 +1,25 @@
 ---
+id: ot-protocols
 title: "Industrial OT Communication Protocols — Architecture, Security and Platform Reference"
-document: "OT-Protocols.md"
-version: "1.2.0"
-status: "Production"
-date: "2026-06"
-document_type: "LLM Skill / RAG Knowledge Base"
-audience:
-  - OT Security Architects
-  - OT / Network Architects
-  - Automation & Control Engineers
-  - System Integrators
-  - SOC Analysts / OT Detection Engineers
-  - AI Knowledge Base / RAG / LLM Skill
-platform_focus:
-  - Siemens SIMATIC S7-1500
-  - Schneider Electric Modicon M580 (ePAC)
-  - Schneider Electric Twido (legacy)
-  - B&R (Bernecker & Reiner / ABB) X20
-frameworks:
-  - IEC 62443 (zones & conduits, FR/SR, SL — see IEC62443.md)
-  - NIS2 Directive EU 2022/2555 (see NIS2.md)
-  - Czech Cybersecurity Act — Zákon č. 264/2025 Sb. + Vyhl. 408/409/410/2025 (see Czech-Cybersecurity-Act.md)
-  - IEC 62351 (telecontrol security)
-scope_notes:
-  - "Firewall design and network segmentation are covered only to the minimum extent needed; see Network-Segmentation.md and Firewall-Design.md."
-  - "Purdue model and Zones-and-Conduits are referenced only; for detail see IEC62443.md."
-keywords:
-  - OT protocols
-  - Modbus TCP
-  - S7comm / S7CommPlus
-  - PROFINET
-  - EtherNet/IP CIP
-  - OPC UA
-  - POWERLINK
-  - DNP3 / IEC 60870-5-104 / IEC 61850
-  - IEC 62351
-  - S7-1500 / M580 / Twido / X20
+category: Network
+layer: "04-Network"
+version: 1.3.3
+status: Stable
+author: OT Security Handbook Project
+classification: Public
+language: en
+last_reviewed: 2026-07-07
+review_cycle: Annual
+summary: >-
+  Security reference for industrial protocols — Modbus, S7comm, PROFINET, EtherNet/IP (CIP), OPC
+  UA/DA, POWERLINK, DNP3, IEC 60870-5-104, IEC 61850, MQTT — with default ports, DPI, monitoring
+  and platform notes (S7-1500, M580, Twido, X20).
+keywords: [industrial protocols, průmyslové protokoly, Modbus, PROFINET, S7comm, OPC UA, DNP3, IEC 61850, MQTT, default ports]
 ---
 
-# Industrial OT Communication Protocols — Architecture, Security and Platform Reference
-
-> **What this document is.** A single, source-verified knowledge base on industrial (OT) communication protocols, written as an **LLM skill / RAG** reference. It consolidates and supersedes the previous separate protocol notes (`OT-Protocols.md`, `Modbus-TCP.md`, `S7-Communication.md`, `PROFINET.md`, `OPC-UA.md`, `OPC-DA.md`) and adds **platform-specific chapters** for the controllers most commonly encountered in the field: **Siemens S7-1500**, **Schneider Modicon M580**, **Schneider Twido**, and **B&R X20**.
+> **What this document is.** A single, source-verified knowledge base on industrial (OT) communication protocols, written as an **LLM skill / RAG** reference. It consolidates and supersedes the previous separate protocol notes (`OT-Protocols.md`, `Modbus-TCP.md`, `S7-Communication.md`, `PROFINET.md`, `OPC-UA.md`, `OPC-DA.md` — historical file names) and adds **platform-specific chapters** for the controllers most commonly encountered in the field: **Siemens S7-1500**, **Schneider Modicon M580**, **Schneider Twido**, and **B&R X20**.
 >
-> **Deliberate scope limits.** Network segmentation and firewall design are discussed only as far as needed to understand protocol placement — the full treatment lives in `Network-Segmentation.md` and `Firewall-Design.md`. The **Purdue model** and **Zones-and-Conduits** are referenced only; for the authoritative treatment see `IEC62443.md`. Regulatory bindings to **NIS2** and the **Czech Cybersecurity Act (264/2025 Sb.)** are given at the level needed for design, requirement verification and audit, with pointers to `NIS2.md` and `Czech-Cybersecurity-Act.md` for detail.
+> **Deliberate scope limits.** Network segmentation and firewall design are discussed only as far as needed to understand protocol placement — the full treatment lives in [Network-Segmentation.md](Network-Segmentation.md) and [Firewall-Design.md](Firewall-Design.md). The **Purdue model** and **Zones-and-Conduits** are referenced only; for the authoritative treatment see [IEC62443.md](../02-Standards/IEC62443.md). Regulatory bindings to **NIS2** and the **Czech Cybersecurity Act (264/2025 Sb.)** are given at the level needed for design, requirement verification and audit, with pointers to [NIS2.md](../01-Legislation/NIS2.md) and [Czech-Cybersecurity-Act.md](../01-Legislation/Czech-Cybersecurity-Act.md) for detail.
 >
 > **Accuracy caveat for the model.** Protocol security extensions and platform capabilities are firmware/version-dependent. Ports, default behaviours, supported security policies and certification status change between controller firmware and engineering-tool releases. Where a user needs an authoritative version-specific answer, the model must defer to the relevant vendor manual (Siemens TIA Portal Information System, Schneider EcoStruxure Control Expert / Cybersecurity User Guide, B&R Automation Help) and the protocol owner's specification, rather than inventing specifics.
 
@@ -74,7 +51,7 @@ Understanding protocol characteristics is essential for secure architecture desi
 
 **Covered platforms:** Siemens SIMATIC S7-1500, Schneider Electric Modicon M580 (ePAC), Schneider Electric Twido (legacy micro-PLC), and B&R X20.
 
-**Out of scope (referenced only):** detailed firewall rule design and segmentation (`Network-Segmentation.md`, `Firewall-Design.md`); Purdue model and Zones-and-Conduits theory (`IEC62443.md`); full regulatory text (`NIS2.md`, `Czech-Cybersecurity-Act.md`). Vendor PLC programming detail is in separate platform documents.
+**Out of scope (referenced only):** detailed firewall rule design and segmentation ([Network-Segmentation.md](Network-Segmentation.md), [Firewall-Design.md](Firewall-Design.md)); Purdue model and Zones-and-Conduits theory ([IEC62443.md](../02-Standards/IEC62443.md)); full regulatory text ([NIS2.md](../01-Legislation/NIS2.md), [Czech-Cybersecurity-Act.md](../01-Legislation/Czech-Cybersecurity-Act.md)). Vendor PLC programming detail is in separate platform documents.
 
 # 3. Design Principles
 
@@ -88,9 +65,9 @@ Evaluate each protocol against: authentication, authorization, encryption (confi
 
 This section establishes *just enough* binding to drive protocol-level design, requirements verification and audit. For full detail, follow the references.
 
-- **IEC 62443** — Protocols cross zone boundaries through **conduits**; each conduit inherits a target **Security Level (SL)** and the relevant **Foundational/System Requirements (FR/SR)** — especially *FR1 Identification & Authentication*, *FR3 System Integrity*, *FR4 Data Confidentiality*. A protocol's native security determines how much of the conduit's SL must be met by **compensating controls**. → See `IEC62443.md` → *Zones and Conduits*, *Security Levels (SL)*, *Foundational Requirements (FR) and System Requirements (SR)*, and *Security Level Risk Assessment (IEC 62443-3-2)*.
-- **NIS2 (EU 2022/2555)** — Article 21 risk-management measures require, among others, network security, access control, cryptography where appropriate, and monitoring/logging — all of which are directly affected by protocol choice and placement. → See `NIS2.md` → *Article 21 — Risk Management Measures*.
-- **Czech Cybersecurity Act — Zákon č. 264/2025 Sb.** (transposing NIS2) and implementing decrees **408/2025** (scope), **409/2025** (higher-obligation regime) and **410/2025** (lower-obligation regime). Protocol-relevant capability domains: **Domain 5 — Network security and segmentation**, **Domain 6 — Cryptography**, **Domain 7 — Logging and monitoring**. → See `Czech-Cybersecurity-Act.md`.
+- **IEC 62443** — Protocols cross zone boundaries through **conduits**; each conduit inherits a target **Security Level (SL)** and the relevant **Foundational/System Requirements (FR/SR)** — especially *FR1 Identification & Authentication*, *FR3 System Integrity*, *FR4 Data Confidentiality*. A protocol's native security determines how much of the conduit's SL must be met by **compensating controls**. → See [IEC62443.md](../02-Standards/IEC62443.md) → *Zones and Conduits*, *Security Levels (SL)*, *Foundational Requirements (FR) and System Requirements (SR)*, and *Security Level Risk Assessment (IEC 62443-3-2)*.
+- **NIS2 (EU 2022/2555)** — Article 21 risk-management measures require, among others, network security, access control, cryptography where appropriate, and monitoring/logging — all of which are directly affected by protocol choice and placement. → See [NIS2.md](../01-Legislation/NIS2.md) → *Article 21 — Risk Management Measures*.
+- **Czech Cybersecurity Act — Zákon č. 264/2025 Sb.** (transposing NIS2) and implementing decrees **408/2025** (scope), **409/2025** (higher-obligation regime) and **410/2025** (lower-obligation regime). Protocol-relevant capability domains: **Domain 5 — Network security and segmentation**, **Domain 6 — Cryptography**, **Domain 7 — Logging and monitoring**. → See [Czech-Cybersecurity-Act.md](../01-Legislation/Czech-Cybersecurity-Act.md).
 
 > **Audit-relevant principle:** an auditor will ask *"which protocols cross which conduits, what is their native security, and what compensating controls and monitoring exist?"* Maintaining a protocol/port/flow inventory (per IEC 62443 asset management and Czech Act Domain 2) is the prerequisite for answering this. A consolidated mapping table is in **Chapter 21**.
 
@@ -143,7 +120,7 @@ This section establishes *just enough* binding to drive protocol-level design, r
 
 **Secure variant.** The **Modbus Security** specification (Modbus Organization) wraps Modbus in **TLS** with **X.509v3** certificates for mutual authentication and message integrity, on **TCP port 802**. Adoption is limited because many PLCs lack firmware support — so in brownfield environments a **TLS proxy/gateway** is the practical path.
 
-**Security through architecture (the rule for Modbus).** Because the protocol cannot defend itself, security is delivered by: zone/conduit placement (see `IEC62443.md`), industrial firewalls with allowlisting (see `Firewall-Design.md`), restricting **write** access to the minimum, deep-packet inspection (function-code validation), and monitoring. **Unauthorized write requests should be treated as high-priority security events.**
+**Security through architecture (the rule for Modbus).** Because the protocol cannot defend itself, security is delivered by: zone/conduit placement (see [IEC62443.md](../02-Standards/IEC62443.md)), industrial firewalls with allowlisting (see [Firewall-Design.md](Firewall-Design.md)), restricting **write** access to the minimum, deep-packet inspection (function-code validation), and monitoring. **Unauthorized write requests should be treated as high-priority security events.**
 
 **Monitoring signatures.** Unexpected Modbus clients; unauthorized write function codes (e.g. FC05/06/15/16/22/23); abnormal polling rates; out-of-range register access; scanning of port 502.
 
@@ -201,7 +178,7 @@ This section establishes *just enough* binding to drive protocol-level design, r
 
 **Security model (built-in):** X.509 certificates, mutual authentication, message **signing** and **encryption**, integrity, user authentication and **role-based authorization**. **Security policies** select the cipher suite — prefer modern policies (e.g. **Basic256Sha256** or **Aes256-Sha256-RsaPss**) with **Sign & Encrypt**, and disable deprecated policies (Basic128Rsa15, Basic256). **Avoid Anonymous authentication** in production.
 
-**Certificates are the project.** Each application instance owns a certificate; trust must be explicitly managed (generate → distribute → trust → monitor expiry → renew → revoke). Poor certificate management is the most common cause of insecure OPC UA deployments — *successful OPC UA projects are PKI projects.* See `PKI.md` / `Certificates.md`.
+**Certificates are the project.** Each application instance owns a certificate; trust must be explicitly managed (generate → distribute → trust → monitor expiry → renew → revoke). Poor certificate management is the most common cause of insecure OPC UA deployments — *successful OPC UA projects are PKI projects.* See [PKI.md](../05-Identity/PKI.md) / [Certificates.md](../05-Identity/Certificates.md).
 
 **Architecture.** Encryption is **not** a substitute for segmentation. Place OPC UA servers in the Industrial DMZ / supervisory zone, use explicit conduits, and monitor trust (failed cert validation, expiries, new/unexpected clients, policy changes). OPC UA supports IEC 62443 FR1/FR3/FR4 but does **not** by itself deliver compliance.
 
@@ -213,7 +190,7 @@ This section establishes *just enough* binding to drive protocol-level design, r
 
 **Core limitation — DCOM.** Windows dependency, complex authentication, **dynamic RPC port allocation** (TCP 135 + ephemeral high ports), firewall complexity, difficult troubleshooting, tight coupling to OS security. Most "OPC DA problems" are DCOM/Windows problems.
 
-**Security.** Relies on Windows authentication, DCOM permissions and local OS security. **Missing:** end-to-end encryption, certificate-based auth, message integrity, platform independence. Security therefore depends on Windows hardening (see `Windows-Hardening.md`), Least Privilege (no Local Admin OPC servers), supported OS versions, and static RPC port configuration where feasible.
+**Security.** Relies on Windows authentication, DCOM permissions and local OS security. **Missing:** end-to-end encryption, certificate-based auth, message integrity, platform independence. Security therefore depends on Windows hardening (see [Windows-Hardening.md](../09-Operations/Windows-Hardening.md)), Least Privilege (no Local Admin OPC servers), supported OS versions, and static RPC port configuration where feasible.
 
 **Modernization (risk-based, no "big bang").** Inventory servers/clients → assess criticality and vendor support → segment → monitor → replace unsupported Windows → introduce an **OPC UA wrapper/gateway** → migrate incrementally. **Do not replace OPC DA solely because it is legacy;** reduce exposure first, replace when justified by risk.
 
@@ -269,11 +246,11 @@ These dominate energy, water and substation automation and are increasingly in s
 - **Know-how protection** (block source protection), **copy protection / binding** to a CPU or memory card, and **password-protected** project access.
 - **User management** and OPC UA user authentication; integrate with central identity where possible.
 
-**Hardening recommendations (S7-1500).** Set the highest viable protection level; keep PUT/GET off; enable global security settings and replace default/self-signed certificates with managed certificates; restrict S7comm (TCP 102) to named engineering stations via conduit policy (see `Firewall-Design.md`); prefer OPC UA Sign&Encrypt for SCADA/MES; enable know-how/copy protection on critical blocks; forward security-relevant events to Syslog/SIEM; manage firmware via change control.
+**Hardening recommendations (S7-1500).** Set the highest viable protection level; keep PUT/GET off; enable global security settings and replace default/self-signed certificates with managed certificates; restrict S7comm (TCP 102) to named engineering stations via conduit policy (see [Firewall-Design.md](Firewall-Design.md)); prefer OPC UA Sign&Encrypt for SCADA/MES; enable know-how/copy protection on critical blocks; forward security-relevant events to Syslog/SIEM; manage firmware via change control.
 
 **Monitoring signatures.** S7comm STOP (function 0x29) on production; online downloads; PUT/GET re-enabled; protection-level changes; OPC UA certificate/policy changes; unexpected programming stations.
 
-**IEC 62443 mapping.** Supports FR1 (protection levels, OPC UA auth), FR3 (S7CommPlus/OUC integrity), FR4 (OPC UA/TLS confidentiality) — but the achieved SL depends on configuration and surrounding conduit controls (see `IEC62443.md`).
+**IEC 62443 mapping.** Supports FR1 (protection levels, OPC UA auth), FR3 (S7CommPlus/OUC integrity), FR4 (OPC UA/TLS confidentiality) — but the achieved SL depends on configuration and surrounding conduit controls (see [IEC62443.md](../02-Standards/IEC62443.md)).
 
 # 18. Platform — Schneider Electric Modicon M580 (ePAC)
 
@@ -294,11 +271,11 @@ These dominate energy, water and substation automation and are increasingly in s
 - **IPsec** for Control Expert ↔ controller and server services (SNMP, NTP client, EtherNet/IP TCP as adapter/server, Modbus server) on supporting modules.
 - **Security event logging to Syslog**.
 
-**Hardening recommendations (M580).** Configure the IP allowlist on CPU and NOC; disable every unused service; enforce program/RUN-STOP passwords and Memory Protect; enable firmware/executable integrity checks; use IPsec for engineering where supported; prefer **OPC UA Secure** and **secured DNP3/IEC 104** for upward comms; forward Syslog to the SIEM; manage firmware via change control. Keep Modbus/EtherNet-IP confined to the control conduit (see `Firewall-Design.md`).
+**Hardening recommendations (M580).** Configure the IP allowlist on CPU and NOC; disable every unused service; enforce program/RUN-STOP passwords and Memory Protect; enable firmware/executable integrity checks; use IPsec for engineering where supported; prefer **OPC UA Secure** and **secured DNP3/IEC 104** for upward comms; forward Syslog to the SIEM; manage firmware via change control. Keep Modbus/EtherNet-IP confined to the control conduit (see [Firewall-Design.md](Firewall-Design.md)).
 
 **Monitoring signatures.** Connections from non-allowlisted IPs; RUN/STOP via network; unexpected Control Expert sessions/downloads; service re-enablement; firmware/integrity events (available in Syslog).
 
-**IEC 62443 mapping.** Achilles L2 + 4-2 alignment supports FR1 (ACL, passwords), FR3 (firmware/executable integrity, Memory Protect), FR4 (IPsec, OPC UA Secure). Achieved SL still depends on deployment — see `IEC62443.md`.
+**IEC 62443 mapping.** Achilles L2 + 4-2 alignment supports FR1 (ACL, passwords), FR3 (firmware/executable integrity, Memory Protect), FR4 (IPsec, OPC UA Secure). Achieved SL still depends on deployment — see [IEC62443.md](../02-Standards/IEC62443.md).
 
 # 19. Platform — Schneider Electric Twido (legacy micro-PLC)
 
@@ -336,7 +313,7 @@ These dominate energy, water and substation automation and are increasingly in s
 
 Use this to demonstrate, per conduit/protocol, that requirements are met. Follow the references for the authoritative criteria.
 
-| Protocol-level concern | IEC 62443 (see `IEC62443.md`) | NIS2 (see `NIS2.md`) | Czech Act 264/2025 (see `Czech-Cybersecurity-Act.md`) |
+| Protocol-level concern | IEC 62443 (see [IEC62443.md](../02-Standards/IEC62443.md)) | NIS2 (see [NIS2.md](../01-Legislation/NIS2.md)) | Czech Act 264/2025 (see [Czech-Cybersecurity-Act.md](../01-Legislation/Czech-Cybersecurity-Act.md)) |
 |---|---|---|---|
 | Identify/authenticate who may speak a protocol across a conduit | FR1; SL target per conduit | Art. 21 — access control | Domain 4 — IAM |
 | Confidentiality/integrity of protocol data (TLS, S7CommPlus, OPC UA, IPsec, IEC 62351) | FR3, FR4 | Art. 21 — cryptography where appropriate | Domain 6 — Cryptography |
@@ -349,7 +326,7 @@ Use this to demonstrate, per conduit/protocol, that requirements are met. Follow
 
 # 22. Protocol Inspection (DPI)
 
-Where supported, industrial firewalls/NIDS should inspect **protocol semantics**, not just TCP/UDP ports — e.g. Modbus function-code/register validation, CIP/EtherNet-IP object access, PROFINET awareness, DNP3 inspection, OPC UA endpoint/security verification. DPI greatly improves visibility but must be **evaluated for latency/jitter impact** on deterministic networks (PROFINET IRT, POWERLINK). Detailed placement is in `Firewall-Design.md`.
+Where supported, industrial firewalls/NIDS should inspect **protocol semantics**, not just TCP/UDP ports — e.g. Modbus function-code/register validation, CIP/EtherNet-IP object access, PROFINET awareness, DNP3 inspection, OPC UA endpoint/security verification. DPI greatly improves visibility but must be **evaluated for latency/jitter impact** on deterministic networks (PROFINET IRT, POWERLINK). Detailed placement is in [Firewall-Design.md](Firewall-Design.md).
 
 # 23. Monitoring & Detection (cross-protocol)
 
@@ -357,7 +334,7 @@ Baseline normal behaviour, then alert on: protocol anomalies, unauthorized/unexp
 
 # 24. Legacy Protocols & Compensating Controls
 
-Many OT protocols predate cybersecurity (no encryption/authentication, broadcast discovery, trust-by-location). **This does not automatically require replacement.** Evaluate compensating controls first: segmentation and Industrial DMZ (`Network-Segmentation.md`), firewall allowlists and protocol inspection (`Firewall-Design.md`), jump servers and secure remote access (`Secure-Remote-Access.md`), minimized **write** permissions, monitoring/IDS, and strict change management — then plan risk-based modernization (e.g. OPC UA wrappers, Modbus/TLS proxies, platform migration for Twido).
+Many OT protocols predate cybersecurity (no encryption/authentication, broadcast discovery, trust-by-location). **This does not automatically require replacement.** Evaluate compensating controls first: segmentation and Industrial DMZ ([Network-Segmentation.md](Network-Segmentation.md)), firewall allowlists and protocol inspection ([Firewall-Design.md](Firewall-Design.md)), jump servers and secure remote access ([Secure-Remote-Access.md](Secure-Remote-Access.md)), minimized **write** permissions, monitoring/IDS, and strict change management — then plan risk-based modernization (e.g. OPC UA wrappers, Modbus/TLS proxies, platform migration for Twido).
 
 # 25. Protocol Selection Strategy
 
@@ -369,7 +346,7 @@ Allowing any protocol between IT and OT; exposing field protocols (Modbus, S7com
 
 # 27. Decision Support
 
-Before recommending or allowing a protocol across a boundary, determine: (1) the operational purpose; (2) whether deterministic communication is required; (3) which vendor/platform and firmware are involved and which secure features are actually enabled; (4) whether interoperability is required; (5) whether authentication/encryption/integrity are available and turned on; (6) whether the protocol can be inspected; (7) which trust boundaries/conduits it crosses (→ `IEC62443.md`); (8) how it will be monitored and logged (→ Czech Act Domain 7); and (9) whether **write** access is truly needed.
+Before recommending or allowing a protocol across a boundary, determine: (1) the operational purpose; (2) whether deterministic communication is required; (3) which vendor/platform and firmware are involved and which secure features are actually enabled; (4) whether interoperability is required; (5) whether authentication/encryption/integrity are available and turned on; (6) whether the protocol can be inspected; (7) which trust boundaries/conduits it crosses (→ [IEC62443.md](../02-Standards/IEC62443.md)); (8) how it will be monitored and logged (→ Czech Act Domain 7); and (9) whether **write** access is truly needed.
 
 # 28. Architect Notes
 
@@ -379,7 +356,7 @@ Protocol selection is never an isolated technical decision — it shapes network
 
 - Begin with the operational requirement; explain each protocol's security strengths and weaknesses honestly.
 - Distinguish **protocol capability** from **device/platform implementation and firmware** — always tell the user to verify on the actual controller.
-- Recommend compensating controls (segmentation, firewall allowlists, monitoring) where native security is limited, and reference `Network-Segmentation.md`, `Firewall-Design.md`, `IEC62443.md` rather than restating them.
+- Recommend compensating controls (segmentation, firewall allowlists, monitoring) where native security is limited, and reference [Network-Segmentation.md](Network-Segmentation.md), [Firewall-Design.md](Firewall-Design.md), [IEC62443.md](../02-Standards/IEC62443.md) rather than restating them.
 - Prefer **OPC UA** for new supervisory/enterprise integration; keep field protocols (incl. **S7comm**, **PROFINET**, **POWERLINK**, **Modbus**, **EtherNet/IP**) inside isolated zones.
 - **Never** recommend exposing field/PLC protocols directly to enterprise networks or the Internet.
 - For the four focus platforms, give platform-correct facts (ports, native security toggles like Siemens PUT/GET and protection levels, Schneider ACL/Memory-Protect/IPsec, B&R OPC UA Sign&Encrypt, Twido legacy status) and cite the vendor manual for version-specific detail.
@@ -413,7 +390,7 @@ Protocol selection is never an isolated technical decision — it shapes network
 
 - **CIP** — Common Industrial Protocol (ODVA), carried by EtherNet/IP.
 - **CIP Security** — TLS/DTLS + certificate-based security extension for EtherNet/IP.
-- **Conduit** — an IEC 62443 communication channel between zones (see `IEC62443.md`).
+- **Conduit** — an IEC 62443 communication channel between zones (see [IEC62443.md](../02-Standards/IEC62443.md)).
 - **DCP** — PROFINET Discovery and Configuration Protocol (Layer 2).
 - **DCOM** — Microsoft Distributed COM (underlies OPC Classic).
 - **DPI** — Deep Packet Inspection (protocol-aware).
@@ -444,13 +421,13 @@ Platform and protocol facts in this document were reconciled against primary/off
 
 # Appendix D — Related Documents
 
-- `IEC62443.md` — Zones & Conduits, Security Levels, FR/SR, SL Risk Assessment, Purdue/ISA-95, Defense in Depth (authoritative for everything referenced minimally here).
-- `NIS2.md` — Article 21 risk-management measures, Article 23 incident reporting, supply chain.
-- `Czech-Cybersecurity-Act.md` — Zákon 264/2025 Sb. + Vyhl. 408/409/410/2025; capability domains (esp. 4 IAM, 5 segmentation, 6 cryptography, 7 logging/monitoring, 8 vulnerability mgmt).
-- `Network-Segmentation.md`, `Firewall-Design.md`, `Industrial-DMZ.md`, `Secure-Remote-Access.md` — architecture controls (out of scope here).
-- `Identity-Management.md`, `PKI.md`, `Certificates.md` — identity and certificate lifecycle (critical for OPC UA, CIP Security, IEC 62351, M580 IPsec, S7-1500 certificates).
-- `Windows-Hardening.md` — required for OPC DA / DCOM environments.
-- Platform docs: `Siemens-S7-1500.md`, `TIA-Portal.md`, `Modicon-M580.md`, `EcoStruxure-Control-Expert.md`, `BR-X20.md`, `Automation-Studio.md` (where present).
+- [IEC62443.md](../02-Standards/IEC62443.md) — Zones & Conduits, Security Levels, FR/SR, SL Risk Assessment, Purdue/ISA-95, Defense in Depth (authoritative for everything referenced minimally here).
+- [NIS2.md](../01-Legislation/NIS2.md) — Article 21 risk-management measures, Article 23 incident reporting, supply chain.
+- [Czech-Cybersecurity-Act.md](../01-Legislation/Czech-Cybersecurity-Act.md) — Zákon 264/2025 Sb. + Vyhl. 408/409/410/2025; capability domains (esp. 4 IAM, 5 segmentation, 6 cryptography, 7 logging/monitoring, 8 vulnerability mgmt).
+- [Network-Segmentation.md](Network-Segmentation.md), [Firewall-Design.md](Firewall-Design.md), [Secure-Remote-Access.md](Secure-Remote-Access.md) — architecture controls (out of scope here).
+- [Identity-Management.md](../05-Identity/Identity-Management.md), [PKI.md](../05-Identity/PKI.md), [Certificates.md](../05-Identity/Certificates.md) — identity and certificate lifecycle (critical for OPC UA, CIP Security, IEC 62351, M580 IPsec, S7-1500 certificates).
+- [Windows-Hardening.md](../09-Operations/Windows-Hardening.md) *(planned)* — required for OPC DA / DCOM environments.
+- Platform docs: [S7-1500.md](../08-Technologies/SIEMENS/S7-1500/S7-1500.md), [TIA-Portal.md](../08-Technologies/SIEMENS/TIA%20Portal/TIA-Portal.md), [Modicon-M580.md](../08-Technologies/Schneider%20Electric/Modicon%20M580/Modicon-M580.md), [EcoStruxure-Control-Expert.md](../08-Technologies/Schneider%20Electric/Control%20Expert/EcoStruxure-Control-Expert.md), [PlantSCADA.md](../08-Technologies/AVEVA/PlantSCADA/PlantSCADA.md), [WebAccess-DMP.md](../08-Technologies/Advantech/WebAccess-DMP/WebAccess-DMP.md), [ICR-2734.md](../08-Technologies/Advantech/ICR-Series/ICR-2734.md), [BR-X20.md](../08-Technologies/B&R/X20/BR-X20.md), [Modicon-Twido.md](../08-Technologies/Schneider%20Electric/Modicon%20Twido/Modicon-Twido.md), [Modicon-Premium.md](../08-Technologies/Schneider%20Electric/Modicon%20Premium/Modicon-Premium.md), [MOXA-NPort-5000.md](../08-Technologies/Moxa/NPort/MOXA-NPort-5000.md), [S7-300.md](../08-Technologies/SIEMENS/S7-300/S7-300.md), [S7-400.md](../08-Technologies/SIEMENS/S7-400/S7-400.md), [PI-System.md](../08-Technologies/AVEVA/PI%20System/PI-System.md), [Kepware-Server.md](../08-Technologies/PTC/Kepware%20Server/Kepware-Server.md), [dataFEED-OPC-Suite.md](../08-Technologies/Softing/dataFEED%20OPC%20Suite/dataFEED-OPC-Suite.md); planned: [Automation-Studio.md](../08-Technologies/B&R/Automation-Studio/Automation-Studio.md).
 
 # Revision History
 
@@ -459,3 +436,7 @@ Platform and protocol facts in this document were reconciled against primary/off
 | 1.0 | 2026-06 | Initial release (separate protocol notes) |
 | 1.1 | 2026-06 | Minor consolidation of protocol overviews |
 | **1.2.0** | **2026-06** | Consolidated all protocol documents into one source-verified knowledge base/LLM skill; added secure-variant detail (Modbus/TLS, S7CommPlus, PROFINET Security Classes, CIP Security, IEC 62351, DNP3 SAv5) with default ports; added POWERLINK and telecontrol/substation protocols; added **platform chapters for Siemens S7-1500, Schneider Modicon M580, Schneider Twido, B&R X20**; scoped firewall/segmentation and Purdue/Zones-and-Conduits to references; added regulatory verification & audit mapping bound to IEC62443.md, NIS2.md and Czech-Cybersecurity-Act.md (Zákon 264/2025 Sb.) |
+| 1.3.0 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings; migrated from skill-style front matter; Appendix D updated (existing platform docs linked incl. PlantSCADA/WebAccess-DMP/ICR-2734, planned docs marked, Industrial-DMZ reference removed) |
+| 1.3.1 | 2026-07-07 | Appendix D updated to link the new platform documents (BR-X20, Modicon-Twido, Modicon-Premium, MOXA-NPort-5000) now that they exist; only Automation-Studio remains planned |
+| 1.3.2 | 2026-07-07 | Appendix D updated to link the new platform documents (S7-300, S7-400, PI-System) now that they exist |
+| 1.3.3 | 2026-07-07 | Appendix D updated to link the new OPC-aggregation platform documents (Kepware-Server, dataFEED-OPC-Suite) |

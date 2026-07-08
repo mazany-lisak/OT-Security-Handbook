@@ -1,12 +1,20 @@
 ---
-title: ISA-95 — Enterprise-Control System Integration Standard
+id: isa95
+title: "ISA-95 — Enterprise-Control System Integration Standard"
 category: Standards
-version: 1.3.0
+layer: "02-Standards"
+version: 1.4.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-07-01
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  ISA-95 (IEC 62264) functional hierarchy for security architects: systems, responsibilities and
+  information flows at Levels 0–4, the Industrial DMZ inventory, and enterprise–control
+  integration patterns.
+keywords: [ISA-95, IEC 62264, functional hierarchy, MES, MOM, historian, Industrial DMZ, integration patterns]
 ---
 
 # Purpose
@@ -34,10 +42,12 @@ This document covers:
 
 | Document | Relationship |
 |----------|-------------|
-| [NIS2.md](NIS2.md) | Regulatory framework — ISA-95 helps identify which systems fall within regulatory scope |
-| [Czech-Cybersecurity-Act.md](Czech-Cybersecurity-Act.md) | National obligations — ISA-95 informs asset inventory and regulatory scope determination |
+| [NIS2.md](../01-Legislation/NIS2.md) | Regulatory framework — ISA-95 helps identify which systems fall within regulatory scope |
+| [Czech-Cybersecurity-Act.md](../01-Legislation/Czech-Cybersecurity-Act.md) | National obligations — ISA-95 informs asset inventory and regulatory scope determination |
 | [IEC62443.md](IEC62443.md) | Security framework — IEC 62443 secures the systems and flows that ISA-95 defines |
 | [Purdue-Model.md](Purdue-Model.md) | Network-trust reference architecture (PERA) — the same level numbering seen from a *network trust boundary* perspective (L0–L5 + L3.5), the complement to this functional view |
+| [OT-Protocols.md](../04-Network/OT-Protocols.md) | Protocol security detail — per-protocol analysis delegated from this document |
+| [PlantSCADA.md](../08-Technologies/AVEVA/PlantSCADA/PlantSCADA.md) | Example Level 2 supervisory platform (AVEVA Plant SCADA) illustrating the SCADA functions defined at L2 |
 
 ---
 
@@ -375,6 +385,8 @@ SCADA servers are long-lived Windows-based systems that require specific securit
 
 Wherever OPC DA must remain due to legacy constraints, it must be terminated on an OPC aggregator server on the OT side of the conduit — never bridged through a firewall using DCOM dynamic port mappings.
 
+Two such OPC aggregation platforms are documented in detail in this handbook: [Kepware-Server.md](../08-Technologies/PTC/Kepware%20Server/Kepware-Server.md) (PTC KEPServerEX) and [dataFEED-OPC-Suite.md](../08-Technologies/Softing/dataFEED%20OPC%20Suite/dataFEED-OPC-Suite.md) (Softing) — both implement exactly this conduit-termination pattern.
+
 ---
 
 # Level 1 — Basic / Regulatory Control
@@ -554,58 +566,9 @@ Clarity on information ownership prevents both redundant system connectivity (mu
 | L2 ↔ L1 | Modbus TCP, EtherNet/IP (CIP), PROFINET, IEC 61850 (GOOSE/MMS), DNP3 | Bidirectional | No native encryption; rely on zone isolation and conduit filtering |
 | L1 ↔ L0 | 4–20 mA (analog), HART, Foundation Fieldbus, PROFIBUS DP/PA, IO-Link | Bidirectional | Physical; limited attack surface; HART diagnostic interfaces require physical access control |
 
-## Protocol Deep Dive — Security Characteristics
+## Protocol Security Detail — delegated
 
-### Modbus TCP
-
-* **History:** Originally developed by Modicon (1979), designed for serial communication, no security features designed in.
-* **Native security:** None — no authentication, no encryption, no integrity protection.
-* **Attack possibilities:** Any device on the network can read or write any coil/register; function code 16 (write multiple registers) and function code 5 (write single coil) can directly affect process.
-* **Mitigations:** Zone isolation (Modbus traffic must stay within the field zone); conduit filtering on allowed function codes (e.g., block FC16 from unexpected sources); passive monitoring for anomalous Modbus activity.
-
-### EtherNet/IP (CIP)
-
-* **History:** Allen-Bradley / Rockwell standard, now maintained by ODVA; CIP (Common Industrial Protocol) over Ethernet.
-* **Native security:** CIP Security (added in 2017) provides authentication, authorization and encryption using TLS; requires both device and client to support CIP Security.
-* **Legacy status:** Most deployed ControlLogix/CompactLogix systems predate CIP Security or require upgrade.
-* **Attack possibilities:** Without CIP Security: unauthorized reads/writes; replay attacks; CIP program upload/download.
-* **Mitigations:** Enable CIP Security where supported (Rockwell Studio 5000 v31+, newer ControlLogix firmware); zone isolation and conduit filtering for legacy deployments; monitor CIP service codes.
-
-### PROFINET
-
-* **History:** Siemens-originated, now maintained by PI (PROFIBUS and PROFINET International); used in most Siemens and many other European OT installations.
-* **Native security:** PROFINET Security (IEC 62443-3-3 aligned) added in recent versions; S7-1500 supports TLS and integrity protection; older S7-300/400 do not.
-* **Attack possibilities:** S7comm protocol (older): no authentication; Siemens S7 vulnerability class (similar to Stuxnet attack surface).
-* **Mitigations:** Upgrade to S7-1500 where feasible; enable S7-1500 security features (access levels, TLS); use Siemens TIA Portal Audit for S7-1500 change tracking; VLAN isolation; monitoring for S7comm anomalies.
-
-### IEC 61850 (GOOSE / MMS / SAMPLED VALUES)
-
-* **History:** Standard for substation automation and protection; used in electrical utility environments.
-* **Subsystems:** GOOSE (Generic Object Oriented Substation Event) — high-speed multicast for protection; MMS (Manufacturing Message Specification) — for configuration and monitoring; Sampled Values — for differential protection.
-* **Native security:** IEC 62351 defines security extensions for IEC 61850 (authentication, encryption); adoption is inconsistent.
-* **Attack possibilities:** GOOSE spoofing — injecting false GOOSE messages can trigger incorrect protection operations or disable real protection; MMS — unauthorized access to IED configuration.
-* **Mitigations:** Network isolation of GOOSE traffic (VLAN, timing-sensitive so minimal network overhead); implement IEC 62351 authentication for MMS; monitor for unexpected GOOSE publishers; physical security of IEDs.
-
-### DNP3
-
-* **History:** Developed for electric utilities (EPRI) and water/wastewater; widely used for RTU communication over WAN.
-* **Native security:** DNP3 Secure Authentication (SA) v5 adds HMAC-based authentication; not universally deployed.
-* **Attack possibilities:** Without SA: unauthorized reads/writes to RTU; command injection over WAN or local network.
-* **Mitigations:** Implement DNP3 Secure Authentication v5 where supported; encrypt WAN transport (IPsec VPN, TLS wrapper); strict access control on DNP3 master stations.
-
-### OPC UA
-
-* **History:** OPC Foundation successor to OPC DA; platform-independent, security-designed.
-* **Native security:** Three security profiles: None (no security), Sign (integrity), Sign and Encrypt (integrity + confidentiality); certificate-based authentication.
-* **Recommendation:** Always use Sign and Encrypt profile for inter-zone communication. None profile is acceptable only within a single zone where additional controls are in place.
-* **Attack possibilities:** Misconfigured OPC UA (None profile, anonymous access) provides full read/write to all exposed nodes; certificate management failures allow unauthorized clients.
-* **Mitigations:** Enforce Sign and Encrypt profile at all conduit-crossing connections; use certificate-based authentication; configure node-level access control; audit anonymous access attempts.
-
-### OPC DA (Legacy)
-
-* **Why it remains:** Massive installed base; many legacy SCADA/DCS versions only support OPC DA; some vendors have not completed OPC UA migration.
-* **Security problems:** Based on DCOM (Distributed Component Object Model); requires dynamic port ranges (above 1024) making firewall rules impractical; relies on Windows authentication via DCOM — complex to configure correctly; effectively cannot be firewalled without breaking functionality.
-* **Migration path:** Replace with OPC UA where possible. Where not immediately possible: terminate OPC DA on an aggregation server in the OT network; expose only OPC UA upward to DMZ and Level 3.
+Per-protocol security characteristics — Modbus TCP, EtherNet/IP (CIP), PROFINET/S7comm, IEC 61850 (GOOSE/MMS), DNP3, OPC UA and legacy OPC DA, including native security, attack possibilities and mitigations — are maintained in [OT-Protocols.md](../04-Network/OT-Protocols.md), the single source of truth for industrial-protocol security. This document keeps only the level-boundary overview table above; consult OT-Protocols.md for protocol-specific guidance and the OPC DA → OPC UA migration path.
 
 ---
 
@@ -775,7 +738,7 @@ IEC 62443-4-2 → Component selection verification (SL-C ≥ SL-T)
 
 # Sector-Specific ISA-95 Architecture Variants
 
-The ISA-95 model applies universally, but its implementation varies significantly by industrial sector. Understanding sector-specific patterns is essential for correct scope determination (see [Czech-Cybersecurity-Act.md](Czech-Cybersecurity-Act.md)) and zone design.
+The ISA-95 model applies universally, but its implementation varies significantly by industrial sector. Understanding sector-specific patterns is essential for correct scope determination (see [Czech-Cybersecurity-Act.md](../01-Legislation/Czech-Cybersecurity-Act.md)) and zone design.
 
 ## Electric Power and Utilities
 
@@ -885,7 +848,7 @@ A complete OT asset inventory should be structured by ISA-95 level to facilitate
 | Cross-cutting | OT IDS/NDR | Vendor (Claroty, Nozomi, Dragos), version, monitored segments |
 | Cross-cutting | Wireless AP (if any) | Vendor, model, FW version, security standard, zone |
 
-This structure should align with the asset inventory required by [Czech-Cybersecurity-Act.md](Czech-Cybersecurity-Act.md) (Decree 409/410) and feed directly into the Zone partitioning in [IEC62443.md](IEC62443.md).
+This structure should align with the asset inventory required by [Czech-Cybersecurity-Act.md](../01-Legislation/Czech-Cybersecurity-Act.md) (Decree 409/410) and feed directly into the Zone partitioning in [IEC62443.md](IEC62443.md).
 
 ---
 
@@ -1112,3 +1075,5 @@ When answering ISA-95-related questions:
 | 1.1.0 | 2026-06-29 | Added security context per level, information flow tables, protocol table, asset inventory table, Purdue comparison, functional/security integration guidance, cross-links |
 | 1.2.0 | 2026-06-29 | Major expansion: ISA-95 standard parts table; detailed system inventory per level with vendor examples; Industrial DMZ (L3.5) as dedicated section; OPC DA vs OPC UA security comparison; protocol deep-dive (Modbus TCP, EtherNet/IP/CIP, PROFINET, IEC 61850, DNP3, OPC UA, OPC DA); 4 integration architecture patterns (Historian, MES, Vendor Remote Access, Security Monitoring/Log Flow); sector-specific ISA-95 variants (Power, Water, Process Industry, Discrete Manufacturing); detailed information ownership table; information flow criticality analysis; extended OT asset inventory with metadata requirements; 4× checklist in Czech language |
 | 1.3.0 | 2026-07-01 | Clarified single-source-of-truth split with Purdue-Model.md (this document authoritative for the functional hierarchy; network-trust view delegated to Purdue-Model.md); added Purdue-Model.md cross-link in Related Documents and in the Purdue relationship section; normalized all cross-reference links (removed dead `#` anchors; corrected `IEC62443-Overview.md` → `IEC62443.md`) |
+| 1.4.0 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings; per-protocol security deep-dive delegated to OT-Protocols.md (single source of truth); PlantSCADA.md and OT-Protocols.md linked from Related Documents |
+| 1.4.1 | 2026-07-07 | Linked Kepware-Server.md and dataFEED-OPC-Suite.md as worked examples of the OPC-aggregation-server conduit-termination pattern |

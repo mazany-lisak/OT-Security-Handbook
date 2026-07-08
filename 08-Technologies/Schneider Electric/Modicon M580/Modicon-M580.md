@@ -1,12 +1,22 @@
 ---
-title: Schneider Electric Modicon M580 ePAC — Security Architecture and Engineering Reference
-category: Platform Reference
-version: 1.1.0
+id: modicon-m580
+title: "Schneider Electric Modicon M580 ePAC — Security Architecture and Engineering Reference"
+category: Technologies
+layer: "08-Technologies/Schneider Electric/Modicon M580"
+vendor: "Schneider Electric"
+product: "Modicon M580"
+version: 1.1.2
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-06-29
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  Security architecture and engineering reference for the Schneider Electric Modicon M580 ePAC:
+  embedded security capabilities, threat model, phased hardening (ACLs, services, communication,
+  network) and IEC 62443 alignment.
+keywords: [Modicon M580, ePAC, Schneider Electric, hardening, ACL, IPsec, cybersecurity services, IEC 62443-4-2]
 ---
 
 # Purpose
@@ -29,10 +39,10 @@ The M580 must be understood as a **cyber-physical control node** — not merely 
 
 | Document | Relationship |
 |----------|-------------|
-| [IEC62443.md](#) | Engineering security framework |
-| [NIS2.md](#) | EU governance framework |
-| [Czech-Cybersecurity-Act.md](#) | Czech national obligations |
-| [ISA95.md](#) | Functional reference model — M580 operates at ISA-95 Level 1 |
+| [IEC62443.md](../../../02-Standards/IEC62443.md) | Engineering security framework |
+| [NIS2.md](../../../01-Legislation/NIS2.md) | EU governance framework |
+| [Czech-Cybersecurity-Act.md](../../../01-Legislation/Czech-Cybersecurity-Act.md) | Czech national obligations |
+| [ISA95.md](../../../02-Standards/ISA95.md) | Functional reference model — M580 operates at ISA-95 Level 1 |
 
 ---
 
@@ -1892,8 +1902,8 @@ When answering questions about Schneider Electric Modicon M580:
 * When discussing OPC UA on M580, clarify that OPC UA requires the BMENUA0100 module or a third-party gateway — it is not built into the CPU itself (unlike Siemens S7-1500).
 * For M580 Safety, always emphasize the separate safety application password, safety re-validation requirement, and coordination with IEC 61511 lifecycle.
 * Schneider Electric PSIRT (not Siemens ProductCERT) is the vulnerability intelligence source.
-* Reference [IEC62443.md](#) for zone/conduit architecture context.
-* Reference [Czech-Cybersecurity-Act.md](#) for regulatory compliance context.
+* Reference [IEC62443.md](../../../02-Standards/IEC62443.md) for zone/conduit architecture context.
+* Reference [Czech-Cybersecurity-Act.md](../../../01-Legislation/Czech-Cybersecurity-Act.md) for regulatory compliance context.
 * Reference [TIA-Portal-Security.md](#) is **not** relevant for M580 — use EcoStruxure Control Expert equivalent documentation.
 
 ---
@@ -1904,3 +1914,5 @@ When answering questions about Schneider Electric Modicon M580:
 |---------|------|-------------|
 | 1.0.0 | 2026-06 | Initial release (4 separate documents) |
 | 1.1.0 | 2026-06-29 | Consolidated into single document; corrected platform scope (removed Siemens-specific chapters); added M580-native chapters: EtherNet/IP (CIP, UMAS, security limitations), Modbus TCP (UMAS protocol detail, FC register security, ACL criticality), Ethernet RIO (S-Ring, distributed I/O, redundancy security), OPC UA (BMENUA0100 module, gateway patterns), IPsec (integrated IPsec engine, IKEv2 configuration), Web Server (HTTPS hardening, ACL, CE vs. web config), Syslog (TLS transport, ACL deny logging, SIEM), SNMP (version security matrix, SNMPv3), Diagnostics (event log, LED table, UMAS diagnostic access), Monitoring (EcoStruxure Security Expert, OT IDS integration), Logging (event categories, ACL deny priority), Backup and Recovery (SD card security, 4 scenarios, RTO/RPO), Patch Management (PSIRT, assessment process, compensating controls), High Availability (Hot Standby security, dual-CPU management, firmware update procedure), X80 I/O (module categories, Quantum migration), NOC and Communication Modules (BMENOC0301/0311, BMENUA0100, PROFIBUS, serial), DFBs and EFBs (IP protection, input validation, EFB governance), M580 Safety (SIL, safety password, Triton reference, safety zone, lifecycle integration table); gray vs. black CPU distinction; IEC 62443-4-2 SL 2 mapping; NIS2 compliance table; ACL architecture; UMAS security detail; 3× checklist in Czech language |
+| 1.1.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |
+| 1.1.2 | 2026-07-07 | Fixed dangling placeholder anchors ([Document.md](#)) to real relative paths in Related Documents / inline references (6 links) |

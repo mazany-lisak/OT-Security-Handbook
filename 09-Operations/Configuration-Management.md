@@ -1,12 +1,20 @@
 ---
-title: Configuration Management
+id: configuration-management
+title: "Configuration Management"
 category: Operations
-version: 1.0.0
+layer: "09-Operations"
+version: 1.0.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-07-01
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  Baselines, versioning and drift detection for IACS configurations: the trusted "golden" state,
+  version-controlled projects and device configs, drift as a security signal, and re-baselining
+  only through approved change.
+keywords: [configuration management, konfigurační management, baseline, drift detection, versioning, golden configuration]
 ---
 
 # Purpose
@@ -123,8 +131,8 @@ Unexplained drift is a security signal — it may indicate an unauthorised chang
 * [SIEM.md](SIEM.md)
 * [Asset-Management.md](Asset-Management.md)
 * [Patch-Management.md](Patch-Management.md)
-* [IEC62443.md](IEC62443.md)
-* [NIS2.md](NIS2.md)
+* [IEC62443.md](../02-Standards/IEC62443.md)
+* [NIS2.md](../01-Legislation/NIS2.md)
 
 ---
 
@@ -133,3 +141,4 @@ Unexplained drift is a security signal — it may indicate an unauthorised chang
 | Version | Date | Description |
 | ------- | ---- | ----------- |
 | 1.0.0 | 2026-07-01 | Initial release — new 09-Operations document resolving the dangling `Configuration-Management.md` reference from DR/DRP/Recovery-Testing; defines baselines, versioning and drift detection as the record/enforcement counterpart to Change-Management.md; grounded in NIST SP 800-128/800-82 Rev. 3, IEC 62443 and ISO/IEC 27001 |
+| 1.0.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |

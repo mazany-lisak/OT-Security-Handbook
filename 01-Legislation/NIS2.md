@@ -3,7 +3,7 @@ id: nis2
 title: "NIS2 Directive (EU 2022/2555)"
 category: Legislation
 layer: "01-Legislation"
-version: 1.2.1
+version: 1.2.2
 status: Stable
 author: OT Security Handbook Project
 classification: Public
@@ -23,7 +23,7 @@ This document provides an engineering-oriented overview of the NIS2 Directive (D
 
 Rather than reproducing the legal text, it explains how NIS2 influences the design, governance and operation of industrial systems — particularly those involving Operational Technology (OT), Industrial Control Systems (ICS), PLC, SCADA and DCS infrastructure.
 
-**This document is the top of the regulatory hierarchy.** All national implementations and engineering standards derive from it. Read this document first; then read the national transposition ([Czech-Cybersecurity-Act.md](#)) and the engineering implementation framework ([IEC62443.md](#)).
+**This document is the top of the regulatory hierarchy.** All national implementations and engineering standards derive from it. Read this document first; then read the national transposition ([Czech-Cybersecurity-Act.md](Czech-Cybersecurity-Act.md)) and the engineering implementation framework ([IEC62443.md](../02-Standards/IEC62443.md)).
 
 This document covers:
 
@@ -42,9 +42,9 @@ This document covers:
 
 | Document | Relationship |
 |----------|-------------|
-| [Czech-Cybersecurity-Act.md](#) | Czech national transposition of NIS2 — read for CZ-specific obligations |
-| [IEC62443.md](#) | Engineering implementation framework for OT security |
-| [ISA95.md](#) | Manufacturing functional reference model — defines what must be secured |
+| [Czech-Cybersecurity-Act.md](Czech-Cybersecurity-Act.md) | Czech national transposition of NIS2 — read for CZ-specific obligations |
+| [IEC62443.md](../02-Standards/IEC62443.md) | Engineering implementation framework for OT security |
+| [ISA95.md](../02-Standards/ISA95.md) | Manufacturing functional reference model — defines what must be secured |
 
 ---
 
@@ -283,7 +283,7 @@ Key OT-specific requirements:
 * **NÚKIB notification:** Early warning within 24 hours, full report within 72 hours, final report within 1 month (see Article 23 below).
 * **Sector-specific notification:** Some sectors (energy, water) have additional reporting requirements to sector regulators beyond NÚKIB.
 
-See [Czech-Cybersecurity-Act.md](#) for NÚKIB notification procedures.
+See [Czech-Cybersecurity-Act.md](Czech-Cybersecurity-Act.md) for NÚKIB notification procedures.
 
 #### (c) Business Continuity — Backup, Disaster Recovery, Crisis Management
 
@@ -411,7 +411,7 @@ An OT asset inventory is the prerequisite for almost every other NIS2 obligation
 * You cannot prioritize patching without knowing what software/firmware versions are deployed.
 * You cannot define zones and conduits without knowing what systems exist and where they communicate.
 
-Asset inventory must be structured by ISA-95 level (see [ISA95.md](#)), maintained continuously, and include metadata required for security decisions: vendor, model, firmware/software version, IP address, communication protocols, zone assignment, owner, criticality, lifecycle status.
+Asset inventory must be structured by ISA-95 level (see [ISA95.md](../02-Standards/ISA95.md)), maintained continuously, and include metadata required for security decisions: vendor, model, firmware/software version, IP address, communication protocols, zone assignment, owner, criticality, lifecycle status.
 
 **Access control:**
 
@@ -643,7 +643,7 @@ The architect's task is to translate NIS2 obligations into architectural capabil
 | NIS2 Obligation | Translates To | Engineering Standard |
 |----------------|--------------|---------------------|
 | Risk management | Security Level Risk Assessment | IEC 62443-3-2 |
-| Asset management | OT asset inventory structured by ISA-95 level | [ISA95.md](#) |
+| Asset management | OT asset inventory structured by ISA-95 level | [ISA95.md](../02-Standards/ISA95.md) |
 | Network security | Zone and conduit model with Industrial DMZ | IEC 62443-3-3 |
 | Access control | IAM + PAM + MFA; Engineering zone | IEC 62443-3-3 FR 1, FR 2 |
 | Cryptography | TLS, OPC UA security profiles, PKI | IEC 62443-3-3 FR 3, FR 4 |
@@ -686,7 +686,7 @@ ISA-95 provides the functional architecture analysis that enables:
 * **Risk assessment input** (required by Article 21(2)(a)) — understanding what exists and what flows where is the starting point for risk analysis.
 * **Zone/conduit design** — ISA-95 functional boundaries translate into IEC 62443 security zone candidates.
 
-See [ISA95.md](#) for full detail.
+See [ISA95.md](../02-Standards/ISA95.md) for full detail.
 
 ---
 
@@ -1010,9 +1010,9 @@ When answering NIS2-related questions:
 * Distinguish legal requirements from engineering recommendations — NIS2 defines what, IEC 62443 defines how.
 * Always identify the entity category (essential vs. important) before discussing specific obligations — the supervisory model and proportionality expectation differ.
 * Explain how each NIS2 obligation translates into a concrete OT architectural capability.
-* Note that NIS2 is not directly applicable law — national transpositions apply. For Czech context, always refer to [Czech-Cybersecurity-Act.md](#).
-* Refer to [IEC62443.md](#) for engineering implementation of security capabilities.
-* Refer to [ISA95.md](#) for functional architecture analysis that underpins scope determination and zone design.
+* Note that NIS2 is not directly applicable law — national transpositions apply. For Czech context, always refer to [Czech-Cybersecurity-Act.md](Czech-Cybersecurity-Act.md).
+* Refer to [IEC62443.md](../02-Standards/IEC62443.md) for engineering implementation of security capabilities.
+* Refer to [ISA95.md](../02-Standards/ISA95.md) for functional architecture analysis that underpins scope determination and zone design.
 * When discussing incident reporting, emphasize that the 24-hour early warning deadline requires pre-built detection capability — it cannot be met reactively.
 * When discussing supply chain, reference IEC 62443-2-4 (integrators), IEC 62443-4-1/4-2 (products), and SBOM.
 * When discussing management accountability (Article 20), emphasize that personal liability for management is a significant change from NIS1.
@@ -1029,3 +1029,4 @@ When answering NIS2-related questions:
 | 1.1.0 | 2026-06-29 | Added regulatory hierarchy, entity categories table, enforcement penalties, architectural implications table, NIS2/IEC62443 comparison, cross-links |
 | 1.2.0 | 2026-06-29 | Major expansion: NIS1 vs NIS2 comparison table; size thresholds; detailed Annex I/II sector tables with OT presence; article-by-article analysis (Art. 20, 21, 22, 23, 32, 33, 34); OT policy framework per Article 21(2); OT backup table; OT vulnerability management IT vs OT comparison; OT training matrix by role; OT MFA application table; cryptography application table for OT; significant incident OT examples; real-world OT incident pattern table; NIS2 obligation → architecture → engineering standard mapping; sector-specific OT implications (energy, transport, water, manufacturing, healthcare); relationship with CER Directive, CRA, GDPR, Machinery Regulation; non-financial sanctions; business case analysis; 5× checklist in Czech language |
 | 1.2.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |
+| 1.2.2 | 2026-07-07 | Fixed dangling placeholder anchors ([Document.md](#)) to real relative paths in Related Documents / inline references (12 links) |

@@ -1,12 +1,20 @@
 ---
-title: Incident Response
+id: incident-response
+title: "Incident Response"
 category: Operations
-version: 1.1.0
+layer: "09-Operations"
+version: 1.1.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-07-01
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  OT incident response with safety-first priorities: the IR lifecycle, detection indicators,
+  containment trade-offs against process stability, eradication, recovery with operational
+  validation and lessons learned.
+keywords: [incident response, reakce na incidenty, containment, eradication, evidence preservation, NIST SP 800-61, safety first]
 ---
 
 # Purpose
@@ -466,18 +474,18 @@ When discussing Incident Response:
 
 # Related Documents
 
-* [Risk-Based-Security.md](Risk-Based-Security.md)
-* [Defense-in-Depth.md](Defense-in-Depth.md)
+* [Risk-Based-Security.md](../03-Architecture/Risk-Based-Security.md)
+* [Defense-in-Depth.md](../03-Architecture/Defense-in-Depth.md)
 * [Backup.md](Backup.md)
 * [Disaster-Recovery.md](Disaster-Recovery.md)
 * [Change-Management.md](Change-Management.md)
-* [MITRE-ATTACK-ICS.md](MITRE-ATTACK-ICS.md)
-* [ICS-Kill-Chain.md](ICS-Kill-Chain.md)
+* [MITRE-ATTACK-ICS.md](../07-Threat-Intelligence/MITRE-ATTACK-ICS.md)
+* [ICS-Kill-Chain.md](../07-Threat-Intelligence/ICS-Kill-Chain.md)
 * [Monitoring.md](Monitoring.md)
 * [Logging.md](Logging.md)
 * [Asset-Management.md](Asset-Management.md)
-* [IEC62443.md](IEC62443.md)
-* [NIS2.md](NIS2.md)
+* [IEC62443.md](../02-Standards/IEC62443.md)
+* [NIS2.md](../01-Legislation/NIS2.md)
 
 ---
 
@@ -487,3 +495,4 @@ When discussing Incident Response:
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
 | 1.1.0   | 2026-07-01 | Converted to YAML front matter (category: Operations) and semver; fixed links (IEC62443-Overview.md → IEC62443.md); added Sources/Grounding (NIST SP 800-61, IEC 62443-2-1); markdown Related Documents |
+| 1.1.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |

@@ -1,12 +1,20 @@
 ---
-title: Cyber Resilience Act (CRA) — Regulation (EU) 2024/2847
+id: cra
+title: "Cyber Resilience Act (CRA) — Regulation (EU) 2024/2847"
 category: Standards
-version: 1.0.0
+layer: "02-Standards"
+version: 1.0.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-07-01
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  EU Cyber Resilience Act (Regulation 2024/2847): products with digital elements, risk
+  classification and conformity routes, Annex I essential and vulnerability-handling requirements,
+  SBOM, Article 14 reporting, CE marking and OT relevance.
+keywords: [CRA, Cyber Resilience Act, 2024/2847, PDE, SBOM, CE marking, Annex I, reporting obligations]
 ---
 
 # Purpose
@@ -38,11 +46,11 @@ NIS2 and the CRA are **two sides of the same policy**: NIS2 secures the *entitie
 
 | Document | Relationship |
 |----------|-------------|
-| [NIS2.md](NIS2.md) | Sister EU framework — regulates entities/operators; CRA regulates the products they buy and build |
-| [Czech-Cybersecurity-Act.md](Czech-Cybersecurity-Act.md) | Czech transposition of NIS2. Note: the **CRA is a Regulation** — directly applicable, **not** transposed nationally |
+| [NIS2.md](../01-Legislation/NIS2.md) | Sister EU framework — regulates entities/operators; CRA regulates the products they buy and build |
+| [Czech-Cybersecurity-Act.md](../01-Legislation/Czech-Cybersecurity-Act.md) | Czech transposition of NIS2. Note: the **CRA is a Regulation** — directly applicable, **not** transposed nationally |
 | [IEC62443.md](IEC62443.md) | Engineering framework; IEC 62443-4-1/-4-2 are expected to underpin CRA harmonised standards (presumption of conformity) |
 | [ISA95.md](ISA95.md) | Functional model — supports the product/asset inventory needed for CRA scoping |
-| [ICR-2734-Overview.md](ICR-2734-Overview.md) | Concrete PDE example — an industrial secure edge gateway subject to the CRA (see *Relevance to OT/ICS*) |
+| [ICR-2734.md](../08-Technologies/Advantech/ICR-Series/ICR-2734.md) | Concrete PDE example — an industrial secure edge gateway subject to the CRA (see *Relevance to OT/ICS*) |
 
 ---
 
@@ -59,7 +67,7 @@ Its objectives are to:
 
 Key legal characteristics:
 
-* It is a **Regulation**, so it is **directly applicable** in all Member States with **no national transposition** (unlike the NIS2 *Directive*, transposed in the Czech Republic by Zákon č. 264/2025 Sb. — see [Czech-Cybersecurity-Act.md](Czech-Cybersecurity-Act.md)).
+* It is a **Regulation**, so it is **directly applicable** in all Member States with **no national transposition** (unlike the NIS2 *Directive*, transposed in the Czech Republic by Zákon č. 264/2025 Sb. — see [Czech-Cybersecurity-Act.md](../01-Legislation/Czech-Cybersecurity-Act.md)).
 * It is a **New Legislative Framework (NLF)** product law: conformity is demonstrated through an **EU Declaration of Conformity** and the **CE marking**, with **market surveillance** by national authorities.
 * Legislative path: proposed 15 Sep 2022; adopted by Council 10 Oct 2024; published in the OJ 20 Nov 2024; **entered into force 10 December 2024**.
 
@@ -212,7 +220,7 @@ The full penalty regime becomes enforceable with general application on **11 Dec
 
 The CRA and NIS2 are **complementary and mutually reinforcing**:
 
-* **NIS2** ([NIS2.md](NIS2.md)) obliges **entities** to manage cyber risk (Art. 21) and report incidents (Art. 23). Its supply-chain measures (Art. 21(2)(d)) push entities to demand secure products.
+* **NIS2** ([NIS2.md](../01-Legislation/NIS2.md)) obliges **entities** to manage cyber risk (Art. 21) and report incidents (Art. 23). Its supply-chain measures (Art. 21(2)(d)) push entities to demand secure products.
 * **CRA** obliges **manufacturers** to make those products secure and to report product vulnerabilities/incidents.
 * **Critical products (Annex IV)** are explicitly framed as **critical dependencies for NIS2 essential entities**.
 * A vendor can be **both**: a NIS2 entity (as an operator) and a CRA manufacturer (for what it ships). The reporting channels differ — NIS2 incident reporting (entity → national CSIRT under the Czech Act) vs. CRA product reporting (manufacturer → ENISA Single Reporting Platform).
@@ -239,7 +247,7 @@ A manufacturer with an established 62443-4-1 process and 62443-4-2-aligned compo
 Most OT field and edge equipment are PDEs and fall in scope. Practical implications:
 
 * **Industrial routers, cellular/edge gateways, PLCs, RTUs, HMIs** → typically **Important (Annex III)**; those providing **firewall or industrial IDS/IPS** functions can reach **Class II** (notified-body assessment). A device marketed as a *secure edge gateway* with VPN/firewall is unlikely to qualify for simple self-assessment.
-* **Worked example** — an industrial secure edge gateway such as the **[ICR-2734](ICR-2734-Overview.md)**: as a connected industrial router/gateway it is a PDE; its RED-DA cybersecurity obligations converge into the CRA from Dec 2027; and its **S1 / IEC 62443-4-2 SL1-aligned** variant and secure development process directly support CRA Annex I evidence and (via forthcoming harmonised standards) presumption of conformity. See the ICR-2734 knowledge base for the product-side controls (secure boot, signed/encrypted firmware, SBOM-relevant Router-Apps inventory, coordinated vulnerability handling, support-period firmware).
+* **Worked example** — an industrial secure edge gateway such as the **[ICR-2734](../08-Technologies/Advantech/ICR-Series/ICR-2734.md)**: as a connected industrial router/gateway it is a PDE; its RED-DA cybersecurity obligations converge into the CRA from Dec 2027; and its **S1 / IEC 62443-4-2 SL1-aligned** variant and secure development process directly support CRA Annex I evidence and (via forthcoming harmonised standards) presumption of conformity. See the ICR-2734 knowledge base for the product-side controls (secure boot, signed/encrypted firmware, SBOM-relevant Router-Apps inventory, coordinated vulnerability handling, support-period firmware).
 * **Operators (NIS2 entities)** should treat **CRA conformity (CE + Declaration of Conformity + SBOM + support-period commitments)** as a **procurement and supply-chain control** — demanding it satisfies NIS2 Art. 21(2)(d) and the Czech Act supply-chain domain.
 * **Legacy OT** (pre-2027 devices) is largely grandfathered for full requirements but is still reachable by **reporting obligations** and by **substantial-modification** triggers — track this in vulnerability/asset management.
 
@@ -247,7 +255,7 @@ Most OT field and edge equipment are PDEs and fall in scope. Practical implicati
 
 # Regulatory Verification & Audit Mapping (CRA lens)
 
-| CRA obligation | IEC 62443 ([IEC62443.md](IEC62443.md)) | NIS2 ([NIS2.md](NIS2.md)) | Czech Act 264/2025 ([Czech-Cybersecurity-Act.md](Czech-Cybersecurity-Act.md)) |
+| CRA obligation | IEC 62443 ([IEC62443.md](IEC62443.md)) | NIS2 ([NIS2.md](../01-Legislation/NIS2.md)) | Czech Act 264/2025 ([Czech-Cybersecurity-Act.md](../01-Legislation/Czech-Cybersecurity-Act.md)) |
 |---|---|---|---|
 | Secure by design/default (Annex I Part I) | 62443-4-2 FR1–FR7; 62443-4-1 | — (product-side) | — (product-side) |
 | Vulnerability handling / CVD / updates (Annex I Part II) | 62443-4-1 (DM/SUM practices) | Art. 21 — vulnerability handling | Domain 8 — Vulnerability management |
@@ -341,3 +349,4 @@ When discussing the CRA:
 | Version | Date | Description |
 |---------|------|-------------|
 | 1.0.0 | 2026-07-01 | Initial release: scope and exclusions; phased timeline (2024→2027); economic-operator roles incl. OSS stewards; product classification (default/Important I-II/Critical) with conformity routes and OT examples; Annex I essential + vulnerability-handling requirements; SBOM and support period; conformity assessment & CE marking; Article 14 reporting (24h/72h/14d) via ENISA Single Reporting Platform; Article 64 penalty tiers; relationships with NIS2, IEC 62443, RED DA and the CE stack; OT/ICS relevance with ICR-2734 worked example; regulatory verification & audit mapping; misconceptions, decision support and AI guidance; cross-linked to NIS2.md, IEC62443.md, Czech-Cybersecurity-Act.md and ISA95.md |
+| 1.0.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings; ICR-2734 worked-example links redirected to the consolidated ICR-2734.md |

@@ -1,12 +1,20 @@
 ---
-title: ICS Kill Chain
+id: ics-kill-chain
+title: "ICS Kill Chain"
 category: Threat-Intelligence
-version: 1.1.0
+layer: "07-Threat-Intelligence"
+version: 1.1.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-07-01
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  ICS attack-lifecycle model (SANS two-stage ICS Cyber Kill Chain synthesis): phases from
+  reconnaissance through engineering access and controller manipulation to operational impact,
+  with defensive control mapping.
+keywords: [ICS kill chain, SANS, attack lifecycle, fáze útoku, engineering access, controller manipulation, defensive mapping]
 ---
 
 # Purpose
@@ -434,16 +442,16 @@ When using the ICS Kill Chain:
 # Related Documents
 
 * [MITRE-ATTACK-ICS.md](MITRE-ATTACK-ICS.md)
-* [Risk-Based-Security.md](Risk-Based-Security.md)
-* [Defense-in-Depth.md](Defense-in-Depth.md)
-* [IEC62443.md](IEC62443.md)
-* [Network-Segmentation.md](Network-Segmentation.md)
-* [Firewall-Design.md](Firewall-Design.md)
-* [Identity-Management.md](Identity-Management.md)
-* [Secure-Remote-Access.md](Secure-Remote-Access.md)
-* [Incident-Response.md](Incident-Response.md)
-* [Monitoring.md](Monitoring.md)
-* [Logging.md](Logging.md)
+* [Risk-Based-Security.md](../03-Architecture/Risk-Based-Security.md)
+* [Defense-in-Depth.md](../03-Architecture/Defense-in-Depth.md)
+* [IEC62443.md](../02-Standards/IEC62443.md)
+* [Network-Segmentation.md](../04-Network/Network-Segmentation.md)
+* [Firewall-Design.md](../04-Network/Firewall-Design.md)
+* [Identity-Management.md](../05-Identity/Identity-Management.md)
+* [Secure-Remote-Access.md](../04-Network/Secure-Remote-Access.md)
+* [Incident-Response.md](../09-Operations/Incident-Response.md)
+* [Monitoring.md](../09-Operations/Monitoring.md)
+* [Logging.md](../09-Operations/Logging.md)
 
 ---
 
@@ -453,3 +461,4 @@ When using the ICS Kill Chain:
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
 | 1.1.0   | 2026-07-01 | Converted to YAML front matter (category: Threat-Intelligence) and semver; fixed links (IEC62443-Overview.md → IEC62443.md; removed retired Zones-and-Conduits.md reference); added authoritative-source note (SANS Assante & Lee 2015, two-stage); added Sources/Grounding; markdown Related Documents |
+| 1.1.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |

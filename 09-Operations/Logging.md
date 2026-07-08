@@ -1,12 +1,20 @@
 ---
-title: Logging
+id: logging
+title: "Logging"
 category: Operations
-version: 1.1.0
+layer: "09-Operations"
+version: 1.1.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-07-01
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  Logging as trustworthy operational evidence: OT log sources, log quality and time
+  synchronization, integrity and retention, and prioritising high-value events (PLC programming,
+  engineering sessions, certificates, privileged access).
+keywords: [logging, logování, log sources, time synchronization, NTP, log integrity, retention, evidence]
 ---
 
 # Purpose
@@ -31,7 +39,7 @@ This document describes:
 * Integrity
 * Operational best practices
 
-Analysis and correlation of logs are described separately in **Monitoring.md** and **SIEM.md**.
+Analysis and correlation of logs are described separately in **[Monitoring.md](Monitoring.md)** and **[SIEM.md](SIEM.md)**.
 
 ---
 
@@ -455,12 +463,12 @@ When discussing Logging:
 * [Threat-Hunting.md](Threat-Hunting.md)
 * [Detection-Engineering.md](Detection-Engineering.md)
 * [Asset-Management.md](Asset-Management.md)
-* [Identity-Management.md](Identity-Management.md)
-* [Privileged-Access-Management.md](Privileged-Access-Management.md)
-* [OPC-UA.md](OPC-UA.md)
-* [MITRE-ATTACK-ICS.md](MITRE-ATTACK-ICS.md)
-* [IEC62443.md](IEC62443.md)
-* [NIS2.md](NIS2.md)
+* [Identity-Management.md](../05-Identity/Identity-Management.md)
+* [Privileged-Access-Management.md](../05-Identity/Privileged-Access-Management.md)
+* [OPC-UA.md](../04-Network/OPC-UA.md)
+* [MITRE-ATTACK-ICS.md](../07-Threat-Intelligence/MITRE-ATTACK-ICS.md)
+* [IEC62443.md](../02-Standards/IEC62443.md)
+* [NIS2.md](../01-Legislation/NIS2.md)
 
 ---
 
@@ -470,3 +478,4 @@ When discussing Logging:
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
 | 1.1.0   | 2026-07-01 | Converted to YAML front matter (category: Operations) and semver; fixed links (IEC62443-Overview.md → IEC62443.md); added Sources/Grounding; cross-links to SIEM.md; markdown Related Documents |
+| 1.1.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |

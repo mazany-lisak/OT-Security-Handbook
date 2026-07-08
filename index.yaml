@@ -1,0 +1,633 @@
+# Machine-readable manifest of the OT Security Handbook corpus.
+# Regenerate together with INDEX.md whenever documents are added, moved or renamed.
+corpus: OT Security Handbook
+generated: 2026-07-07
+schema:
+  front_matter: "id, title, category, layer, [vendor, product for 08-Technologies], version, status, author, classification, language, last_reviewed, review_cycle, summary, keywords"
+  link_convention: "relative paths within the numbered layer tree; basenames are corpus-unique"
+statistics: { documents: 61, planned: 8 }
+documents:
+  - id: ot-architecture-principles
+    path: "00-Core/OT-Architecture-Principles.md"
+    title: "OT Architecture Principles"
+    category: Core
+    status: Stable
+    version: "1.0.1"
+    language: en
+    summary: "Fifteen vendor-neutral principles a secure OT architecture must embody: explicit trust boundaries, defense in depth, least privilege, identity before connectivity, recoverability, observability and full-lifecycle design."
+    keywords: ["architecture principles", "architektonické principy", "trust boundaries", "least privilege", "defense in depth", "recoverability", "vendor neutrality"]
+  - id: ot-lifecycle
+    path: "00-Core/OT-Lifecycle.md"
+    title: "OT System Lifecycle"
+    category: Core
+    status: Stable
+    version: "1.1.1"
+    language: en
+    summary: "Lifecycle reference model for OT systems from concept to decommissioning; integrates security into every phase, reflecting 15–30 year IACS lifespans and the role of compensating controls for legacy equipment."
+    keywords: ["lifecycle", "životní cyklus", "FAT", "SAT", "modernization", "decommissioning", "compensating controls"]
+  - id: ot-security-philosophy
+    path: "00-Core/OT-Security-Philosophy.md"
+    title: "OT Security Philosophy"
+    category: Core
+    status: Stable
+    version: "1.1.2"
+    language: en
+    summary: "Engineering philosophy of the handbook: the canonical Safety → Availability → Integrity → Confidentiality priority hierarchy, risk-based and architecture-first thinking, defense in depth and vendor neutrality."
+    keywords: ["OT security philosophy", "priority hierarchy", "safety first", "bezpečnostní filozofie", "priorita bezpečnosti", "CIA triad inversion", "architecture before technology"]
+  - id: risk-management-principles
+    path: "00-Core/Risk-Management-Principles.md"
+    title: "Risk Management Principles"
+    category: Core
+    status: Stable
+    version: "1.1.2"
+    language: en
+    summary: "Principles of cybersecurity risk management in OT: the risk cycle, context-dependent risk, OT consequence categories (safety, environmental, production, equipment), treatment options and residual risk."
+    keywords: ["risk management", "řízení rizik", "residual risk", "zbytkové riziko", "ISO 31000", "consequence categories", "risk treatment"]
+  - id: security-decision-framework
+    path: "00-Core/Security-Decision-Framework.md"
+    title: "Security Decision Framework"
+    category: Core
+    status: Stable
+    version: "1.1.2"
+    language: en
+    summary: "Structured eight-step decision sequence from business objective through process, assets, risk and constraints to architecture and technology selection; operational expansion of the canonical priority hierarchy."
+    keywords: ["decision framework", "rozhodovací rámec", "architecture before technology", "decision priorities", "technology selection"]
+  - id: czech-cybersecurity-act
+    path: "01-Legislation/Czech-Cybersecurity-Act.md"
+    title: "Czech Cybersecurity Act and Implementing Decrees"
+    category: Legislation
+    status: Stable
+    version: "1.3.2"
+    language: mixed
+    summary: "Czech national cybersecurity framework: Act No. 264/2025 Sb. and Decrees 408/409/410/2025 — scope assessment (regulated services), capability domains for higher obligations, NÚKIB incident reporting and inspections."
+    keywords: ["zákon o kybernetické bezpečnosti", "ZoKB", "264/2025", "vyhláška 408", "vyhláška 409", "vyhláška 410", "NÚKIB", "regulovaná služba", "Czech Cybersecurity Act"]
+  - id: nis2
+    path: "01-Legislation/NIS2.md"
+    title: "NIS2 Directive (EU 2022/2555)"
+    category: Legislation
+    status: Stable
+    version: "1.2.2"
+    language: en
+    summary: "Engineering-oriented overview of the NIS2 Directive (EU 2022/2555): scope and entity categories, Article 20/21/23 obligations with OT-specific implementation, supervision, penalties and sector implications."
+    keywords: ["NIS2", "směrnice 2022/2555", "essential entities", "important entities", "incident reporting", "hlášení incidentů", "Article 21", "supply chain"]
+  - id: cra
+    path: "02-Standards/CRA.md"
+    title: "Cyber Resilience Act (CRA) — Regulation (EU) 2024/2847"
+    category: Standards
+    status: Stable
+    version: "1.0.1"
+    language: en
+    summary: "EU Cyber Resilience Act (Regulation 2024/2847): products with digital elements, risk classification and conformity routes, Annex I essential and vulnerability-handling requirements, SBOM, Article 14 reporting, CE marking and OT relevance."
+    keywords: ["CRA", "Cyber Resilience Act", "2024/2847", "PDE", "SBOM", "CE marking", "Annex I", "reporting obligations"]
+  - id: iec62443
+    path: "02-Standards/IEC62443.md"
+    title: "IEC 62443 — Industrial Cybersecurity Standard Overview"
+    category: Standards
+    status: Stable
+    version: "1.4.0"
+    language: en
+    summary: "IEC 62443 series overview for OT architects: standard structure and roles, zones and conduits, Security Levels (SL-T/SL-A/SL-C), foundational and system requirements (FR/SR), and the 62443-3-2 risk-assessment process."
+    keywords: ["IEC 62443", "ISA-99", "zones and conduits", "zóny a konduity", "Security Level", "SL-T", "foundational requirements", "SLRA", "IACS"]
+  - id: isa95
+    path: "02-Standards/ISA95.md"
+    title: "ISA-95 — Enterprise-Control System Integration Standard"
+    category: Standards
+    status: Stable
+    version: "1.4.1"
+    language: en
+    summary: "ISA-95 (IEC 62264) functional hierarchy for security architects: systems, responsibilities and information flows at Levels 0–4, the Industrial DMZ inventory, and enterprise–control integration patterns."
+    keywords: ["ISA-95", "IEC 62264", "functional hierarchy", "MES", "MOM", "historian", "Industrial DMZ", "integration patterns"]
+  - id: purdue-model
+    path: "02-Standards/Purdue-Model.md"
+    title: "Purdue Enterprise Reference Architecture (PERA) Model"
+    category: Standards
+    status: Stable
+    version: "1.1.1"
+    language: en
+    summary: "Purdue (PERA) as the network-trust reference model: trust roles of Levels 0–5 and the 3.5 Industrial DMZ termination zone, critical trust boundaries, and the modern IIoT/edge/cloud reading via zones and conduits."
+    keywords: ["Purdue model", "PERA", "trust boundaries", "Level 3.5", "Industrial DMZ", "IDMZ", "reference architecture"]
+  - id: defense-in-depth
+    path: "03-Architecture/Defense-in-Depth.md"
+    title: "Defense in Depth"
+    category: Architecture
+    status: Stable
+    version: "1.1.1"
+    language: en
+    summary: "Authoritative deep-dive on layered security in OT: independent control layers from physical security to backup and recovery, design criteria for independence, and illustrative mapping to ATT&CK for ICS."
+    keywords: ["defense in depth", "vrstvená obrana", "layered security", "independent controls", "security layers"]
+  - id: risk-based-security
+    path: "03-Architecture/Risk-Based-Security.md"
+    title: "Risk-Based Security"
+    category: Architecture
+    status: Stable
+    version: "1.1.1"
+    language: en
+    summary: "Applied strategy of selecting and prioritising controls by risk: control strength proportional to consequence and exposure, security-vs-operational-risk trade-offs, and vulnerability triage combining CVSS, EPSS, CISA KEV and context."
+    keywords: ["risk-based security", "prioritizace", "vulnerability triage", "CVSS", "EPSS", "CISA KEV", "compensating controls", "trade-offs"]
+  - id: zero-trust-in-ot
+    path: "03-Architecture/Zero-Trust-in-OT.md"
+    title: "Zero Trust in OT"
+    category: Architecture
+    status: Stable
+    version: "1.1.1"
+    language: en
+    summary: "Zero Trust adapted to industrial environments: identity as the primary trust boundary, continuous verification, device and application trust, and preserving safety, availability and emergency operations."
+    keywords: ["zero trust", "nulová důvěra", "identity first", "continuous verification", "NIST 800-207", "OT adaptation"]
+  - id: firewall-design
+    path: "04-Network/Firewall-Design.md"
+    title: "OT Firewall Design — Enforcing Conduits in Industrial Control Systems"
+    category: Network
+    status: Stable
+    version: "1.2.0"
+    language: en
+    summary: "Enforcing conduits with OT firewalls: choosing the enforcement device (NGFW, industrial DPI, host-based, data diode), typical placements, default-deny rule design, industrial DPI, logging, HA fail behaviour and policy lifecycle."
+    keywords: ["firewall", "industrial firewall", "default deny", "DPI", "conduit enforcement", "rule design", "pravidla firewallu"]
+  - id: network-segmentation
+    path: "04-Network/Network-Segmentation.md"
+    title: "OT Network Segmentation — Architecture, Conduits and Trust Boundaries"
+    category: Network
+    status: Stable
+    version: "1.2.0"
+    language: en
+    summary: "Implementing zones, conduits and trust boundaries: segmentation vs isolation, the Industrial DMZ, unidirectional gateways, specialized cases (SIS, engineering, vendor, wireless/IIoT) and the segmentation lifecycle."
+    keywords: ["network segmentation", "segmentace sítě", "zones and conduits", "IDMZ", "VLAN", "data diode", "micro-segmentation", "trust boundaries"]
+  - id: ot-protocols
+    path: "04-Network/OT-Protocols.md"
+    title: "Industrial OT Communication Protocols — Architecture, Security and Platform Reference"
+    category: Network
+    status: Stable
+    version: "1.3.3"
+    language: en
+    summary: "Security reference for industrial protocols — Modbus, S7comm, PROFINET, EtherNet/IP (CIP), OPC UA/DA, POWERLINK, DNP3, IEC 60870-5-104, IEC 61850, MQTT — with default ports, DPI, monitoring and platform notes (S7-1500, M580, Twido, X20)."
+    keywords: ["industrial protocols", "průmyslové protokoly", "Modbus", "PROFINET", "S7comm", "OPC UA", "DNP3", "IEC 61850", "MQTT", "default ports"]
+  - id: secure-remote-access
+    path: "04-Network/Secure-Remote-Access.md"
+    title: "OT Secure Remote Access — Architecture, Identity and Vendor Governance"
+    category: Network
+    status: Stable
+    version: "1.1.0"
+    language: en
+    summary: "Brokered remote-access architecture for OT: identity and MFA before connectivity, VPN selection and hardening (WireGuard → IPsec → OpenVPN), jump/bastion hosts, vendor governance, session recording and operating without the remote path."
+    keywords: ["remote access", "vzdálený přístup", "VPN", "WireGuard", "IPsec", "jump server", "vendor access", "session recording", "MFA"]
+  - id: certificates
+    path: "05-Identity/Certificates.md"
+    title: "Digital Certificates"
+    category: Identity
+    status: Stable
+    version: "1.1.0"
+    language: en
+    summary: "X.509 certificates as managed digital identities: structure and types, lifecycle, validation, expiration monitoring, renewal and revocation, private-key protection and certificate-intensive OT technologies such as OPC UA."
+    keywords: ["certificates", "certifikáty", "X.509", "certificate lifecycle", "expirace", "revocation", "SAN", "key usage"]
+  - id: identity-management
+    path: "05-Identity/Identity-Management.md"
+    title: "Identity Management"
+    category: Identity
+    status: Stable
+    version: "1.1.0"
+    language: en
+    summary: "Identity as the primary OT trust boundary: identity categories (human, device, application, service), lifecycle, authentication and authorization, governance, privileged identities and the relationship to Zero Trust and IEC 62443."
+    keywords: ["identity management", "správa identit", "identity lifecycle", "RBAC", "authentication", "authorization", "governance", "device identity"]
+  - id: mfa
+    path: "05-Identity/MFA.md"
+    title: "Multi-Factor Authentication (MFA)"
+    category: Identity
+    status: Stable
+    version: "1.1.0"
+    language: en
+    summary: "Risk-based MFA deployment in OT: factor categories and methods, phishing-resistant authentication (FIDO2, certificates), emergency access, identity-infrastructure resilience and operational constraints for control-room use."
+    keywords: ["MFA", "vícefaktorová autentizace", "FIDO2", "smart card", "phishing-resistant", "emergency access", "authentication factors"]
+  - id: pki
+    path: "05-Identity/PKI.md"
+    title: "Public Key Infrastructure (PKI)"
+    category: Identity
+    status: Stable
+    version: "1.1.0"
+    language: en
+    summary: "PKI as a trust architecture for IACS: Root and Intermediate CAs, certificate lifecycle, revocation (CRL/OCSP), private-key protection (HSM/TPM), governance and enterprise vs dedicated OT PKI deployment decisions."
+    keywords: ["PKI", "certifikační autorita", "Root CA", "Intermediate CA", "CRL", "OCSP", "HSM", "trust architecture"]
+  - id: privileged-access-management
+    path: "05-Identity/Privileged-Access-Management.md"
+    title: "Privileged Access Management (PAM)"
+    category: Identity
+    status: Stable
+    version: "1.1.0"
+    language: en
+    summary: "PAM as a governance discipline: privileged identity lifecycle, credential vaulting and rotation, Just-In-Time access and JEA, session recording, engineering and vendor privileged access, and emergency-access handling."
+    keywords: ["PAM", "privileged access", "privilegovaný přístup", "JIT", "JEA", "session recording", "credential rotation", "separation of duties"]
+  - id: cisa-kev
+    path: "06-Vulnerability-Management/CISA-KEV.md"
+    title: "CISA Known Exploited Vulnerabilities (KEV)"
+    category: Vulnerability-Management
+    status: Stable
+    version: "1.1.1"
+    language: en
+    summary: "CISA Known Exploited Vulnerabilities catalogue: confirmed active exploitation as a prioritisation signal, what KEV does not measure, OT interpretation and compensating controls when patching is impractical."
+    keywords: ["CISA KEV", "known exploited vulnerabilities", "aktivně zneužívané zranitelnosti", "BOD 22-01", "prioritisation"]
+  - id: cve
+    path: "06-Vulnerability-Management/CVE.md"
+    title: "Common Vulnerabilities and Exposures (CVE)"
+    category: Vulnerability-Management
+    status: Stable
+    version: "1.1.1"
+    language: en
+    summary: "What a CVE identifier is — and is not: the identification lifecycle, what a CVE does not tell you, and its relationship to CVSS severity, EPSS probability and CISA KEV confirmed exploitation."
+    keywords: ["CVE", "vulnerability identifier", "identifikátor zranitelnosti", "NVD", "disclosure", "CNA"]
+  - id: cvss
+    path: "06-Vulnerability-Management/CVSS.md"
+    title: "Common Vulnerability Scoring System (CVSS)"
+    category: Vulnerability-Management
+    status: Stable
+    version: "1.1.1"
+    language: en
+    summary: "CVSS v4.0 technical-severity scoring: Base/Threat/Environmental/Supplemental metric groups including the Safety metric, interpretation limits, and why severity alone must never drive OT remediation priority."
+    keywords: ["CVSS", "v4.0", "severity", "závažnost", "Base metrics", "Environmental metrics", "Safety metric", "FIRST"]
+  - id: epss
+    path: "06-Vulnerability-Management/EPSS.md"
+    title: "Exploit Prediction Scoring System (EPSS)"
+    category: Vulnerability-Management
+    status: Stable
+    version: "1.1.1"
+    language: en
+    summary: "Exploit Prediction Scoring System: data-driven probability of near-term exploitation, typical CVSS×EPSS interpretation patterns, and its role alongside KEV and operational context in OT prioritisation."
+    keywords: ["EPSS", "exploit prediction", "pravděpodobnost exploitace", "probability", "FIRST", "prioritisation"]
+  - id: ics-kill-chain
+    path: "07-Threat-Intelligence/ICS-Kill-Chain.md"
+    title: "ICS Kill Chain"
+    category: Threat-Intelligence
+    status: Stable
+    version: "1.1.1"
+    language: en
+    summary: "ICS attack-lifecycle model (SANS two-stage ICS Cyber Kill Chain synthesis): phases from reconnaissance through engineering access and controller manipulation to operational impact, with defensive control mapping."
+    keywords: ["ICS kill chain", "SANS", "attack lifecycle", "fáze útoku", "engineering access", "controller manipulation", "defensive mapping"]
+  - id: mitre-attack-ics
+    path: "07-Threat-Intelligence/MITRE-ATTACK-ICS.md"
+    title: "MITRE ATT&CK for ICS"
+    category: Threat-Intelligence
+    status: Stable
+    version: "1.1.1"
+    language: en
+    summary: "Applying MITRE ATT&CK for ICS (12 tactics, 83 techniques) in architecture and operations: detection and mitigation strategy, mapping to IEC 62443 and Purdue, threat hunting and monitoring priorities."
+    keywords: ["MITRE ATT&CK", "ICS", "tactics", "techniques", "taktiky", "techniky", "detection", "threat hunting", "EMB3D"]
+  - id: pi-system
+    path: "08-Technologies/AVEVA/PI System/PI-System.md"
+    title: "AVEVA PI System (formerly OSIsoft PI) — Security Architecture and Engineering Reference"
+    category: Technologies
+    status: Stable
+    version: "1.0.1"
+    language: en
+    vendor: "AVEVA"
+    product: "PI System"
+    summary: "Security architecture and engineering reference for the AVEVA PI System (formerly OSIsoft PI): Data Archive, Asset Framework, PI Interfaces/Connectors and buffering, PI Vision and PI Web API, the estate-wide-aggregation threat model, PI Trusts vs Identity-based authentication, IDMZ placement and PI-to-PI replication, phased hardening, monitoring, backup and cloud integration."
+    keywords: ["PI System", "OSIsoft", "AVEVA", "historian", "PI Data Archive", "Asset Framework", "AF", "PI Vision", "PI Web API", "PI Interfaces", "PI Trusts", "buffering", "IDMZ", "time-series"]
+  - id: plantscada
+    path: "08-Technologies/AVEVA/PlantSCADA/PlantSCADA.md"
+    title: "AVEVA Plant SCADA — Security Architecture and Engineering Reference"
+    category: Technologies
+    status: Stable
+    version: "2.0.1"
+    language: en
+    vendor: "AVEVA"
+    product: "Plant SCADA"
+    summary: "Security architecture and engineering reference for AVEVA Plant SCADA (formerly Citect): component and redundancy architecture, threat model, identity model (roles, privilege levels, areas, Windows/AD integration), Cicode and CtAPI governance, phased hardening, communications security, monitoring, backup and recovery."
+    keywords: ["AVEVA", "Plant SCADA", "Citect", "CitectSCADA", "SCADA security", "Cicode", "CtAPI", "privilege levels", "redundancy", "Access Anywhere", "hardening"]
+  - id: icr-2734
+    path: "08-Technologies/Advantech/ICR-Series/ICR-2734.md"
+    title: "Advantech ICR-2734 — Industrial Secure Edge Gateway Knowledge Base"
+    category: Technologies
+    status: Stable
+    version: "2.1.0"
+    language: en
+    vendor: "Advantech"
+    product: "ICR-2734"
+    summary: "Security knowledge base for the Advantech ICR-2734 industrial secure edge gateway (ICR-OS): verified hardware and S1 hardened variant, defense-in-depth controls, VPN hierarchy (WireGuard/IPsec), Zero Touch Provisioning, monitoring and recovery."
+    keywords: ["Advantech", "ICR-2734", "ICR-OS", "edge gateway", "WireGuard", "IPsec", "Zero Touch Provisioning", "S1 variant", "Router Apps"]
+  - id: webaccess-dmp
+    path: "08-Technologies/Advantech/WebAccess-DMP/WebAccess-DMP.md"
+    title: "Advantech WebAccess/DMP — Device Management Platform Security Reference"
+    category: Technologies
+    status: Stable
+    version: "2.0.0"
+    language: en
+    vendor: "Advantech"
+    product: "WebAccess/DMP"
+    summary: "Security reference for the Advantech WebAccess/DMP device-management platform: management-plane threat model (fleet-wide configuration/firmware push, ZTP trust bootstrapping, API tokens), deployment models and placement, identity and tenant governance, hardening, network flows, monitoring and platform recovery for ICR router fleets."
+    keywords: ["WebAccess/DMP", "Advantech", "device management", "management plane", "Zero Touch Provisioning", "ZTP", "digital twin", "WireGuard", "fleet management", "ICR routers", "API security"]
+  - id: br-x20
+    path: "08-Technologies/B&R/X20/BR-X20.md"
+    title: "B&R X20 System — Security Architecture and Engineering Reference"
+    category: Technologies
+    status: Stable
+    version: "1.0.0"
+    language: en
+    vendor: "B&R Industrial Automation"
+    product: "X20 System"
+    summary: "Security architecture and engineering reference for the B&R (ABB) X20 modular PLC/controller system: architecture and CPU generations, POWERLINK/OPC UA/Modbus communications, threat model, identity and user management, phased hardening, Automation Studio / Automation Runtime governance, firmware and certificate handling, monitoring, backup and IEC 62443 alignment."
+    keywords: ["B&R", "ABB", "X20", "X20 System", "Automation Studio", "Automation Runtime", "POWERLINK", "openSAFETY", "OPC UA", "mapp", "modular PLC", "hardening", "IEC 62443-4-2"]
+  - id: moxa-nport-5000
+    path: "08-Technologies/Moxa/NPort/MOXA-NPort-5000.md"
+    title: "Moxa NPort 5000 Serial Device Server — Security Architecture and Hardening Reference"
+    category: Technologies
+    status: Stable
+    version: "1.0.0"
+    language: en
+    vendor: "Moxa"
+    product: "NPort 5000 Series"
+    summary: "Security architecture and hardening reference for the Moxa NPort 5000 serial device server: its role as a serial-to-Ethernet bridge that exposes legacy serial equipment to IP networks, the resulting threat model (bridged trust, weak defaults, management-plane exposure), operating-mode security, phased hardening, monitoring, firmware and lifecycle, and IEC 62443 placement."
+    keywords: ["Moxa", "NPort", "NPort 5000", "serial device server", "serial-to-Ethernet", "terminal server", "RealCOM", "TCP server", "Modbus gateway", "serial bridge", "hardening", "legacy equipment"]
+  - id: kepware-server
+    path: "08-Technologies/PTC/Kepware Server/Kepware-Server.md"
+    title: "PTC Kepware Server (KEPServerEX) — Security Architecture and Engineering Reference"
+    category: Technologies
+    status: Stable
+    version: "1.0.0"
+    language: en
+    vendor: "PTC"
+    product: "Kepware Server (KEPServerEX)"
+    summary: "Security architecture and engineering reference for the PTC Kepware Server (KEPServerEX) OPC aggregation platform: plugin-driver architecture, the OPC DA/DCOM legacy problem, OPC UA and IoT Gateway (MQTT/REST/ThingWorx) northbound paths, the bidirectional-write threat model, user management, phased hardening, monitoring, backup and IEC 62443 conduit placement."
+    keywords: ["Kepware", "KEPServerEX", "PTC", "OPC server", "OPC aggregator", "protocol gateway", "OPC DA", "DCOM", "OPC UA", "IoT Gateway", "MQTT", "ThingWorx", "connectivity plugin"]
+  - id: s7-1500
+    path: "08-Technologies/SIEMENS/S7-1500/S7-1500.md"
+    title: "Siemens SIMATIC S7-1500 — Security Architecture and Engineering Reference"
+    category: Technologies
+    status: Stable
+    version: "1.1.2"
+    language: en
+    vendor: "Siemens"
+    product: "SIMATIC S7-1500"
+    summary: "Security architecture and engineering reference for the Siemens SIMATIC S7-1500: access levels and UMAC, secure PG/PC and OPC UA communication (TLS), firmware-dependent capabilities and the phased hardening lifecycle."
+    keywords: ["S7-1500", "SIMATIC", "Siemens", "access levels", "UMAC", "secure communication", "TLS", "hardening"]
+  - id: s7-300
+    path: "08-Technologies/SIEMENS/S7-300/S7-300.md"
+    title: "Siemens SIMATIC S7-300 — Security Architecture and Compensating-Control Reference"
+    category: Technologies
+    status: Stable
+    version: "1.0.0"
+    language: en
+    vendor: "Siemens"
+    product: "SIMATIC S7-300"
+    summary: "Security architecture and compensating-control reference for the legacy (discontinued) Siemens SIMATIC S7-300 PLC: absence of native authentication, S7comm classic and the historical Stuxnet precedent, mechanical key-switch and weak block protection, architectural containment (segmentation, S7comm-aware firewall/diode, monitoring), STEP 7 engineering governance, migration to S7-1500."
+    keywords: ["S7-300", "SIMATIC", "Siemens", "STEP 7", "S7comm", "legacy PLC", "Stuxnet", "key switch", "block protection", "compensating controls", "migration", "discontinued"]
+  - id: s7-400
+    path: "08-Technologies/SIEMENS/S7-400/S7-400.md"
+    title: "Siemens SIMATIC S7-400 — Security Architecture and Compensating-Control Reference"
+    category: Technologies
+    status: Stable
+    version: "1.0.0"
+    language: en
+    vendor: "Siemens"
+    product: "SIMATIC S7-400"
+    summary: "Security architecture and compensating-control reference for the legacy (discontinued) Siemens SIMATIC S7-400 high-end PAC: process-scale and H/R fault-tolerant redundancy considerations on top of the shared S7-300 threat model, synchronisation-link containment, PCS 7 process-control context, engineering governance, monitoring, backup/recovery and migration to S7-1500/PCS neo."
+    keywords: ["S7-400", "S7-400H", "SIMATIC", "Siemens", "STEP 7", "S7comm", "PCS 7", "redundant PLC", "fault-tolerant", "H-system", "legacy PLC", "compensating controls", "migration", "discontinued"]
+  - id: tia-portal
+    path: "08-Technologies/SIEMENS/TIA Portal/TIA-Portal.md"
+    title: "Siemens TIA Portal — Security Architecture and Engineering Governance"
+    category: Technologies
+    status: Stable
+    version: "1.1.2"
+    language: en
+    vendor: "Siemens"
+    product: "TIA Portal"
+    summary: "Security architecture and engineering governance for Siemens TIA Portal: UMC/UMAC identity architecture, MFA and PAM integration, controller access levels, secure PG/PC communication and engineering-zone design."
+    keywords: ["TIA Portal", "Siemens", "UMC", "UMAC", "engineering governance", "secure PG/PC", "access levels"]
+  - id: ecostruxure-control-expert
+    path: "08-Technologies/Schneider Electric/Control Expert/EcoStruxure-Control-Expert.md"
+    title: "Schneider Electric EcoStruxure™ Control Expert — Security Architecture and Engineering Governance"
+    category: Technologies
+    status: Stable
+    version: "1.1.2"
+    language: en
+    vendor: "Schneider Electric"
+    product: "EcoStruxure Control Expert"
+    summary: "Security architecture and engineering governance for Schneider Electric EcoStruxure Control Expert: identity and access (users, MFA, PAM), threat model, engineering-zone architecture, hardening and project protection."
+    keywords: ["EcoStruxure Control Expert", "Unity Pro", "Schneider Electric", "engineering platform", "hardening", "project protection", "M580 engineering"]
+  - id: geoscada
+    path: "08-Technologies/Schneider Electric/GeoSCADA/GeoSCADA.md"
+    title: "Schneider Electric EcoStruxure Geo SCADA Expert — Security Architecture and Engineering Reference"
+    category: Technologies
+    status: Stable
+    version: "1.0.0"
+    language: en
+    vendor: "Schneider Electric"
+    product: "EcoStruxure Geo SCADA Expert"
+    summary: "Security architecture and engineering reference for EcoStruxure Geo SCADA Expert (formerly ClearSCADA), the wide-area telemetry SCADA: integrated-server architecture, WAN/field trust model, threat model for distributed RTU estates, identity and per-object permissions, telemetry-protocol security (DNP3 SA, IEC 60870-5-104), phased hardening, monitoring, backup and disaster recovery."
+    keywords: ["Geo SCADA", "ClearSCADA", "EcoStruxure", "wide-area SCADA", "telemetry", "DNP3", "Secure Authentication", "IEC 60870-5-104", "SCADAPack", "RTU", "ViewX", "WebX", "water", "pipelines"]
+  - id: modicon-m580
+    path: "08-Technologies/Schneider Electric/Modicon M580/Modicon-M580.md"
+    title: "Schneider Electric Modicon M580 ePAC — Security Architecture and Engineering Reference"
+    category: Technologies
+    status: Stable
+    version: "1.1.2"
+    language: en
+    vendor: "Schneider Electric"
+    product: "Modicon M580"
+    summary: "Security architecture and engineering reference for the Schneider Electric Modicon M580 ePAC: embedded security capabilities, threat model, phased hardening (ACLs, services, communication, network) and IEC 62443 alignment."
+    keywords: ["Modicon M580", "ePAC", "Schneider Electric", "hardening", "ACL", "IPsec", "cybersecurity services", "IEC 62443-4-2"]
+  - id: modicon-premium
+    path: "08-Technologies/Schneider Electric/Modicon Premium/Modicon-Premium.md"
+    title: "Schneider Electric Modicon Premium — Security Architecture and Compensating-Control Reference"
+    category: Technologies
+    status: Stable
+    version: "1.0.0"
+    language: en
+    vendor: "Schneider Electric"
+    product: "Modicon Premium"
+    summary: "Security architecture and compensating-control reference for the legacy (end-of-commercialisation) Schneider Electric Modicon Premium PAC: absence of native security, threat model for unauthenticated Modbus/X-Way/UMAS, architectural containment (segmentation, front-end firewall/diode, monitoring), Unity Pro/legacy engineering governance, migration to M580, and IEC 62443 compensating-control framing."
+    keywords: ["Modicon Premium", "TSX Premium", "Schneider Electric", "Unity Pro", "PL7", "legacy PLC", "UMAS", "X-Way", "Modbus", "compensating controls", "migration", "end of life"]
+  - id: modicon-twido
+    path: "08-Technologies/Schneider Electric/Modicon Twido/Modicon-Twido.md"
+    title: "Schneider Electric Modicon Twido — Security Architecture and Compensating-Control Reference"
+    category: Technologies
+    status: Stable
+    version: "1.0.0"
+    language: en
+    vendor: "Schneider Electric"
+    product: "Modicon Twido"
+    summary: "Security architecture and compensating-control reference for the legacy (end-of-life) Schneider Electric Modicon Twido micro-PLC: absence of native security, unauthenticated Modbus/serial and weak application protection, containment architecture for small OEM/machine deployments, engineering governance (TwidoSuite), monitoring, backup and migration to M221/M580."
+    keywords: ["Modicon Twido", "Schneider Electric", "TwidoSuite", "TwidoSoft", "micro-PLC", "compact PLC", "Modbus", "legacy PLC", "OEM machine", "compensating controls", "M221", "end of life"]
+  - id: datafeed-opc-suite
+    path: "08-Technologies/Softing/dataFEED OPC Suite/dataFEED-OPC-Suite.md"
+    title: "Softing dataFEED OPC Suite — Security Architecture and Engineering Reference"
+    category: Technologies
+    status: Stable
+    version: "1.0.0"
+    language: en
+    vendor: "Softing Industrial Automation"
+    product: "dataFEED OPC Suite"
+    summary: "Security architecture and engineering reference for the Softing dataFEED OPC Suite modular OPC connectivity platform: component architecture (OPC servers, OPC UA Tunnel, Redundancy Manager, Logger), the OPC UA Tunnel as a native DCOM-elimination pattern, southbound fieldbus/PROFINET heritage, redundancy security considerations, identity, phased hardening, monitoring and recovery."
+    keywords: ["Softing", "dataFEED", "dataFEED OPC Suite", "OPC server", "OPC aggregator", "OPC UA Tunnel", "DCOM", "Redundancy Manager", "PROFIBUS", "PROFINET", "industrial connectivity"]
+  - id: asset-management
+    path: "09-Operations/Asset-Management.md"
+    title: "Asset Management"
+    category: Operations
+    status: Stable
+    version: "1.0.1"
+    language: en
+    summary: "The asset inventory as the foundation of the OT security programme: what to inventory, passive-first OT-safe discovery, criticality classification tied to the BIA, and keeping the inventory current through change and decommissioning."
+    keywords: ["asset management", "správa aktiv", "inventory", "passive discovery", "criticality", "kritičnost", "ghost assets"]
+  - id: backup
+    path: "09-Operations/Backup.md"
+    title: "Backup"
+    category: Operations
+    status: Stable
+    version: "1.1.1"
+    language: en
+    summary: "OT backup strategy: what to back up (PLC programs, SCADA projects, infrastructure and security assets, documentation), RPO/RTO alignment, offline and immutable copies, validation and restoration testing."
+    keywords: ["backup", "zálohování", "RPO", "RTO", "offline backup", "immutable", "PLC projects", "restoration testing"]
+  - id: business-continuity
+    path: "09-Operations/Business-Continuity.md"
+    title: "Business Continuity"
+    category: Operations
+    status: Stable
+    version: "1.1.1"
+    language: en
+    summary: "Maintaining critical industrial operations during disruption: continuity strategies (manual, reduced-capacity, isolated, degraded modes), personnel and supplier dependencies, and coordination with DR and IR."
+    keywords: ["business continuity", "kontinuita provozu", "BCP", "manual operation", "degraded mode", "ISO 22301"]
+  - id: business-impact-analysis
+    path: "09-Operations/Business-Impact-Analysis.md"
+    title: "Business Impact Analysis (BIA)"
+    category: Operations
+    status: Stable
+    version: "1.1.1"
+    language: en
+    summary: "BIA for OT: identifying critical business processes and supporting assets, dependency analysis, impact categories (safety, operational, financial, regulatory, environmental) and deriving RTO/RPO/MTD and recovery priorities."
+    keywords: ["BIA", "business impact analysis", "analýza dopadů", "RTO", "RPO", "MTD", "dependencies", "recovery priorities"]
+  - id: change-management
+    path: "09-Operations/Change-Management.md"
+    title: "Change Management"
+    category: Operations
+    status: Stable
+    version: "1.0.1"
+    language: en
+    summary: "Governance wrapper for OT changes: change types (standard/normal/emergency), the change lifecycle with backup-before-change and rollback, maintenance windows, vendor coordination and the Management-of-Change intersection with process safety."
+    keywords: ["change management", "řízení změn", "rollback", "maintenance window", "Management of Change", "MoC", "CAB"]
+  - id: configuration-management
+    path: "09-Operations/Configuration-Management.md"
+    title: "Configuration Management"
+    category: Operations
+    status: Stable
+    version: "1.0.1"
+    language: en
+    summary: "Baselines, versioning and drift detection for IACS configurations: the trusted \"golden\" state, version-controlled projects and device configs, drift as a security signal, and re-baselining only through approved change."
+    keywords: ["configuration management", "konfigurační management", "baseline", "drift detection", "versioning", "golden configuration"]
+  - id: disaster-recovery-plan
+    path: "09-Operations/Disaster-Recovery-Plan.md"
+    title: "Disaster Recovery Plan (DRP)"
+    category: Operations
+    status: Stable
+    version: "1.1.1"
+    language: en
+    summary: "Executable DRP runbook: activation criteria and authority, roles, the recovery sequence and preparation checklist, Trusted-Operational-State validation, communication plan and post-incident documentation."
+    keywords: ["DRP", "plán obnovy", "recovery sequence", "activation", "validation checklist", "roles and responsibilities"]
+  - id: disaster-recovery
+    path: "09-Operations/Disaster-Recovery.md"
+    title: "Disaster Recovery"
+    category: Operations
+    status: Stable
+    version: "1.1.1"
+    language: en
+    summary: "Disaster Recovery as an architectural capability: restoring a Trusted Operational State, recovery strategies and priorities, dependency mapping, recovery objectives and operational validation before production resumes."
+    keywords: ["disaster recovery", "obnova po havárii", "trusted operational state", "recovery strategy", "dependencies", "RTO", "RPO"]
+  - id: incident-response
+    path: "09-Operations/Incident-Response.md"
+    title: "Incident Response"
+    category: Operations
+    status: Stable
+    version: "1.1.1"
+    language: en
+    summary: "OT incident response with safety-first priorities: the IR lifecycle, detection indicators, containment trade-offs against process stability, eradication, recovery with operational validation and lessons learned."
+    keywords: ["incident response", "reakce na incidenty", "containment", "eradication", "evidence preservation", "NIST SP 800-61", "safety first"]
+  - id: logging
+    path: "09-Operations/Logging.md"
+    title: "Logging"
+    category: Operations
+    status: Stable
+    version: "1.1.1"
+    language: en
+    summary: "Logging as trustworthy operational evidence: OT log sources, log quality and time synchronization, integrity and retention, and prioritising high-value events (PLC programming, engineering sessions, certificates, privileged access)."
+    keywords: ["logging", "logování", "log sources", "time synchronization", "NTP", "log integrity", "retention", "evidence"]
+  - id: monitoring
+    path: "09-Operations/Monitoring.md"
+    title: "Monitoring"
+    category: Operations
+    status: Stable
+    version: "1.1.1"
+    language: en
+    summary: "Continuous validation of the trusted state: monitoring domains (security, network, system, OT process), telemetry sources, detection strategy and priorities, threat hunting and the relationships to ATT&CK, IR and Zero Trust."
+    keywords: ["monitoring", "detekce", "telemetry", "detection priorities", "threat hunting", "anomaly detection", "OT IDS"]
+  - id: patch-management
+    path: "09-Operations/Patch-Management.md"
+    title: "Patch Management"
+    category: Operations
+    status: Stable
+    version: "1.1.1"
+    language: en
+    summary: "Risk-based OT patching: the patch lifecycle from inventory and advisory review through testing, approval and deployment to validation; rollback planning, vendor coordination, emergency patching and compensating controls."
+    keywords: ["patch management", "záplatování", "testing", "rollback", "maintenance window", "vendor advisory", "emergency patching"]
+  - id: recovery-testing
+    path: "09-Operations/Recovery-Testing.md"
+    title: "Recovery Testing"
+    category: Operations
+    status: Stable
+    version: "1.1.1"
+    language: en
+    summary: "Validating recovery capability: exercise types from documentation review and tabletop to full DR exercises, success criteria and metrics (RTO/RPO achievement), Trusted-Operational-State verification and lessons learned."
+    keywords: ["recovery testing", "testování obnovy", "tabletop exercise", "DR exercise", "RTO", "RPO", "success criteria"]
+  - id: siem
+    path: "09-Operations/SIEM.md"
+    title: "SIEM"
+    category: Operations
+    status: Stable
+    version: "1.0.1"
+    language: en
+    summary: "The SIEM as the correlation and detection layer between logging and monitoring: passive-first OT ingestion, industrial data sources and protocol-aware parsing, data-residency constraints and high-value detections."
+    keywords: ["SIEM", "correlation", "korelace", "detection", "OT data sources", "passive collection", "data residency"]
+  - id: vulnerability-management
+    path: "09-Operations/Vulnerability-Management.md"
+    title: "Vulnerability Management"
+    category: Operations
+    status: Stable
+    version: "1.0.1"
+    language: en
+    summary: "Hub for vulnerability management: the consolidated prioritisation workflow (CVE → CVSS v4.0 → EPSS → CISA KEV → criticality/exposure → operational context → risk decision), compensating controls and worked examples."
+    keywords: ["vulnerability management", "řízení zranitelností", "prioritisation workflow", "CVE", "CVSS", "EPSS", "KEV", "compensating controls"]
+planned:
+  - id: opc-ua
+    path: "04-Network/OPC-UA.md"
+    status: Planned
+    summary: "OPC UA security deep-dive: security profiles (None/Sign/SignAndEncrypt), certificate and trust-list management, node-level access control."
+    referenced_by: ["Zero-Trust-in-OT.md", "OT-Protocols.md", "Logging.md", "Monitoring.md", "Identity-Management.md", "PKI.md", "Certificates.md", "MFA.md", "PlantSCADA.md"]
+  - id: automation-studio
+    path: "08-Technologies/B&R/Automation-Studio/Automation-Studio.md"
+    status: Planned
+    summary: "B&R Automation Studio engineering-platform security and governance."
+    referenced_by: ["OT-Protocols.md"]
+  - id: detection-engineering
+    path: "09-Operations/Detection-Engineering.md"
+    status: Planned
+    summary: "Designing, testing and maintaining detection rules mapped to ATT&CK for ICS."
+    referenced_by: ["Logging.md"]
+  - id: fat
+    path: "09-Operations/FAT.md"
+    status: Planned
+    summary: "Factory Acceptance Test: security validation scope and procedures before shipment."
+    referenced_by: ["OT-Lifecycle.md"]
+  - id: risk-assessment
+    path: "09-Operations/Risk-Assessment.md"
+    status: Planned
+    summary: "Operational execution of risk assessment: running assessments, maintaining the risk register, periodic reassessment (IEC 62443-2-1 / 62443-3-2)."
+    referenced_by: ["OT-Security-Philosophy.md", "Risk-Management-Principles.md", "Risk-Based-Security.md", "Security-Decision-Framework.md"]
+  - id: sat
+    path: "09-Operations/SAT.md"
+    status: Planned
+    summary: "Site Acceptance Test: on-site functional and security validation before handover to operations."
+    referenced_by: ["OT-Lifecycle.md"]
+  - id: threat-hunting
+    path: "09-Operations/Threat-Hunting.md"
+    status: Planned
+    summary: "Proactive, behaviour-driven investigation in OT telemetry beyond automated detection."
+    referenced_by: ["Logging.md"]
+  - id: windows-hardening
+    path: "09-Operations/Windows-Hardening.md"
+    status: Planned
+    summary: "Hardening of Windows hosts in OT (SCADA servers, engineering workstations, historians); required context for OPC DA / DCOM environments."
+    referenced_by: ["OT-Protocols.md"]

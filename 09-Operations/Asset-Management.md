@@ -1,12 +1,20 @@
 ---
-title: Asset Management
+id: asset-management
+title: "Asset Management"
 category: Operations
-version: 1.0.0
+layer: "09-Operations"
+version: 1.0.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-07-01
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  The asset inventory as the foundation of the OT security programme: what to inventory,
+  passive-first OT-safe discovery, criticality classification tied to the BIA, and keeping the
+  inventory current through change and decommissioning.
+keywords: [asset management, správa aktiv, inventory, passive discovery, criticality, kritičnost, ghost assets]
 ---
 
 # Purpose
@@ -53,7 +61,7 @@ Classify assets (e.g. Critical / High / Medium / Low) using safety impact, produ
 
 # Asset Lifecycle
 
-Asset records span the full system lifecycle — procurement, commissioning, operation, modification, and decommissioning — mirroring [OT-Lifecycle.md](OT-Lifecycle.md). Decommissioning must update the inventory and remove credentials/certificates; stale "ghost" assets are a common security gap.
+Asset records span the full system lifecycle — procurement, commissioning, operation, modification, and decommissioning — mirroring [OT-Lifecycle.md](../00-Core/OT-Lifecycle.md). Decommissioning must update the inventory and remove credentials/certificates; stale "ghost" assets are a common security gap.
 
 ---
 
@@ -63,8 +71,8 @@ Asset records span the full system lifecycle — procurement, commissioning, ope
 * **[Business-Impact-Analysis.md](Business-Impact-Analysis.md)** — shares and refines asset criticality and dependencies.
 * **[Monitoring.md](Monitoring.md)** / **[SIEM.md](SIEM.md)** — asset context enriches detections; unknown assets are blind spots.
 * **[Configuration-Management.md](Configuration-Management.md)** — assets vs their configuration *state* are complementary records.
-* **[Risk-Based-Security.md](Risk-Based-Security.md)** — criticality and exposure feed risk-based control selection.
-* **[IEC62443.md](IEC62443.md)** — assets are grouped into zones and conduits.
+* **[Risk-Based-Security.md](../03-Architecture/Risk-Based-Security.md)** — criticality and exposure feed risk-based control selection.
+* **[IEC62443.md](../02-Standards/IEC62443.md)** — assets are grouped into zones and conduits.
 
 ---
 
@@ -117,11 +125,11 @@ Asset records span the full system lifecycle — procurement, commissioning, ope
 * [Configuration-Management.md](Configuration-Management.md)
 * [Monitoring.md](Monitoring.md)
 * [SIEM.md](SIEM.md)
-* [Risk-Based-Security.md](Risk-Based-Security.md)
-* [OT-Lifecycle.md](OT-Lifecycle.md)
-* [ISA95.md](ISA95.md)
-* [IEC62443.md](IEC62443.md)
-* [NIS2.md](NIS2.md)
+* [Risk-Based-Security.md](../03-Architecture/Risk-Based-Security.md)
+* [OT-Lifecycle.md](../00-Core/OT-Lifecycle.md)
+* [ISA95.md](../02-Standards/ISA95.md)
+* [IEC62443.md](../02-Standards/IEC62443.md)
+* [NIS2.md](../01-Legislation/NIS2.md)
 
 ---
 
@@ -130,3 +138,4 @@ Asset records span the full system lifecycle — procurement, commissioning, ope
 | Version | Date | Description |
 | ------- | ---- | ----------- |
 | 1.0.0 | 2026-07-01 | Initial release — new 09-Operations document resolving the pervasive dangling `Asset-Management.md` reference; defines what to inventory, passive-first OT-safe discovery, criticality classification and the asset lifecycle as the foundation for vulnerability/patch/monitoring/BIA/IR; grounded in IEC 62443-2-1, NIST SP 800-82 Rev. 3, CISA guidance and ISO 22301/NIST SP 800-34 |
+| 1.0.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |

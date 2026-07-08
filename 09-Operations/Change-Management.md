@@ -1,12 +1,20 @@
 ---
-title: Change Management
+id: change-management
+title: "Change Management"
 category: Operations
-version: 1.0.0
+layer: "09-Operations"
+version: 1.0.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-07-01
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  Governance wrapper for OT changes: change types (standard/normal/emergency), the change
+  lifecycle with backup-before-change and rollback, maintenance windows, vendor coordination and
+  the Management-of-Change intersection with process safety.
+keywords: [change management, řízení změn, rollback, maintenance window, Management of Change, MoC, CAB]
 ---
 
 # Purpose
@@ -88,8 +96,8 @@ In many industries, cybersecurity change intersects **Management of Change (MoC)
 * **[Patch-Management.md](Patch-Management.md)** — patches are a change; they flow through this process (test, backup, approve, validate).
 * **[Backup.md](Backup.md)** — backup-before-change and rollback depend on validated backups.
 * **[Disaster-Recovery.md](Disaster-Recovery.md)** / **[Disaster-Recovery-Plan.md](Disaster-Recovery-Plan.md)** — recovered systems become the new baseline only after validation and approval.
-* **[Risk-Based-Security.md](Risk-Based-Security.md)** — the impact assessment weighs total organisational risk.
-* **[OT-Lifecycle.md](OT-Lifecycle.md)** — change runs through the Operate/Maintain/Modernise phases.
+* **[Risk-Based-Security.md](../03-Architecture/Risk-Based-Security.md)** — the impact assessment weighs total organisational risk.
+* **[OT-Lifecycle.md](../00-Core/OT-Lifecycle.md)** — change runs through the Operate/Maintain/Modernise phases.
 
 ---
 
@@ -143,11 +151,11 @@ In many industries, cybersecurity change intersects **Management of Change (MoC)
 * [Disaster-Recovery.md](Disaster-Recovery.md)
 * [Disaster-Recovery-Plan.md](Disaster-Recovery-Plan.md)
 * [Recovery-Testing.md](Recovery-Testing.md)
-* [Risk-Based-Security.md](Risk-Based-Security.md)
+* [Risk-Based-Security.md](../03-Architecture/Risk-Based-Security.md)
 * [Asset-Management.md](Asset-Management.md)
-* [OT-Lifecycle.md](OT-Lifecycle.md)
-* [IEC62443.md](IEC62443.md)
-* [NIS2.md](NIS2.md)
+* [OT-Lifecycle.md](../00-Core/OT-Lifecycle.md)
+* [IEC62443.md](../02-Standards/IEC62443.md)
+* [NIS2.md](../01-Legislation/NIS2.md)
 
 ---
 
@@ -156,3 +164,4 @@ In many industries, cybersecurity change intersects **Management of Change (MoC)
 | Version | Date | Description |
 | ------- | ---- | ----------- |
 | 1.0.0 | 2026-07-01 | Initial release — new 09-Operations document resolving the pervasive dangling `Change-Management.md` reference; defines change types, the change lifecycle, OT-specific controls (maintenance windows, backup-before-change, rollback, vendor coordination) and the Management-of-Change intersection with process safety; grounded in IEC 62443-2-1, NIST SP 800-82 Rev. 3, ISO/IEC 27001/ITIL and IEC 61511 |
+| 1.0.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |

@@ -1,12 +1,22 @@
 ---
-title: Siemens TIA Portal — Security Architecture and Engineering Governance
-category: Engineering Platform
-version: 1.1.0
+id: tia-portal
+title: "Siemens TIA Portal — Security Architecture and Engineering Governance"
+category: Technologies
+layer: "08-Technologies/SIEMENS/TIA Portal"
+vendor: "Siemens"
+product: "TIA Portal"
+version: 1.1.2
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-06-29
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  Security architecture and engineering governance for Siemens TIA Portal: UMC/UMAC identity
+  architecture, MFA and PAM integration, controller access levels, secure PG/PC communication and
+  engineering-zone design.
+keywords: [TIA Portal, Siemens, UMC, UMAC, engineering governance, secure PG/PC, access levels]
 ---
 
 # Purpose
@@ -27,10 +37,10 @@ This document is intended for: OT Security Architects, Automation Engineers, Sys
 
 | Document | Relationship |
 |----------|-------------|
-| [IEC62443.md](#) | Engineering security framework — TIA Portal implementation satisfies IEC 62443 system and component requirements |
-| [NIS2.md](#) | EU governance framework — TIA Portal governance supports Article 21 risk management obligations |
-| [Czech-Cybersecurity-Act.md](#) | Czech national obligations — engineering platform security is within scope of Decree 409/410 |
-| [ISA95.md](#) | Functional reference model — TIA Portal operates at ISA-95 Level 2 (control) with interfaces to Level 1 (controllers) |
+| [IEC62443.md](../../../02-Standards/IEC62443.md) | Engineering security framework — TIA Portal implementation satisfies IEC 62443 system and component requirements |
+| [NIS2.md](../../../01-Legislation/NIS2.md) | EU governance framework — TIA Portal governance supports Article 21 risk management obligations |
+| [Czech-Cybersecurity-Act.md](../../../01-Legislation/Czech-Cybersecurity-Act.md) | Czech national obligations — engineering platform security is within scope of Decree 409/410 |
+| [ISA95.md](../../../02-Standards/ISA95.md) | Functional reference model — TIA Portal operates at ISA-95 Level 2 (control) with interfaces to Level 1 (controllers) |
 
 ---
 
@@ -180,7 +190,7 @@ In the ISA-95 functional hierarchy, TIA Portal and its workstation operate at:
 
 This dual-level footprint makes TIA Portal a particularly sensitive asset: it spans the boundary between supervisory control and field control, with write access to Level 1 devices. In IEC 62443 terms, the engineering workstation must be placed in a **dedicated Engineering Zone** with its own Security Level Target (typically SL 2), separate from both the Control Zone (SCADA) and the Field Zone (PLCs).
 
-See [ISA95.md](#) and [IEC62443.md](#) for context.
+See [ISA95.md](../../../02-Standards/ISA95.md) and [IEC62443.md](../../../02-Standards/IEC62443.md) for context.
 
 ---
 
@@ -1433,7 +1443,7 @@ The TIA Portal engineering environment directly corresponds to IEC 62443 require
 | FR 6 — Timely Response to Events (SR 6.1) | Centralized logging, SIEM integration, alerting |
 | FR 7 — Resource Availability (SR 7.3) | Backup strategy, recovery procedures, tested restoration |
 
-See [IEC62443.md](#) for full FR/SR context.
+See [IEC62443.md](../../../02-Standards/IEC62443.md) for full FR/SR context.
 
 ## 10.5 NIS2 and Czech Cybersecurity Act Alignment
 
@@ -1641,7 +1651,7 @@ When answering questions about Siemens TIA Portal security:
 * Recovery must restore the complete engineering environment (TIA Portal version, HSPs, libraries, certificates, documentation) — not just the project file.
 * Align recommendations to IEC 62443 (Foundational Requirements, Security Levels, Engineering Zone design), NIS2 Article 21, and Czech Cybersecurity Act Decree 409/410.
 * When discussing patch management, always note that TIA Portal version upgrades require project compatibility assessment and Change Management — not routine automatic updates.
-* Reference [IEC62443.md](#), [NIS2.md](#), [Czech-Cybersecurity-Act.md](#), and [ISA95.md](#) for broader regulatory and architectural context.
+* Reference [IEC62443.md](../../../02-Standards/IEC62443.md), [NIS2.md](../../../01-Legislation/NIS2.md), [Czech-Cybersecurity-Act.md](../../../01-Legislation/Czech-Cybersecurity-Act.md), and [ISA95.md](../../../02-Standards/ISA95.md) for broader regulatory and architectural context.
 
 ---
 
@@ -1651,3 +1661,5 @@ When answering questions about Siemens TIA Portal security:
 |---------|------|-------------|
 | 1.0.0 | 2026-06 | Initial release (8 separate documents) |
 | 1.1.0 | 2026-06-29 | Consolidated into single document; major expansion: full threat model with attack consequence analysis; 9-layer defense-in-depth model; Engineering Zone architecture with conduit allowlist table; Secure PG/PC Communication deep-dive; UMAC role table with descriptions; UMC architecture diagram; S7-1500 access level table; PAM capability table; vendor access control requirements table; OS hardening baseline table; application allowlisting guidance for TIA Portal; removable media control hierarchy; certificate type lifecycle table; PKI requirements; certificate monitoring alert thresholds; private key protection table; complete backup scope table with frequency and storage; 4 recovery scenarios with detailed procedures; RTO/RPO guidance; patch management process flow; TIA Portal version compatibility management; firmware update process; vulnerability intelligence sources; IEC 62443 FR alignment table; NIS2/Decree 409 alignment table; 4× checklist in Czech language |
+| 1.1.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |
+| 1.1.2 | 2026-07-07 | Fixed dangling placeholder anchors ([Document.md](#)) to real relative paths in Related Documents / inline references (11 links) |

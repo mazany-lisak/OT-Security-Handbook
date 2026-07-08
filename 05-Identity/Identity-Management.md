@@ -1,9 +1,20 @@
-# Identity Management
-
-Version: 1.0
-Status: Production Draft
-Audience: OT Security Architects, Identity Architects, Security Engineers, Automation Engineers, AI Knowledge Base
-
+---
+id: identity-management
+title: "Identity Management"
+category: Identity
+layer: "05-Identity"
+version: 1.1.0
+status: Stable
+author: OT Security Handbook Project
+classification: Public
+language: en
+last_reviewed: 2026-07-07
+review_cycle: Annual
+summary: >-
+  Identity as the primary OT trust boundary: identity categories (human, device, application,
+  service), lifecycle, authentication and authorization, governance, privileged identities and the
+  relationship to Zero Trust and IEC 62443.
+keywords: [identity management, správa identit, identity lifecycle, RBAC, authentication, authorization, governance, device identity]
 ---
 
 # Purpose
@@ -501,20 +512,18 @@ When discussing Identity Management:
 
 # Related Documents
 
-* OT-Security-Philosophy.md
-* Risk-Based-Security.md
-* Defense-in-Depth.md
-* Zero-Trust-in-OT.md
-* PKI.md
-* Certificates.md
-* Secure-Remote-Access.md
-* OPC-UA.md
-* Network-Segmentation.md
-* Zones-and-Conduits.md
-* Firewall-Design.md
-* IEC62443-Overview.md
-* NIS2.md
-
+* [OT-Security-Philosophy.md](../00-Core/OT-Security-Philosophy.md)
+* [Risk-Based-Security.md](../03-Architecture/Risk-Based-Security.md)
+* [Defense-in-Depth.md](../03-Architecture/Defense-in-Depth.md)
+* [Zero-Trust-in-OT.md](../03-Architecture/Zero-Trust-in-OT.md)
+* [PKI.md](PKI.md)
+* [Certificates.md](Certificates.md)
+* [Secure-Remote-Access.md](../04-Network/Secure-Remote-Access.md)
+* [OPC-UA.md](../04-Network/OPC-UA.md)
+* [Network-Segmentation.md](../04-Network/Network-Segmentation.md)
+* [IEC62443.md](../02-Standards/IEC62443.md)
+* [Firewall-Design.md](../04-Network/Firewall-Design.md)
+* [NIS2.md](../01-Legislation/NIS2.md)
 ---
 
 # Revision History
@@ -522,3 +531,4 @@ When discussing Identity Management:
 | Version | Date    | Description                |
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
+| 1.1.0 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings; migrated from draft header (no front matter) to canonical schema |

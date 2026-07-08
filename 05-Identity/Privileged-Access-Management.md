@@ -1,9 +1,20 @@
-# Privileged Access Management (PAM)
-
-Version: 1.0
-Status: Production Draft
-Audience: OT Security Architects, Identity Architects, Security Engineers, Automation Engineers, AI Knowledge Base
-
+---
+id: privileged-access-management
+title: "Privileged Access Management (PAM)"
+category: Identity
+layer: "05-Identity"
+version: 1.1.0
+status: Stable
+author: OT Security Handbook Project
+classification: Public
+language: en
+last_reviewed: 2026-07-07
+review_cycle: Annual
+summary: >-
+  PAM as a governance discipline: privileged identity lifecycle, credential vaulting and rotation,
+  Just-In-Time access and JEA, session recording, engineering and vendor privileged access, and
+  emergency-access handling.
+keywords: [PAM, privileged access, privilegovaný přístup, JIT, JEA, session recording, credential rotation, separation of duties]
 ---
 
 # Purpose
@@ -464,18 +475,17 @@ When discussing Privileged Access Management:
 
 # Related Documents
 
-* Identity-Management.md
-* MFA.md
-* PKI.md
-* Certificates.md
-* Zero-Trust-in-OT.md
-* Defense-in-Depth.md
-* Risk-Based-Security.md
-* Secure-Remote-Access.md
-* Network-Segmentation.md
-* IEC62443-Overview.md
-* NIS2.md
-
+* [Identity-Management.md](Identity-Management.md)
+* [MFA.md](MFA.md)
+* [PKI.md](PKI.md)
+* [Certificates.md](Certificates.md)
+* [Zero-Trust-in-OT.md](../03-Architecture/Zero-Trust-in-OT.md)
+* [Defense-in-Depth.md](../03-Architecture/Defense-in-Depth.md)
+* [Risk-Based-Security.md](../03-Architecture/Risk-Based-Security.md)
+* [Secure-Remote-Access.md](../04-Network/Secure-Remote-Access.md)
+* [Network-Segmentation.md](../04-Network/Network-Segmentation.md)
+* [IEC62443.md](../02-Standards/IEC62443.md)
+* [NIS2.md](../01-Legislation/NIS2.md)
 ---
 
 # Revision History
@@ -483,3 +493,4 @@ When discussing Privileged Access Management:
 | Version | Date    | Description                |
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
+| 1.1.0 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings; migrated from draft header (no front matter) to canonical schema |

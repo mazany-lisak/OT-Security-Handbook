@@ -1,12 +1,20 @@
 ---
-title: Defense in Depth
+id: defense-in-depth
+title: "Defense in Depth"
 category: Architecture
-version: 1.1.0
+layer: "03-Architecture"
+version: 1.1.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-07-01
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  Authoritative deep-dive on layered security in OT: independent control layers from physical
+  security to backup and recovery, design criteria for independence, and illustrative mapping to
+  ATT&CK for ICS.
+keywords: [defense in depth, vrstvená obrana, layered security, independent controls, security layers]
 ---
 
 # Purpose
@@ -24,7 +32,7 @@ Within Operational Technology (OT), Defense in Depth must always support:
 * Operational continuity
 * Cyber resilience
 
-> **Principle vs. deep-dive.** Defense in Depth is stated as an architectural *principle* in [OT-Architecture-Principles.md](OT-Architecture-Principles.md) (Principle 5) and [OT-Security-Philosophy.md](OT-Security-Philosophy.md). **This document is the authoritative deep-dive**: the layered model and the mapping of layers to attacker techniques. It is one of three complementary strategies alongside [Zero-Trust-in-OT.md](Zero-Trust-in-OT.md) and [Risk-Based-Security.md](Risk-Based-Security.md).
+> **Principle vs. deep-dive.** Defense in Depth is stated as an architectural *principle* in [OT-Architecture-Principles.md](../00-Core/OT-Architecture-Principles.md) (Principle 5) and [OT-Security-Philosophy.md](../00-Core/OT-Security-Philosophy.md). **This document is the authoritative deep-dive**: the layered model and the mapping of layers to attacker techniques. It is one of three complementary strategies alongside [Zero-Trust-in-OT.md](Zero-Trust-in-OT.md) and [Risk-Based-Security.md](Risk-Based-Security.md).
 
 ---
 
@@ -175,7 +183,7 @@ Recommended controls include:
 * Privileged Access Management (PAM)
 * Certificate-based authentication where appropriate
 
-Shared administrative accounts should be avoided. See [Identity-Management.md](Identity-Management.md) and [Zero-Trust-in-OT.md](Zero-Trust-in-OT.md).
+Shared administrative accounts should be avoided. See [Identity-Management.md](../05-Identity/Identity-Management.md) and [Zero-Trust-in-OT.md](Zero-Trust-in-OT.md).
 
 ---
 
@@ -189,7 +197,7 @@ Network architecture should support:
 * Segmentation
 * Trust boundaries
 
-Flat industrial networks significantly reduce the effectiveness of Defense in Depth. See [Network-Segmentation.md](Network-Segmentation.md), [Firewall-Design.md](Firewall-Design.md) and the zone/conduit model in [IEC62443.md](IEC62443.md).
+Flat industrial networks significantly reduce the effectiveness of Defense in Depth. See [Network-Segmentation.md](../04-Network/Network-Segmentation.md), [Firewall-Design.md](../04-Network/Firewall-Design.md) and the zone/conduit model in [IEC62443.md](../02-Standards/IEC62443.md).
 
 ---
 
@@ -289,7 +297,7 @@ It supports:
 * System Integrity (FR3)
 * Secure Communications (FR4)
 
-IEC 62443 emphasizes that no single security control should be solely relied upon. See [IEC62443.md](IEC62443.md).
+IEC 62443 emphasizes that no single security control should be solely relied upon. See [IEC62443.md](../02-Standards/IEC62443.md).
 
 ---
 
@@ -307,7 +315,7 @@ Organizations implementing Defense in Depth generally satisfy multiple NIS2 expe
 * Supply chain security
 * Monitoring
 
-See [NIS2.md](NIS2.md).
+See [NIS2.md](../01-Legislation/NIS2.md).
 
 ---
 
@@ -315,7 +323,7 @@ See [NIS2.md](NIS2.md).
 
 Every layer interrupts different attacker techniques.
 
-The following mapping is **illustrative**, not a formal control-to-technique matrix. MITRE ATT&CK for ICS defines its own tactics (e.g. *Initial Access*, *Lateral Movement*, *Privilege Escalation*, *Discovery*, *Inhibit Response Function*, *Impair Process Control*, *Impact*); consult the ATT&CK for ICS matrix and [MITRE-ATTACK-ICS.md](MITRE-ATTACK-ICS.md) for authoritative mappings.
+The following mapping is **illustrative**, not a formal control-to-technique matrix. MITRE ATT&CK for ICS defines its own tactics (e.g. *Initial Access*, *Lateral Movement*, *Privilege Escalation*, *Discovery*, *Inhibit Response Function*, *Impair Process Control*, *Impact*); consult the ATT&CK for ICS matrix and [MITRE-ATTACK-ICS.md](../07-Threat-Intelligence/MITRE-ATTACK-ICS.md) for authoritative mappings.
 
 | Security Layer       | Illustrative ATT&CK for ICS relevance |
 | -------------------- | ------------------------------------- |
@@ -395,7 +403,7 @@ When discussing Defense in Depth:
 # Sources / Grounding
 
 * **NIST SP 800-82 Rev. 3** — *Guide to OT Security* (2023): explicitly advocates a defense-in-depth strategy for OT (policies, architecture, layered technical and procedural controls).
-* **ISA/IEC 62443** — defense in depth as a foundational principle; zones and conduits, foundational requirements. See [IEC62443.md](IEC62443.md).
+* **ISA/IEC 62443** — defense in depth as a foundational principle; zones and conduits, foundational requirements. See [IEC62443.md](../02-Standards/IEC62443.md).
 * **CISA** — layered-defense / defense-in-depth guidance for industrial control systems; MITRE **ATT&CK for ICS** for attacker-technique context.
 
 > Defense in Depth is an architectural strategy; normative requirements live in the standards documents.
@@ -404,20 +412,20 @@ When discussing Defense in Depth:
 
 # Related Documents
 
-* [OT-Security-Philosophy.md](OT-Security-Philosophy.md)
-* [OT-Architecture-Principles.md](OT-Architecture-Principles.md)
+* [OT-Security-Philosophy.md](../00-Core/OT-Security-Philosophy.md)
+* [OT-Architecture-Principles.md](../00-Core/OT-Architecture-Principles.md)
 * [Zero-Trust-in-OT.md](Zero-Trust-in-OT.md)
 * [Risk-Based-Security.md](Risk-Based-Security.md)
-* [Identity-Management.md](Identity-Management.md)
-* [Network-Segmentation.md](Network-Segmentation.md)
-* [Firewall-Design.md](Firewall-Design.md)
-* [MITRE-ATTACK-ICS.md](MITRE-ATTACK-ICS.md)
-* [ICS-Kill-Chain.md](ICS-Kill-Chain.md)
-* [Incident-Response.md](Incident-Response.md)
-* [Monitoring.md](Monitoring.md)
-* [Backup-and-Recovery.md](Backup-and-Recovery.md)
-* [IEC62443.md](IEC62443.md)
-* [NIS2.md](NIS2.md)
+* [Identity-Management.md](../05-Identity/Identity-Management.md)
+* [Network-Segmentation.md](../04-Network/Network-Segmentation.md)
+* [Firewall-Design.md](../04-Network/Firewall-Design.md)
+* [MITRE-ATTACK-ICS.md](../07-Threat-Intelligence/MITRE-ATTACK-ICS.md)
+* [ICS-Kill-Chain.md](../07-Threat-Intelligence/ICS-Kill-Chain.md)
+* [Incident-Response.md](../09-Operations/Incident-Response.md)
+* [Monitoring.md](../09-Operations/Monitoring.md)
+* [Backup.md](../09-Operations/Backup.md)
+* [IEC62443.md](../02-Standards/IEC62443.md)
+* [NIS2.md](../01-Legislation/NIS2.md)
 
 ---
 
@@ -427,3 +435,4 @@ When discussing Defense in Depth:
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
 | 1.1.0   | 2026-07-01 | Converted to YAML front matter (category: Architecture) and semver; corrected links (`IEC62443-Overview.md` → `IEC62443.md`) and removed the retired `Zones-and-Conduits.md` reference; added principle-vs-deep-dive scope note delegating the DiD principle to OT-Architecture-Principles.md; labelled the MITRE ATT&CK for ICS table as illustrative and noted the real ATT&CK for ICS tactics; added Sources/Grounding (NIST SP 800-82 Rev. 3, IEC 62443, CISA); added strategy-trio and Core cross-links; converted Related Documents to markdown links |
+| 1.1.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |

@@ -1,12 +1,20 @@
 ---
-title: Recovery Testing
+id: recovery-testing
+title: "Recovery Testing"
 category: Operations
-version: 1.1.0
+layer: "09-Operations"
+version: 1.1.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-07-01
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  Validating recovery capability: exercise types from documentation review and tabletop to full DR
+  exercises, success criteria and metrics (RTO/RPO achievement), Trusted-Operational-State
+  verification and lessons learned.
+keywords: [recovery testing, testování obnovy, tabletop exercise, DR exercise, RTO, RPO, success criteria]
 ---
 
 # Purpose
@@ -498,9 +506,9 @@ When discussing Recovery Testing:
 * [Incident-Response.md](Incident-Response.md)
 * [Change-Management.md](Change-Management.md)
 * [Configuration-Management.md](Configuration-Management.md)
-* [Risk-Based-Security.md](Risk-Based-Security.md)
-* [IEC62443.md](IEC62443.md)
-* [NIS2.md](NIS2.md)
+* [Risk-Based-Security.md](../03-Architecture/Risk-Based-Security.md)
+* [IEC62443.md](../02-Standards/IEC62443.md)
+* [NIS2.md](../01-Legislation/NIS2.md)
 
 ---
 
@@ -510,3 +518,4 @@ When discussing Recovery Testing:
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
 | 1.1.0   | 2026-07-01 | Converted to YAML front matter (category: Operations) and semver; fixed links (IEC62443-Overview.md → IEC62443.md); added Sources/Grounding; markdown Related Documents |
+| 1.1.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |

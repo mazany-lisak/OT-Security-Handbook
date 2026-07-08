@@ -1,12 +1,20 @@
 ---
-title: Zero Trust in OT
+id: zero-trust-in-ot
+title: "Zero Trust in OT"
 category: Architecture
-version: 1.1.0
+layer: "03-Architecture"
+version: 1.1.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-07-01
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  Zero Trust adapted to industrial environments: identity as the primary trust boundary,
+  continuous verification, device and application trust, and preserving safety, availability and
+  emergency operations.
+keywords: [zero trust, nulová důvěra, identity first, continuous verification, NIST 800-207, OT adaptation]
 ---
 
 # Purpose
@@ -19,7 +27,7 @@ Instead, Zero Trust must be adapted to industrial environments where safety, ava
 
 The purpose of this document is to explain how Zero Trust principles can be realistically and safely applied within Industrial Automation and Control Systems (IACS).
 
-> **Single source of truth.** This document is authoritative for Zero Trust in OT across the handbook. Other documents (e.g. [Network-Segmentation.md](Network-Segmentation.md)) reference Zero Trust briefly and delegate the detail here. Zero Trust is one of the three complementary architectural strategies alongside [Defense-in-Depth.md](Defense-in-Depth.md) and [Risk-Based-Security.md](Risk-Based-Security.md), and it realises several principles in [OT-Architecture-Principles.md](OT-Architecture-Principles.md) (notably *Least Privilege* and *Identity Before Connectivity*).
+> **Single source of truth.** This document is authoritative for Zero Trust in OT across the handbook. Other documents (e.g. [Network-Segmentation.md](../04-Network/Network-Segmentation.md)) reference Zero Trust briefly and delegate the detail here. Zero Trust is one of the three complementary architectural strategies alongside [Defense-in-Depth.md](Defense-in-Depth.md) and [Risk-Based-Security.md](Risk-Based-Security.md), and it realises several principles in [OT-Architecture-Principles.md](../00-Core/OT-Architecture-Principles.md) (notably *Least Privilege* and *Identity Before Connectivity*).
 
 ---
 
@@ -213,7 +221,7 @@ Control Zone
 Field Devices
 ```
 
-Identity controls should exist at every trust boundary. Segmentation implementation is covered in [Network-Segmentation.md](Network-Segmentation.md); the zone/conduit model is in [IEC62443.md](IEC62443.md).
+Identity controls should exist at every trust boundary. Segmentation implementation is covered in [Network-Segmentation.md](../04-Network/Network-Segmentation.md); the zone/conduit model is in [IEC62443.md](../02-Standards/IEC62443.md).
 
 ---
 
@@ -259,7 +267,7 @@ Zero Trust principles strongly support:
 * Session recording
 * Continuous monitoring
 
-Permanent VPN accounts should be avoided whenever practical. See [Secure-Remote-Access.md](Secure-Remote-Access.md) for the remote-access architecture pattern.
+Permanent VPN accounts should be avoided whenever practical. See [Secure-Remote-Access.md](../04-Network/Secure-Remote-Access.md) for the remote-access architecture pattern.
 
 ---
 
@@ -293,7 +301,7 @@ Zero Trust complements several IEC 62443 concepts:
 * Defense in Depth
 * Monitoring (FR6)
 
-Zero Trust provides an architectural philosophy rather than additional compliance requirements. See [IEC62443.md](IEC62443.md).
+Zero Trust provides an architectural philosophy rather than additional compliance requirements. See [IEC62443.md](../02-Standards/IEC62443.md).
 
 ---
 
@@ -326,7 +334,7 @@ Zero Trust determines:
 * how trust is validated,
 * how access decisions are made.
 
-Identity Management is therefore a prerequisite for mature Zero Trust architectures. See [Identity-Management.md](Identity-Management.md).
+Identity Management is therefore a prerequisite for mature Zero Trust architectures. See [Identity-Management.md](../05-Identity/Identity-Management.md).
 
 ---
 
@@ -440,7 +448,7 @@ Zero Trust approach:
 * Certificate lifecycle management
 * Continuous monitoring of trust relationships
 
-See [OPC-UA.md](OPC-UA.md).
+See [OPC-UA.md](../04-Network/OPC-UA.md).
 
 ---
 
@@ -464,25 +472,25 @@ When discussing Zero Trust in OT:
 * **NIST SP 800-82 Rev. 3** — *Guide to OT Security* (2023): explicitly discusses applying Zero Trust design and tools (per SP 800-207) to OT architectures, alongside defense in depth.
 * **CISA Zero Trust Maturity Model v2.0** (2023) — maturity pillars (identity, devices, networks, applications, data) and the point that Zero Trust augments defense in depth.
 
-> Zero Trust is an architectural strategy; normative requirements live in IEC 62443 (see [IEC62443.md](IEC62443.md)). These frameworks are enterprise-origin and must be adapted to OT safety/availability/determinism constraints.
+> Zero Trust is an architectural strategy; normative requirements live in IEC 62443 (see [IEC62443.md](../02-Standards/IEC62443.md)). These frameworks are enterprise-origin and must be adapted to OT safety/availability/determinism constraints.
 
 ---
 
 # Related Documents
 
-* [OT-Security-Philosophy.md](OT-Security-Philosophy.md)
-* [OT-Architecture-Principles.md](OT-Architecture-Principles.md)
+* [OT-Security-Philosophy.md](../00-Core/OT-Security-Philosophy.md)
+* [OT-Architecture-Principles.md](../00-Core/OT-Architecture-Principles.md)
 * [Defense-in-Depth.md](Defense-in-Depth.md)
 * [Risk-Based-Security.md](Risk-Based-Security.md)
-* [Identity-Management.md](Identity-Management.md)
-* [PKI.md](PKI.md)
-* [Certificates.md](Certificates.md)
-* [IEC62443.md](IEC62443.md)
-* [Network-Segmentation.md](Network-Segmentation.md)
-* [Firewall-Design.md](Firewall-Design.md)
-* [Secure-Remote-Access.md](Secure-Remote-Access.md)
-* [OPC-UA.md](OPC-UA.md)
-* [NIS2.md](NIS2.md)
+* [Identity-Management.md](../05-Identity/Identity-Management.md)
+* [PKI.md](../05-Identity/PKI.md)
+* [Certificates.md](../05-Identity/Certificates.md)
+* [IEC62443.md](../02-Standards/IEC62443.md)
+* [Network-Segmentation.md](../04-Network/Network-Segmentation.md)
+* [Firewall-Design.md](../04-Network/Firewall-Design.md)
+* [Secure-Remote-Access.md](../04-Network/Secure-Remote-Access.md)
+* [OPC-UA.md](../04-Network/OPC-UA.md)
+* [NIS2.md](../01-Legislation/NIS2.md)
 
 ---
 
@@ -492,3 +500,4 @@ When discussing Zero Trust in OT:
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
 | 1.1.0   | 2026-07-01 | Converted to YAML front matter (category: Architecture) and semver; corrected links (`IEC62443-Overview.md` → `IEC62443.md`) and removed the retired `Zones-and-Conduits.md` reference (zones/conduits now via IEC62443.md); designated single source of truth for Zero Trust; added Sources/Grounding (NIST SP 800-207, NIST SP 800-82 Rev. 3, CISA ZTMM v2.0); added cross-links to OT-Architecture-Principles.md and the Defense-in-Depth / Risk-Based-Security strategy trio; converted Related Documents to markdown links |
+| 1.1.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |

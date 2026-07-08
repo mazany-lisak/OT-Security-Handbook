@@ -1,12 +1,22 @@
 ---
-title: Schneider Electric EcoStruxure™ Control Expert — Security Architecture and Engineering Governance
-category: Engineering Platform
-version: 1.1.0
+id: ecostruxure-control-expert
+title: "Schneider Electric EcoStruxure™ Control Expert — Security Architecture and Engineering Governance"
+category: Technologies
+layer: "08-Technologies/Schneider Electric/Control Expert"
+vendor: "Schneider Electric"
+product: "EcoStruxure Control Expert"
+version: 1.1.2
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-06-29
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  Security architecture and engineering governance for Schneider Electric EcoStruxure Control
+  Expert: identity and access (users, MFA, PAM), threat model, engineering-zone architecture,
+  hardening and project protection.
+keywords: [EcoStruxure Control Expert, Unity Pro, Schneider Electric, engineering platform, hardening, project protection, M580 engineering]
 ---
 
 # Purpose
@@ -29,11 +39,11 @@ EcoStruxure Control Expert (formerly Unity Pro) is the authoritative engineering
 
 | Document | Relationship |
 |----------|-------------|
-| [Modicon-M580.md](#) | Primary controller platform — the target of Control Expert engineering |
-| [IEC62443.md](#) | Engineering security framework |
-| [NIS2.md](#) | EU governance framework |
-| [Czech-Cybersecurity-Act.md](#) | Czech national obligations |
-| [ISA95.md](#) | Functional reference model — Control Expert operates at ISA-95 Level 2 |
+| [Modicon-M580.md](../Modicon%20M580/Modicon-M580.md) | Primary controller platform — the target of Control Expert engineering |
+| [IEC62443.md](../../../02-Standards/IEC62443.md) | Engineering security framework |
+| [NIS2.md](../../../01-Legislation/NIS2.md) | EU governance framework |
+| [Czech-Cybersecurity-Act.md](../../../01-Legislation/Czech-Cybersecurity-Act.md) | Czech national obligations |
+| [ISA95.md](../../../02-Standards/ISA95.md) | Functional reference model — Control Expert operates at ISA-95 Level 2 |
 
 ---
 
@@ -247,7 +257,7 @@ The Control Expert engineering role — particularly project download to product
 
 ## 2.6 Vendor and Contractor Access
 
-Remote vendor access to Control Expert / M580 is a significant attack vector — see also [Modicon-M580.md](#).
+Remote vendor access to Control Expert / M580 is a significant attack vector — see also [Modicon-M580.md](../Modicon%20M580/Modicon-M580.md).
 
 **Required controls for vendor remote access to engineering environment:**
 
@@ -1400,9 +1410,9 @@ When answering questions about Schneider Electric EcoStruxure Control Expert:
 * **Version control is mandatory** — not optional. Production M580 controllers must always correspond to an approved, tagged baseline in version control.
 * **Offline/online compare before every production download** is mandatory — unexpected differences are a potential security incident.
 * Recommend PAM for all production download sessions — application passwords from PAM vault; session recording active.
-* Reference [Modicon-M580.md](#) for M580 controller-specific security configuration (ACL, HTTPS, Syslog, firmware).
-* Reference [IEC62443.md](#) for zone/conduit architecture context.
-* Reference [Czech-Cybersecurity-Act.md](#) for regulatory compliance context.
+* Reference [Modicon-M580.md](../Modicon%20M580/Modicon-M580.md) for M580 controller-specific security configuration (ACL, HTTPS, Syslog, firmware).
+* Reference [IEC62443.md](../../../02-Standards/IEC62443.md) for zone/conduit architecture context.
+* Reference [Czech-Cybersecurity-Act.md](../../../01-Legislation/Czech-Cybersecurity-Act.md) for regulatory compliance context.
 * Schneider Electric PSIRT (not Siemens ProductCERT) is the vulnerability intelligence source for CE.
 
 ---
@@ -1413,3 +1423,5 @@ When answering questions about Schneider Electric EcoStruxure Control Expert:
 |---------|------|-------------|
 | 1.0.0 | 2026-06 | Initial release (7 separate documents) |
 | 1.1.0 | 2026-06-29 | Consolidated into single document; major expansion: CE supported controller matrix; security role of CE (what CE configures on M580); ISA-95 context; multi-layer authentication architecture (OS+CE+app password+PAM); CE user management rights table; PAM capabilities and application password vaulting; vendor access controls; identity lifecycle table; threat model with M580 ACL attack vector; 9-layer defense-in-depth model; Engineering Zone architecture diagram with firewall allowlist table; IEC 62443 FR mapping; hardening phases (dedicated WS, OS, allowlisting, CE application, removable media, network, endpoint protection); application write/read password governance; section-level password protection; project encryption; project governance change management flow; version control repository structure; CE binary file handling in Git; branching strategy diagram; offline/online comparison security incident procedure; release package structure; PKI requirements for M580 certificates; certificate deployment workflow; certificate version control; certificate expiry impact table; complete backup scope table; recovery scenarios (4 scenarios); RTO/RPO table; annual recovery test procedure; CE update process; CE/M580 compatibility considerations; compensating controls; NIS2/IEC 62443 compliance mapping table; common mistakes reference (18 items); reference architecture diagram; 3× checklist in Czech language |
+| 1.1.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |
+| 1.1.2 | 2026-07-07 | Fixed dangling placeholder anchors ([Document.md](#)) to real relative paths in Related Documents / inline references (9 links) |

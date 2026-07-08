@@ -1,9 +1,20 @@
-# Multi-Factor Authentication (MFA)
-
-Version: 1.0
-Status: Production Draft
-Audience: OT Security Architects, Identity Architects, Security Engineers, Automation Engineers, AI Knowledge Base
-
+---
+id: mfa
+title: "Multi-Factor Authentication (MFA)"
+category: Identity
+layer: "05-Identity"
+version: 1.1.0
+status: Stable
+author: OT Security Handbook Project
+classification: Public
+language: en
+last_reviewed: 2026-07-07
+review_cycle: Annual
+summary: >-
+  Risk-based MFA deployment in OT: factor categories and methods, phishing-resistant
+  authentication (FIDO2, certificates), emergency access, identity-infrastructure resilience and
+  operational constraints for control-room use.
+keywords: [MFA, vícefaktorová autentizace, FIDO2, smart card, phishing-resistant, emergency access, authentication factors]
 ---
 
 # Purpose
@@ -429,18 +440,17 @@ When discussing MFA:
 
 # Related Documents
 
-* Identity-Management.md
-* PKI.md
-* Certificates.md
-* Zero-Trust-in-OT.md
-* Defense-in-Depth.md
-* Risk-Based-Security.md
-* Secure-Remote-Access.md
-* Privileged-Access-Management.md
-* OPC-UA.md
-* IEC62443-Overview.md
-* NIS2.md
-
+* [Identity-Management.md](Identity-Management.md)
+* [PKI.md](PKI.md)
+* [Certificates.md](Certificates.md)
+* [Zero-Trust-in-OT.md](../03-Architecture/Zero-Trust-in-OT.md)
+* [Defense-in-Depth.md](../03-Architecture/Defense-in-Depth.md)
+* [Risk-Based-Security.md](../03-Architecture/Risk-Based-Security.md)
+* [Secure-Remote-Access.md](../04-Network/Secure-Remote-Access.md)
+* [Privileged-Access-Management.md](Privileged-Access-Management.md)
+* [OPC-UA.md](../04-Network/OPC-UA.md)
+* [IEC62443.md](../02-Standards/IEC62443.md)
+* [NIS2.md](../01-Legislation/NIS2.md)
 ---
 
 # Revision History
@@ -448,3 +458,4 @@ When discussing MFA:
 | Version | Date    | Description                |
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
+| 1.1.0 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings; migrated from draft header (no front matter) to canonical schema |

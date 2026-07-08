@@ -1,12 +1,20 @@
 ---
-title: Monitoring
+id: monitoring
+title: "Monitoring"
 category: Operations
-version: 1.1.0
+layer: "09-Operations"
+version: 1.1.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-07-01
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  Continuous validation of the trusted state: monitoring domains (security, network, system, OT
+  process), telemetry sources, detection strategy and priorities, threat hunting and the
+  relationships to ATT&CK, IR and Zero Trust.
+keywords: [monitoring, detekce, telemetry, detection priorities, threat hunting, anomaly detection, OT IDS]
 ---
 
 # Purpose
@@ -40,7 +48,7 @@ This document describes:
 * Governance
 * Continuous improvement
 
-Detailed log management is described separately in **Logging.md**.
+Detailed log management is described separately in **[Logging.md](Logging.md)**.
 
 ---
 
@@ -465,7 +473,7 @@ When discussing Monitoring:
 # Sources / Grounding
 
 * **NIST SP 800-82 Rev. 3** (OT security monitoring), **NIST SP 800-92** (log management), **IEC 62443** (security monitoring, accountability).
-* Analyses evidence from [Logging.md](Logging.md) and [SIEM.md](SIEM.md); detection maps to [MITRE-ATTACK-ICS.md](MITRE-ATTACK-ICS.md).
+* Analyses evidence from [Logging.md](Logging.md) and [SIEM.md](SIEM.md); detection maps to [MITRE-ATTACK-ICS.md](../07-Threat-Intelligence/MITRE-ATTACK-ICS.md).
 
 > These are foundational references; defer to the current standard/catalogue for authoritative, up-to-date detail.
 
@@ -476,17 +484,17 @@ When discussing Monitoring:
 * [Logging.md](Logging.md)
 * [Incident-Response.md](Incident-Response.md)
 * [Backup.md](Backup.md)
-* [Risk-Based-Security.md](Risk-Based-Security.md)
-* [Defense-in-Depth.md](Defense-in-Depth.md)
-* [Zero-Trust-in-OT.md](Zero-Trust-in-OT.md)
-* [Identity-Management.md](Identity-Management.md)
-* [Privileged-Access-Management.md](Privileged-Access-Management.md)
-* [MITRE-ATTACK-ICS.md](MITRE-ATTACK-ICS.md)
-* [ICS-Kill-Chain.md](ICS-Kill-Chain.md)
-* [OPC-UA.md](OPC-UA.md)
-* [Network-Segmentation.md](Network-Segmentation.md)
-* [IEC62443.md](IEC62443.md)
-* [NIS2.md](NIS2.md)
+* [Risk-Based-Security.md](../03-Architecture/Risk-Based-Security.md)
+* [Defense-in-Depth.md](../03-Architecture/Defense-in-Depth.md)
+* [Zero-Trust-in-OT.md](../03-Architecture/Zero-Trust-in-OT.md)
+* [Identity-Management.md](../05-Identity/Identity-Management.md)
+* [Privileged-Access-Management.md](../05-Identity/Privileged-Access-Management.md)
+* [MITRE-ATTACK-ICS.md](../07-Threat-Intelligence/MITRE-ATTACK-ICS.md)
+* [ICS-Kill-Chain.md](../07-Threat-Intelligence/ICS-Kill-Chain.md)
+* [OPC-UA.md](../04-Network/OPC-UA.md)
+* [Network-Segmentation.md](../04-Network/Network-Segmentation.md)
+* [IEC62443.md](../02-Standards/IEC62443.md)
+* [NIS2.md](../01-Legislation/NIS2.md)
 
 ---
 
@@ -496,3 +504,4 @@ When discussing Monitoring:
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
 | 1.1.0   | 2026-07-01 | Converted to YAML front matter (category: Operations) and semver; fixed links (IEC62443-Overview.md → IEC62443.md); added Sources/Grounding; cross-links to SIEM.md; markdown Related Documents |
+| 1.1.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |

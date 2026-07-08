@@ -1,12 +1,20 @@
 ---
-title: Business Impact Analysis (BIA)
+id: business-impact-analysis
+title: "Business Impact Analysis (BIA)"
 category: Operations
-version: 1.1.0
+layer: "09-Operations"
+version: 1.1.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-07-01
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  BIA for OT: identifying critical business processes and supporting assets, dependency analysis,
+  impact categories (safety, operational, financial, regulatory, environmental) and deriving
+  RTO/RPO/MTD and recovery priorities.
+keywords: [BIA, business impact analysis, analýza dopadů, RTO, RPO, MTD, dependencies, recovery priorities]
 ---
 
 # Purpose
@@ -34,7 +42,7 @@ This document describes:
 * Governance
 * Operational best practices
 
-Detailed risk assessment methodologies are described separately in **Risk-Based-Security.md**.
+Detailed risk assessment methodologies are described separately in **[Risk-Based-Security.md](../03-Architecture/Risk-Based-Security.md)**.
 
 ---
 
@@ -485,12 +493,12 @@ When discussing Business Impact Analysis:
 * [Disaster-Recovery-Plan.md](Disaster-Recovery-Plan.md)
 * [Backup.md](Backup.md)
 * [Incident-Response.md](Incident-Response.md)
-* [Risk-Based-Security.md](Risk-Based-Security.md)
+* [Risk-Based-Security.md](../03-Architecture/Risk-Based-Security.md)
 * [Asset-Management.md](Asset-Management.md)
 * [Change-Management.md](Change-Management.md)
 * [Recovery-Testing.md](Recovery-Testing.md)
-* [IEC62443.md](IEC62443.md)
-* [NIS2.md](NIS2.md)
+* [IEC62443.md](../02-Standards/IEC62443.md)
+* [NIS2.md](../01-Legislation/NIS2.md)
 
 ---
 
@@ -500,3 +508,4 @@ When discussing Business Impact Analysis:
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
 | 1.1.0   | 2026-07-01 | Converted to YAML front matter (category: Operations) and semver; fixed links (IEC62443-Overview.md → IEC62443.md); added Sources/Grounding; markdown Related Documents |
+| 1.1.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |

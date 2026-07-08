@@ -1,12 +1,20 @@
 ---
-title: Purdue Enterprise Reference Architecture (PERA) Model
+id: purdue-model
+title: "Purdue Enterprise Reference Architecture (PERA) Model"
 category: Standards
-version: 1.1.0
+layer: "02-Standards"
+version: 1.1.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-07-01
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  Purdue (PERA) as the network-trust reference model: trust roles of Levels 0–5 and the 3.5
+  Industrial DMZ termination zone, critical trust boundaries, and the modern IIoT/edge/cloud
+  reading via zones and conduits.
+keywords: [Purdue model, PERA, trust boundaries, Level 3.5, Industrial DMZ, IDMZ, reference architecture]
 ---
 
 # Purpose
@@ -34,7 +42,7 @@ To avoid duplication and drift, this document is deliberately narrow and delegat
 | **Network trust levels & boundaries (L0–L5 + L3.5)** | **This document (Purdue-Model.md)** |
 | Systems, functions, responsibilities and information flows at each level | [ISA95.md](ISA95.md) (functional hierarchy, Levels 0–4) |
 | Zones, conduits, Security Levels (SL), FR/SR, risk assessment (SLRA) | [IEC62443.md](IEC62443.md) |
-| Network segmentation implementation / firewall enforcement | [Network-Segmentation.md](Network-Segmentation.md), [Firewall-Design.md](Firewall-Design.md) |
+| Network segmentation implementation / firewall enforcement | [Network-Segmentation.md](../04-Network/Network-Segmentation.md), [Firewall-Design.md](../04-Network/Firewall-Design.md) |
 
 > This document does **not** re-enumerate the systems that live at each level — that is the functional view owned by ISA-95. It describes each level only as a **trust boundary**.
 
@@ -54,7 +62,7 @@ Today it is used to understand industrial architecture, **define trust boundarie
 
 The Purdue Model is **not** about VLANs, IP addressing or firewall placement.
 
-It is a model describing **which systems should communicate, why they communicate, and where trust boundaries should exist.** Architecture should follow operational and safety requirements rather than forcing systems into rigid layers. VLANs, routing and firewalls are *implementations* of the trust boundaries Purdue helps identify — see [Network-Segmentation.md](Network-Segmentation.md) and [Firewall-Design.md](Firewall-Design.md).
+It is a model describing **which systems should communicate, why they communicate, and where trust boundaries should exist.** Architecture should follow operational and safety requirements rather than forcing systems into rigid layers. VLANs, routing and firewalls are *implementations* of the trust boundaries Purdue helps identify — see [Network-Segmentation.md](../04-Network/Network-Segmentation.md) and [Firewall-Design.md](../04-Network/Firewall-Design.md).
 
 ---
 
@@ -93,7 +101,7 @@ Each level is described below by its **trust role only**. For the systems and fu
 Interpret the Purdue Model primarily as a set of trust boundaries where security controls must be strongest:
 
 * **Enterprise ↔ OT** — the single most critical boundary; every legitimate reason to connect (historian feeds, patching, remote access) is also an attack path. Broker through the Industrial DMZ.
-* **Vendor ↔ OT** — remote/maintenance access must terminate in the DMZ (jump server, MFA, session recording), never directly in the control network. See [Secure-Remote-Access.md](Secure-Remote-Access.md).
+* **Vendor ↔ OT** — remote/maintenance access must terminate in the DMZ (jump server, MFA, session recording), never directly in the control network. See [Secure-Remote-Access.md](../04-Network/Secure-Remote-Access.md).
 * **Safety ↔ Process Control** — the Safety Instrumented System (SIS) is a separate, most-restricted trust boundary; compromise removes the last line of physical protection.
 * **Engineering ↔ Operations** — engineering traffic is *administrative* traffic and needs stronger controls than operational traffic.
 
@@ -105,7 +113,7 @@ These boundaries become IEC 62443 **zones and conduits** during design — see [
 
 The Industrial DMZ (IDMZ) is the **only** controlled path between enterprise IT (L4/L5) and OT (L3 and below). It is a **termination zone, not a transit zone**: connections from IT terminate in the DMZ, connections from OT terminate in the DMZ, and **no connection passes through end-to-end**.
 
-For the detailed IDMZ system inventory (historian replica, jump/bastion host, patch staging, OPC UA proxy, log relay, dual firewalls) and its design rules, see [ISA95.md](ISA95.md) → *Level 3.5 — Industrial DMZ*, and the enforcement detail in [Network-Segmentation.md](Network-Segmentation.md) and [Firewall-Design.md](Firewall-Design.md).
+For the detailed IDMZ system inventory (historian replica, jump/bastion host, patch staging, OPC UA proxy, log relay, dual firewalls) and its design rules, see [ISA95.md](ISA95.md) → *Level 3.5 — Industrial DMZ*, and the enforcement detail in [Network-Segmentation.md](../04-Network/Network-Segmentation.md) and [Firewall-Design.md](../04-Network/Firewall-Design.md).
 
 ---
 
@@ -141,7 +149,7 @@ The Purdue Model and IEC 62443 complement one another. Purdue helps **identify c
 * Treating Purdue as a mandatory network *design* (it is a reference model, not a topology).
 * Connecting enterprise systems directly to L2/L1 (PLC) networks.
 * Omitting the Industrial DMZ for IT↔OT communication.
-* Assuming VLANs alone provide adequate segmentation (they do not — see [Network-Segmentation.md](Network-Segmentation.md)).
+* Assuming VLANs alone provide adequate segmentation (they do not — see [Network-Segmentation.md](../04-Network/Network-Segmentation.md)).
 * Mixing engineering workstations with office endpoints, or safety with basic control, without justification.
 * Bypassing trust boundaries "temporarily" for convenience and never closing the path.
 * Assuming modern (IIoT/cloud) connectivity is out of scope because "it doesn't fit a level."
@@ -161,7 +169,7 @@ When answering Purdue-related questions:
 * Explain that Purdue is a **network-trust reference architecture**, not a mandatory topology, and one of three complementary models (PERA / ISA-95 / IEC 62443).
 * Focus on **trust boundaries**, not network layers alone; treat Enterprise↔OT, Vendor↔OT, Safety↔Control and Engineering↔Operations as the critical boundaries.
 * Recommend an Industrial DMZ for all enterprise-to-OT communication, and controlled interfaces (via the IDMZ) for L5/cloud and IIoT.
-* Delegate: for **systems/functions per level** refer to [ISA95.md](ISA95.md); for **zones/conduits/SL** refer to [IEC62443.md](IEC62443.md); for **implementation** refer to [Network-Segmentation.md](Network-Segmentation.md) and [Firewall-Design.md](Firewall-Design.md).
+* Delegate: for **systems/functions per level** refer to [ISA95.md](ISA95.md); for **zones/conduits/SL** refer to [IEC62443.md](IEC62443.md); for **implementation** refer to [Network-Segmentation.md](../04-Network/Network-Segmentation.md) and [Firewall-Design.md](../04-Network/Firewall-Design.md).
 * Explain that zones and conduits — not Purdue levels — are the authoritative IEC 62443 construct, and that modern IIoT/edge/cloud architectures are handled by zone/conduit analysis when the level hierarchy no longer fits.
 * Avoid describing Purdue as the only valid OT architecture.
 
@@ -171,11 +179,11 @@ When answering Purdue-related questions:
 
 * [ISA95.md](ISA95.md) — functional hierarchy (systems, functions, information flows per level).
 * [IEC62443.md](IEC62443.md) — zones, conduits, Security Levels, risk assessment.
-* [Network-Segmentation.md](Network-Segmentation.md) — implementing trust boundaries.
-* [Firewall-Design.md](Firewall-Design.md) — enforcing conduits.
-* [Secure-Remote-Access.md](Secure-Remote-Access.md) — vendor/remote access across the Enterprise↔OT boundary.
-* [Identity-Management.md](Identity-Management.md) — identities crossing trust boundaries.
-* [NIS2.md](NIS2.md), [Czech-Cybersecurity-Act.md](Czech-Cybersecurity-Act.md) — regulatory drivers.
+* [Network-Segmentation.md](../04-Network/Network-Segmentation.md) — implementing trust boundaries.
+* [Firewall-Design.md](../04-Network/Firewall-Design.md) — enforcing conduits.
+* [Secure-Remote-Access.md](../04-Network/Secure-Remote-Access.md) — vendor/remote access across the Enterprise↔OT boundary.
+* [Identity-Management.md](../05-Identity/Identity-Management.md) — identities crossing trust boundaries.
+* [NIS2.md](../01-Legislation/NIS2.md), [Czech-Cybersecurity-Act.md](../01-Legislation/Czech-Cybersecurity-Act.md) — regulatory drivers.
 
 ---
 
@@ -185,3 +193,4 @@ When answering Purdue-related questions:
 | ------- | ---------- | --------------- |
 | 1.0.0   | 2026-06-28 | Initial release |
 | 1.1.0   | 2026-07-01 | Refactored to Variant A (network-trust reference model only): removed per-level functional/system enumerations that duplicated ISA95.md and replaced them with trust-role descriptions plus delegation; added explicit single-source-of-truth table; retained and sharpened the unique content (Level 5 enterprise/cloud, Modern Purdue / dissolving perimeter, network-trust framing); clarified that zones/conduits (not Purdue levels) are the authoritative IEC 62443 construct; fixed and normalized all cross-reference links (`IEC62443-Overview.md` → `IEC62443.md`, valid relative links); pruned Related Documents to existing corpus files |
+| 1.1.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |

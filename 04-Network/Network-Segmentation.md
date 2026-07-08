@@ -1,44 +1,25 @@
 ---
+id: network-segmentation
 title: "OT Network Segmentation — Architecture, Conduits and Trust Boundaries"
-document: "Network-Segmentation.md"
-version: "1.1.0"
-status: "Production"
-date: "2026-06"
-document_type: "LLM Skill / RAG Knowledge Base"
-audience:
-  - OT Security Architects
-  - OT / Network Architects
-  - Security Architects
-  - Automation & Control Engineers
-  - SOC Analysts / OT Detection Engineers
-  - AI Knowledge Base / RAG / LLM Skill
-frameworks:
-  - IEC 62443 (zones & conduits, FR5 Restricted Data Flow, SL-RA 3-2 — see IEC62443.md)
-  - ISA-95 / IEC 62264 functional hierarchy & Industrial DMZ (see ISA95.md)
-  - NIS2 Directive EU 2022/2555 (see NIS2.md)
-  - Czech Cybersecurity Act — Zákon č. 264/2025 Sb. + Vyhl. 408/409/410/2025 (see Czech-Cybersecurity-Act.md)
-  - NIST SP 800-82 Rev. 3 (Guide to OT Security, 2023)
-scope_notes:
-  - "Firewall rule design and policy enforcement are covered in Firewall-Design.md; this document defines WHERE boundaries go, the firewall enforces them."
-  - "Purdue/ISA-95 functional levels and the full zone/conduit theory (SL, FR/SR, SL-RA) are referenced; for detail see ISA95.md and IEC62443.md."
-  - "Protocol-level detail is in OT-Protocols.md."
-keywords:
-  - network segmentation
-  - zones and conduits
-  - Industrial DMZ
-  - Purdue model
-  - microsegmentation
-  - unidirectional gateway / data diode
-  - safety network
-  - Zero Trust OT
-  - trust boundary
+category: Network
+layer: "04-Network"
+version: 1.2.0
+status: Stable
+author: OT Security Handbook Project
+classification: Public
+language: en
+last_reviewed: 2026-07-07
+review_cycle: Annual
+summary: >-
+  Implementing zones, conduits and trust boundaries: segmentation vs isolation, the Industrial
+  DMZ, unidirectional gateways, specialized cases (SIS, engineering, vendor, wireless/IIoT) and
+  the segmentation lifecycle.
+keywords: [network segmentation, segmentace sítě, zones and conduits, IDMZ, VLAN, data diode, micro-segmentation, trust boundaries]
 ---
 
-# OT Network Segmentation — Architecture, Conduits and Trust Boundaries
-
-> **What this document is.** A source-verified knowledge base on **network segmentation for OT/ICS**, written as an **LLM skill / RAG** reference. Segmentation defines *where the trust boundaries are* and *what may cross them*; the firewall (see `Firewall-Design.md`) is only the **enforcement** of those decisions. This document is the companion to, and the design input for, `Firewall-Design.md`.
+> **What this document is.** A source-verified knowledge base on **network segmentation for OT/ICS**, written as an **LLM skill / RAG** reference. Segmentation defines *where the trust boundaries are* and *what may cross them*; the firewall (see [Firewall-Design.md](Firewall-Design.md)) is only the **enforcement** of those decisions. This document is the companion to, and the design input for, [Firewall-Design.md](Firewall-Design.md).
 >
-> **Deliberate scope limits.** The **Purdue/ISA-95 functional levels** are used here as working architecture but their full definition lives in `ISA95.md`. **Zones and Conduits, Security Levels (SL), Foundational/System Requirements (FR/SR)** and the **Security Level Risk Assessment (IEC 62443-3-2)** are referenced; for the authoritative treatment see `IEC62443.md`. Firewall rule mechanics are in `Firewall-Design.md`; protocol behaviour is in `OT-Protocols.md`.
+> **Deliberate scope limits.** The **Purdue/ISA-95 functional levels** are used here as working architecture but their full definition lives in [ISA95.md](../02-Standards/ISA95.md). **Zones and Conduits, Security Levels (SL), Foundational/System Requirements (FR/SR)** and the **Security Level Risk Assessment (IEC 62443-3-2)** are referenced; for the authoritative treatment see [IEC62443.md](../02-Standards/IEC62443.md). Firewall rule mechanics are in [Firewall-Design.md](Firewall-Design.md); protocol behaviour is in [OT-Protocols.md](OT-Protocols.md).
 >
 > **Core thesis.** Segmentation's objective is **not** to create VLANs. It is to **reduce the probability and impact of incidents by limiting trust relationships and controlling communication paths.** It assumes breach and limits attacker movement rather than assuming attacks can always be prevented. Per NIST SP 800-82 Rev. 3, segmentation is arguably the single most important control in an OT environment.
 >
@@ -55,7 +36,7 @@ When answering segmentation questions, the model should:
 3. **Reject "VLANs = security."** Logical separation without enforced routing, policy, authentication and monitoring is not a security control.
 4. **Treat segmentation as risk reduction, not a compliance checkbox** — though it also satisfies IEC 62443, NIS2 and the Czech Act (mapped in Chapter 12).
 5. **Respect OT constraints**: safety, availability, determinism and maintainability come before restrictive controls. Never propose a control that could break a deterministic control loop or a safety function.
-6. **Use IEC 62443 zones/conduits vocabulary**, and reference `ISA95.md`/`IEC62443.md` for the model rather than re-deriving it.
+6. **Use IEC 62443 zones/conduits vocabulary**, and reference [ISA95.md](../02-Standards/ISA95.md)/[IEC62443.md](../02-Standards/IEC62443.md) for the model rather than re-deriving it.
 7. **Recommend an Industrial DMZ** whenever sustained IT↔OT communication is required, and a **unidirectional gateway/data diode** where one-way assurance is justified.
 
 ---
@@ -66,7 +47,7 @@ Network segmentation is one of the most effective architectural controls for red
 
 # 2. Scope
 
-Applies to ICS, SCADA, DCS, PLC/RTU networks, industrial Ethernet, the Industrial DMZ, engineering workstations, historians, OPC UA servers, remote-access solutions, OT virtualization/SDN platforms, and OT-adjacent wireless and IIoT/cloud connectivity. **Out of scope (referenced):** firewall rule design (`Firewall-Design.md`), full Purdue/ISA-95 model (`ISA95.md`), zone/conduit and SL theory (`IEC62443.md`), protocols (`OT-Protocols.md`).
+Applies to ICS, SCADA, DCS, PLC/RTU networks, industrial Ethernet, the Industrial DMZ, engineering workstations, historians, OPC UA servers, remote-access solutions, OT virtualization/SDN platforms, and OT-adjacent wireless and IIoT/cloud connectivity. **Out of scope (referenced):** firewall rule design ([Firewall-Design.md](Firewall-Design.md)), full Purdue/ISA-95 model ([ISA95.md](../02-Standards/ISA95.md)), zone/conduit and SL theory ([IEC62443.md](../02-Standards/IEC62443.md)), protocols ([OT-Protocols.md](OT-Protocols.md)).
 
 # 3. Why Segmentation Matters (the flat-network problem)
 
@@ -95,7 +76,7 @@ Reduce attack surface; minimize trust relationships; isolate critical and safety
 
 # 6. Purdue / ISA-95 Levels — Applied to Segmentation
 
-The Purdue/ISA-95 functional hierarchy is the conceptual map for analysing communication flows; it should **guide analysis, not dictate physical wiring**. For the authoritative level-by-level definitions, systems, responsibilities, information flows and integration patterns, see **`ISA95.md`** (*Functional Levels*, *Level 3.5 — Industrial DMZ*, *Information Flows*, *Integration Architecture Patterns*) and **`IEC62443.md`** (*Relationship with the Purdue/ISA-95 Reference Models*).
+The Purdue/ISA-95 functional hierarchy is the conceptual map for analysing communication flows; it should **guide analysis, not dictate physical wiring**. For the authoritative level-by-level definitions, systems, responsibilities, information flows and integration patterns, see **[ISA95.md](../02-Standards/ISA95.md)** (*Functional Levels*, *Level 3.5 — Industrial DMZ*, *Information Flows*, *Integration Architecture Patterns*) and **[IEC62443.md](../02-Standards/IEC62443.md)** (*Relationship with the Purdue/ISA-95 Reference Models*).
 
 Applied summary (for segmentation decisions):
 
@@ -113,28 +94,28 @@ Applied summary (for segmentation decisions):
 
 # 7. Zones and Conduits — Applied (detail in IEC62443.md)
 
-**Zones** group assets with similar security requirements (e.g. PLC zone, Safety/SIS zone, SCADA zone, Historian zone, Engineering zone). **Conduits** are the controlled communication paths between zones. This document uses these concepts to lay out boundaries; for *Zone Definition*, *Conduit Definition*, *Conduit Implementation Options*, **Security Levels (SL)** and the **FR/SR** catalogue, see **`IEC62443.md`**.
+**Zones** group assets with similar security requirements (e.g. PLC zone, Safety/SIS zone, SCADA zone, Historian zone, Engineering zone). **Conduits** are the controlled communication paths between zones. This document uses these concepts to lay out boundaries; for *Zone Definition*, *Conduit Definition*, *Conduit Implementation Options*, **Security Levels (SL)** and the **FR/SR** catalogue, see **[IEC62443.md](../02-Standards/IEC62443.md)**.
 
-The Foundational Requirement most directly realized by segmentation is **FR5 — Restricted Data Flow** (network segmentation, zone boundary protection, conduit control). Segmentation is also the precondition for **FR6 — Timely Response to Events** (boundary monitoring). See `IEC62443.md` → *FR 5 — Restricted Data Flow (RDF)* and *FR 6 — Timely Response to Events*.
+The Foundational Requirement most directly realized by segmentation is **FR5 — Restricted Data Flow** (network segmentation, zone boundary protection, conduit control). Segmentation is also the precondition for **FR6 — Timely Response to Events** (boundary monitoring). See [IEC62443.md](../02-Standards/IEC62443.md) → *FR 5 — Restricted Data Flow (RDF)* and *FR 6 — Timely Response to Events*.
 
 ### 7.1 Conduit Specification (every conduit must have)
 
 Treat each conduit as a controlled, documented asset with:
 
 - a defined **owner** and **documented purpose** (the business/operational justification);
-- the **approved protocol(s)** and **ports** (see `OT-Protocols.md`);
+- the **approved protocol(s)** and **ports** (see [OT-Protocols.md](OT-Protocols.md));
 - the **direction** (one-way vs. bidirectional) and the **endpoints** (specific source/destination, not subnets where avoidable);
 - the **authentication method** and any encryption;
-- the **target Security Level (SL-T)** inherited from the connected zones (per `IEC62443.md` SL-RA);
+- the **target Security Level (SL-T)** inherited from the connected zones (per [IEC62443.md](../02-Standards/IEC62443.md) SL-RA);
 - the **monitoring/logging** capability that proves it behaves as specified.
 
-This conduit specification is the direct input to `Firewall-Design.md` (each conduit → a documented, least-privilege ruleset).
+This conduit specification is the direct input to [Firewall-Design.md](Firewall-Design.md) (each conduit → a documented, least-privilege ruleset).
 
 # 8. Industrial DMZ (Level 3.5)
 
 An Industrial DMZ (IDMZ) is recommended whenever IT↔OT communication cannot be avoided — i.e. almost always. It is a **brokering buffer**: OT systems talk to DMZ services, enterprise systems talk to DMZ services, and **no flow traverses the DMZ unbroken**. Typical IDMZ-hosted services: historian replication/mirror, OPC UA gateways, remote-access/jump gateways, patch repositories, AV/update mirrors, file-transfer brokers.
 
-**IDMZ design rules** (see `ISA95.md` → *Industrial DMZ Design Rules* and *Integration Architecture Patterns* for the canonical patterns — Historian, MES, Vendor Remote Access, Security Monitoring/Log Flow):
+**IDMZ design rules** (see [ISA95.md](../02-Standards/ISA95.md) → *Industrial DMZ Design Rules* and *Integration Architecture Patterns* for the canonical patterns — Historian, MES, Vendor Remote Access, Security Monitoring/Log Flow):
 
 - **No protocol passes straight through** — replicate/broker at the DMZ (e.g. OT historian → DMZ mirror → enterprise BI).
 - **No direct IT→OT or OT→IT sessions**; both sides terminate in the DMZ.
@@ -148,10 +129,10 @@ Where a boundary must guarantee that data can only flow **one way** (typically O
 # 10. Specialized Segmentation Cases
 
 ## 10.1 Safety Systems (SIS)
-Safety Instrumented Systems should reside in a **dedicated safety zone** with the most restrictive conduits, separated from standard control traffic unless a documented, risk-assessed reason exists to combine them. Coordinate with functional-safety lifecycle (IEC 61511) — see `IEC62443.md` → *Relationship with Functional Safety (IEC 61511)*. A compromise that reaches the SIS removes the last line of physical protection (cf. Triton/TRISIS).
+Safety Instrumented Systems should reside in a **dedicated safety zone** with the most restrictive conduits, separated from standard control traffic unless a documented, risk-assessed reason exists to combine them. Coordinate with functional-safety lifecycle (IEC 61511) — see [IEC62443.md](../02-Standards/IEC62443.md) → *Relationship with Functional Safety (IEC 61511)*. A compromise that reaches the SIS removes the last line of physical protection (cf. Triton/TRISIS).
 
 ## 10.2 Engineering Zone
-Engineering workstations and programming tools (TIA Portal, EcoStruxure Control Expert, Automation Studio, TwidoSuite) are **administrative assets** and high-value targets. Place them in a dedicated engineering zone with strict conduits to the control zone, application allowlisting, PAM and session auditing. Protecting engineering stations often yields more security benefit than hardening individual PLCs (see `OT-Protocols.md`).
+Engineering workstations and programming tools (TIA Portal, EcoStruxure Control Expert, Automation Studio, TwidoSuite) are **administrative assets** and high-value targets. Place them in a dedicated engineering zone with strict conduits to the control zone, application allowlisting, PAM and session auditing. Protecting engineering stations often yields more security benefit than hardening individual PLCs (see [OT-Protocols.md](OT-Protocols.md)).
 
 ## 10.3 Remote / Vendor Access
 Vendor/remote access must **never terminate directly inside the PLC/control network**. Preferred chain:
@@ -160,7 +141,7 @@ Vendor/remote access must **never terminate directly inside the PLC/control netw
 VPN → MFA → Jump Server (session recording) → Engineering Workstation → PLC
 ```
 
-Every session must be attributable to an authenticated, individual identity, be time-limited, and be logged. Detail in `Secure-Remote-Access.md`; identity in `Identity-Management.md`.
+Every session must be attributable to an authenticated, individual identity, be time-limited, and be logged. Detail in [Secure-Remote-Access.md](Secure-Remote-Access.md); identity in [Identity-Management.md](../05-Identity/Identity-Management.md).
 
 ## 10.4 Wireless, IIoT and Cloud
 NIST SP 800-82 Rev. 3 expanded OT scope to IIoT and cloud-connected OT. Treat wireless, IIoT sensors and cloud connectors as their **own zones** with brokered conduits (typically through the IDMZ), never as trusted members of the control zone.
@@ -170,7 +151,7 @@ Where OT uses virtualization or software-defined networking, micro-segmentation 
 
 # 11. Defense in Depth (segmentation is one layer)
 
-Segmentation must operate with identity management, authentication, secure remote access, endpoint hardening, monitoring, logging, backup and physical security. **Segmentation alone cannot stop credential theft or a malicious insider.** See `IEC62443.md` → *Defense in Depth*.
+Segmentation must operate with identity management, authentication, secure remote access, endpoint hardening, monitoring, logging, backup and physical security. **Segmentation alone cannot stop credential theft or a malicious insider.** See [IEC62443.md](../02-Standards/IEC62443.md) → *Defense in Depth*.
 
 # 12. Zero Trust in OT (adapted)
 
@@ -182,7 +163,7 @@ Every trust boundary should generate security telemetry — the way to prove seg
 
 # 14. Regulatory Verification & Audit Mapping
 
-| Segmentation concern | IEC 62443 (`IEC62443.md`) | NIS2 (`NIS2.md`) | Czech Act 264/2025 (`Czech-Cybersecurity-Act.md`) |
+| Segmentation concern | IEC 62443 ([IEC62443.md](../02-Standards/IEC62443.md)) | NIS2 ([NIS2.md](../01-Legislation/NIS2.md)) | Czech Act 264/2025 ([Czech-Cybersecurity-Act.md](../01-Legislation/Czech-Cybersecurity-Act.md)) |
 |---|---|---|---|
 | Define zones & conduits; restrict data flow | FR5 (RDF); Zones & Conduits; SL-RA (3-2) | Art. 21 — network security | Domain 5 — Network security & segmentation |
 | Identify who/what may cross a conduit | FR1; SL-T per zone | Art. 21 — access control | Domain 4 — IAM |
@@ -223,7 +204,7 @@ Flat OT networks; direct IT-to-PLC communication; treating VLANs as security; sh
 3. Which communication is *truly* required (vs. historically permitted)?
 4. Which vendors require remote access, and via what brokered path?
 5. Where should trust boundaries (zones) exist — by process and safety, not department?
-6. Which protocols cross those boundaries (see `OT-Protocols.md`), and in which direction?
+6. Which protocols cross those boundaries (see [OT-Protocols.md](OT-Protocols.md)), and in which direction?
 7. How will each conduit be monitored and logged?
 8. How will segmentation changes be governed and re-validated?
 
@@ -240,7 +221,7 @@ Segmentation should follow the **industrial process**, not the organizational ch
 - Recommend an Industrial DMZ for sustained IT↔OT comms and a data diode for one-way high-assurance boundaries.
 - Keep field/PLC/safety traffic inside isolated zones; broker upward via the IDMZ and OPC UA.
 - Respect determinism, availability and safety; never propose a control that could break a control loop or SIS.
-- Use IEC 62443 zones/conduits vocabulary and reference `ISA95.md`, `IEC62443.md`, `Firewall-Design.md`, `OT-Protocols.md` instead of restating them.
+- Use IEC 62443 zones/conduits vocabulary and reference [ISA95.md](../02-Standards/ISA95.md), [IEC62443.md](../02-Standards/IEC62443.md), [Firewall-Design.md](Firewall-Design.md), [OT-Protocols.md](OT-Protocols.md) instead of restating them.
 - Map segmentation to IEC 62443 FR5/Zones&Conduits/SL-RA, NIS2 Art. 21/23, and Czech-Act Domain 5 (and 4/7) for verification and audit.
 
 ---
@@ -262,20 +243,20 @@ Segmentation should follow the **industrial process**, not the organizational ch
 
 - **NIST SP 800-82 Rev. 3**, *Guide to Operational Technology (OT) Security* (September 2023; csrc.nist.gov/pubs/sp/800/82/r3/final) — sections on Network Segmentation and Isolation, Firewalls, **Unidirectional Gateways**, VLANs, SDN, SIEM, Centralized Logging, Passive Scanning; alignment of segmentation with the Purdue model and IEC 62443 zones/conduits; IT/OT boundary as the critical boundary.
 - **ISA/IEC 62443** family — zones & conduits, FR5 Restricted Data Flow, Security Level Risk Assessment (62443-3-2) producing the zone/conduit model (operationalized equivalent of NIST 800-82 risk management).
-- **ISA-95 / IEC 62264** — functional hierarchy and Industrial DMZ (see `ISA95.md`).
+- **ISA-95 / IEC 62264** — functional hierarchy and Industrial DMZ (see [ISA95.md](../02-Standards/ISA95.md)).
 - Engineering best practice and public OT incident analysis (e.g. Triton/TRISIS) for safety-zone separation rationale.
 
 > Treat external versions/sections as a snapshot; for authoritative requirements follow the referenced documents and the current standard texts.
 
 # Appendix C — Related Documents
 
-- `Firewall-Design.md` — enforcement of the conduits defined here.
-- `IEC62443.md` — Zones & Conduits, SL, FR/SR (esp. FR5/FR6), SL Risk Assessment (3-2), Defense in Depth, Functional Safety.
-- `ISA95.md` — functional levels, Industrial DMZ design rules, integration patterns, information flows.
-- `OT-Protocols.md` — which protocols cross which conduits and their security.
-- `NIS2.md` — Article 21 (network security/access control), Article 23 (incident reporting).
-- `Czech-Cybersecurity-Act.md` — Zákon 264/2025 Sb.; Domain 5 (segmentation), Domain 4 (IAM), Domain 7 (logging/monitoring); Vyhl. 408/409/410.
-- `Secure-Remote-Access.md`, `Identity-Management.md`, `Monitoring.md`, `Logging.md`.
+- [Firewall-Design.md](Firewall-Design.md) — enforcement of the conduits defined here.
+- [IEC62443.md](../02-Standards/IEC62443.md) — Zones & Conduits, SL, FR/SR (esp. FR5/FR6), SL Risk Assessment (3-2), Defense in Depth, Functional Safety.
+- [ISA95.md](../02-Standards/ISA95.md) — functional levels, Industrial DMZ design rules, integration patterns, information flows.
+- [OT-Protocols.md](OT-Protocols.md) — which protocols cross which conduits and their security.
+- [NIS2.md](../01-Legislation/NIS2.md) — Article 21 (network security/access control), Article 23 (incident reporting).
+- [Czech-Cybersecurity-Act.md](../01-Legislation/Czech-Cybersecurity-Act.md) — Zákon 264/2025 Sb.; Domain 5 (segmentation), Domain 4 (IAM), Domain 7 (logging/monitoring); Vyhl. 408/409/410.
+- [Secure-Remote-Access.md](Secure-Remote-Access.md), [Identity-Management.md](../05-Identity/Identity-Management.md), [Monitoring.md](../09-Operations/Monitoring.md), [Logging.md](../09-Operations/Logging.md).
 
 # Revision History
 
@@ -283,3 +264,4 @@ Segmentation should follow the **industrial process**, not the organizational ch
 |---|---|---|
 | 1.0 | 2026-06 | Initial release |
 | **1.1.0** | **2026-06** | Revised and expanded as RAG/LLM skill: added segmentation vs isolation vs micro-segmentation, north-south/east-west, conduit specification template (tied to FR5), unidirectional gateways/data diodes (NIST SP 800-82 Rev. 3), safety/engineering/remote/wireless-cloud/SDN cases, Zero-Trust-in-OT adaptation, boundary monitoring, segmentation lifecycle, and a regulatory verification & audit mapping to IEC62443.md, NIS2.md and Czech-Cybersecurity-Act.md (Zákon 264/2025 Sb.); scoped Purdue/ISA-95 and zone/conduit theory to references; aligned with Firewall-Design.md and OT-Protocols.md |
+| 1.2.0 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings; migrated from skill-style front matter |

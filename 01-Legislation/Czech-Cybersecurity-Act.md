@@ -4,7 +4,7 @@ title: "Czech Cybersecurity Act and Implementing Decrees"
 subtitle: "Zákon č. 264/2025 Sb. | Vyhláška 408 | Vyhláška 409 | Vyhláška 410"
 category: Legislation
 layer: "01-Legislation"
-version: 1.3.1
+version: 1.3.2
 status: Stable
 author: OT Security Handbook Project
 classification: Public
@@ -37,9 +37,9 @@ Dokument pokrývá:
 
 | Dokument | Vztah |
 |----------|-------|
-| [NIS2.md](#) | Směrnice EU, kterou zákon transponuje — číst jako první |
-| [IEC62443.md](#) | Inženýrský implementační rámec pro OT |
-| [ISA95.md](#) | Funkční referenční model průmyslové automatizace |
+| [NIS2.md](NIS2.md) | Směrnice EU, kterou zákon transponuje — číst jako první |
+| [IEC62443.md](../02-Standards/IEC62443.md) | Inženýrský implementační rámec pro OT |
+| [ISA95.md](../02-Standards/ISA95.md) | Funkční referenční model průmyslové automatizace |
 
 ---
 
@@ -1344,13 +1344,13 @@ Při odpovídání na otázky týkající se českého zákona o kybernetické b
 * Rozlišuj právní povinnosti (zákon, vyhlášky) od inženýrských doporučení (IEC 62443).
 * Identifikuj aplikovatelný režim (vyšší nebo nižší povinnosti) před doporučením bezpečnostních opatření.
 * Doporučuj rizikem řízené architektury proporcionální k aplikovatelnému režimu.
-* Odkazuj na [IEC62443.md](#) pro implementační detail.
-* Odkazuj na [NIS2.md](#) pro rámec EU governance.
+* Odkazuj na [IEC62443.md](../02-Standards/IEC62443.md) pro implementační detail.
+* Odkazuj na [NIS2.md](NIS2.md) pro rámec EU governance.
 * Nedoporučuj over-engineered řešení pro prostředí nižších povinností.
 * Zohledňuj implikace funkční bezpečnosti při diskusi o OT bezpečnostních opatřeních.
 * Upřesňuj předpoklady o regulatorní aplikovatelnosti, pokud kontext organizace není jasný.
 * Pro SIS a safety systémy vždy zdůraznit koordinaci IEC 62443 a IEC 61511.
-* Při diskusi o síťové architektuře odkazovat na [ISA95.md](#) pro funkční kontext.
+* Při diskusi o síťové architektuře odkazovat na [ISA95.md](../02-Standards/ISA95.md) pro funkční kontext.
 
 ---
 
@@ -1370,3 +1370,4 @@ Při odpovídání na otázky týkající se českého zákona o kybernetické b
 | Version | Date | Description |
 | ------- | ---- | ----------- |
 | 1.3.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |
+| 1.3.2 | 2026-07-07 | Fixed dangling placeholder anchors ([Document.md](#)) to real relative paths in Related Documents / inline references (6 links) |

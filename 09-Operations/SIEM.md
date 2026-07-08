@@ -1,12 +1,20 @@
 ---
-title: SIEM
+id: siem
+title: "SIEM"
 category: Operations
-version: 1.0.0
+layer: "09-Operations"
+version: 1.0.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-07-01
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  The SIEM as the correlation and detection layer between logging and monitoring: passive-first OT
+  ingestion, industrial data sources and protocol-aware parsing, data-residency constraints and
+  high-value detections.
+keywords: [SIEM, correlation, korelace, detection, OT data sources, passive collection, data residency]
 ---
 
 # Purpose
@@ -54,7 +62,7 @@ The SIEM does not replace logging or monitoring — it connects them. Poor-quali
 
 * **Passive-first ingestion.** Prefer log forwarding, taps and span ports; avoid active polling that could disturb deterministic control traffic.
 * **Industrial data sources.** Industrial firewalls, OT IDS, PLC/controller diagnostics, engineering workstations, SCADA/HMI, historians, OPC UA security events, network flows.
-* **Protocol awareness.** Value comes from OT-aware parsing (Modbus, PROFINET, EtherNet/IP, DNP3, IEC 61850, OPC UA) — see [OT-Protocols.md](OT-Protocols.md).
+* **Protocol awareness.** Value comes from OT-aware parsing (Modbus, PROFINET, EtherNet/IP, DNP3, IEC 61850, OPC UA) — see [OT-Protocols.md](../04-Network/OT-Protocols.md).
 * **Data residency & connectivity.** Cloud SIEM may conflict with isolation or regulatory constraints; consider on-prem collection with controlled forwarding, or an OT-sited collector.
 * **Time synchronisation.** Reliable NTP and consistent time zones are prerequisites for correlation.
 * **Volume vs value.** Tune for high-value OT events (PLC programming, firmware changes, engineering sessions, privilege use) rather than maximum ingestion.
@@ -71,7 +79,7 @@ The SIEM does not replace logging or monitoring — it connects them. Poor-quali
 * Certificate replacement; OPC UA secure-channel failures
 * Configuration drift ([Configuration-Management.md](Configuration-Management.md))
 
-Detections should map to attacker techniques — see [MITRE-ATTACK-ICS.md](MITRE-ATTACK-ICS.md).
+Detections should map to attacker techniques — see [MITRE-ATTACK-ICS.md](../07-Threat-Intelligence/MITRE-ATTACK-ICS.md).
 
 ---
 
@@ -80,7 +88,7 @@ Detections should map to attacker techniques — see [MITRE-ATTACK-ICS.md](MITRE
 * **[Logging.md](Logging.md)** — supplies the evidence the SIEM consumes.
 * **[Monitoring.md](Monitoring.md)** — the analytical and threat-hunting practice the SIEM enables.
 * **[Incident-Response.md](Incident-Response.md)** — the SIEM provides detection, timelines and evidence.
-* **[MITRE-ATTACK-ICS.md](MITRE-ATTACK-ICS.md)** / **[ICS-Kill-Chain.md](ICS-Kill-Chain.md)** — detection engineering targets.
+* **[MITRE-ATTACK-ICS.md](../07-Threat-Intelligence/MITRE-ATTACK-ICS.md)** / **[ICS-Kill-Chain.md](../07-Threat-Intelligence/ICS-Kill-Chain.md)** — detection engineering targets.
 
 ---
 
@@ -131,13 +139,13 @@ Detections should map to attacker techniques — see [MITRE-ATTACK-ICS.md](MITRE
 * [Logging.md](Logging.md)
 * [Monitoring.md](Monitoring.md)
 * [Incident-Response.md](Incident-Response.md)
-* [MITRE-ATTACK-ICS.md](MITRE-ATTACK-ICS.md)
-* [ICS-Kill-Chain.md](ICS-Kill-Chain.md)
+* [MITRE-ATTACK-ICS.md](../07-Threat-Intelligence/MITRE-ATTACK-ICS.md)
+* [ICS-Kill-Chain.md](../07-Threat-Intelligence/ICS-Kill-Chain.md)
 * [Asset-Management.md](Asset-Management.md)
 * [Configuration-Management.md](Configuration-Management.md)
-* [OT-Protocols.md](OT-Protocols.md)
-* [IEC62443.md](IEC62443.md)
-* [NIS2.md](NIS2.md)
+* [OT-Protocols.md](../04-Network/OT-Protocols.md)
+* [IEC62443.md](../02-Standards/IEC62443.md)
+* [NIS2.md](../01-Legislation/NIS2.md)
 
 ---
 
@@ -146,3 +154,4 @@ Detections should map to attacker techniques — see [MITRE-ATTACK-ICS.md](MITRE
 | Version | Date | Description |
 | ------- | ---- | ----------- |
 | 1.0.0 | 2026-07-01 | Initial release — new 09-Operations document resolving the dangling `SIEM.md` reference from Logging.md and Monitoring.md; defines the collection/normalisation/correlation/detection layer, OT-specific (passive, protocol-aware, data-residency) considerations and high-value detections; grounded in NIST SP 800-92/800-82 Rev. 3, IEC 62443 and MITRE ATT&CK for ICS |
+| 1.0.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |

@@ -1,42 +1,25 @@
 ---
+id: firewall-design
 title: "OT Firewall Design — Enforcing Conduits in Industrial Control Systems"
-document: "Firewall-Design.md"
-version: "1.1.0"
-status: "Production"
-date: "2026-06"
-document_type: "LLM Skill / RAG Knowledge Base"
-audience:
-  - OT Security Architects
-  - OT / Network Architects
-  - Security Architects
-  - Automation & Control Engineers
-  - SOC Analysts / OT Detection Engineers
-  - AI Knowledge Base / RAG / LLM Skill
-frameworks:
-  - IEC 62443 (conduits, FR5 Restricted Data Flow, Defense in Depth, SL-RA 3-2 — see IEC62443.md)
-  - NIS2 Directive EU 2022/2555 (see NIS2.md)
-  - Czech Cybersecurity Act — Zákon č. 264/2025 Sb. + Vyhl. 408/409/410/2025 (see Czech-Cybersecurity-Act.md)
-  - NIST SP 800-82 Rev. 3 (Guide to OT Security, 2023)
-scope_notes:
-  - "This document covers firewall ENFORCEMENT. WHERE boundaries go (zones/conduits) is defined in Network-Segmentation.md."
-  - "Zone/conduit and Security-Level theory is referenced; for detail see IEC62443.md. Protocol/DPI detail is in OT-Protocols.md."
-keywords:
-  - industrial firewall
-  - default deny
-  - least privilege
-  - deep packet inspection
-  - conduit enforcement
-  - data diode / unidirectional gateway
-  - rule lifecycle
-  - OT firewall placement
-  - NGFW vs industrial firewall
+category: Network
+layer: "04-Network"
+version: 1.2.0
+status: Stable
+author: OT Security Handbook Project
+classification: Public
+language: en
+last_reviewed: 2026-07-07
+review_cycle: Annual
+summary: >-
+  Enforcing conduits with OT firewalls: choosing the enforcement device (NGFW, industrial DPI,
+  host-based, data diode), typical placements, default-deny rule design, industrial DPI, logging,
+  HA fail behaviour and policy lifecycle.
+keywords: [firewall, industrial firewall, default deny, DPI, conduit enforcement, rule design, pravidla firewallu]
 ---
 
-# OT Firewall Design — Enforcing Conduits in Industrial Control Systems
-
-> **What this document is.** A source-verified knowledge base on **firewall design for OT/ICS**, written as an **LLM skill / RAG** reference. A firewall is **not the architecture** — it is the *technical enforcement* of conduits defined during risk assessment and segmentation. This document is the enforcement companion to `Network-Segmentation.md` (which defines *where* the boundaries are and *what* may cross them).
+> **What this document is.** A source-verified knowledge base on **firewall design for OT/ICS**, written as an **LLM skill / RAG** reference. A firewall is **not the architecture** — it is the *technical enforcement* of conduits defined during risk assessment and segmentation. This document is the enforcement companion to [Network-Segmentation.md](Network-Segmentation.md) (which defines *where* the boundaries are and *what* may cross them).
 >
-> **Deliberate scope limits.** *Where* trust boundaries go is decided in `Network-Segmentation.md`. **Zones & Conduits, Security Levels (SL) and the Security Level Risk Assessment (IEC 62443-3-2)** are referenced; see `IEC62443.md`. **Protocol semantics and DPI specifics** (function codes, ports, secure variants) are in `OT-Protocols.md`. Vendor-specific firewall configuration is intentionally excluded.
+> **Deliberate scope limits.** *Where* trust boundaries go is decided in [Network-Segmentation.md](Network-Segmentation.md). **Zones & Conduits, Security Levels (SL) and the Security Level Risk Assessment (IEC 62443-3-2)** are referenced; see [IEC62443.md](../02-Standards/IEC62443.md). **Protocol semantics and DPI specifics** (function codes, ports, secure variants) are in [OT-Protocols.md](OT-Protocols.md). Vendor-specific firewall configuration is intentionally excluded.
 >
 > **Core thesis.** *Architecture precedes technology.* A firewall enforces a communication policy; if the policy is wrong, incomplete or overly permissive, the firewall simply enforces a poor architecture faithfully. The design order is always **Risk Assessment → Zones → Conduits → Firewall Policy → Monitoring → Review.**
 >
@@ -48,13 +31,13 @@ keywords:
 
 When answering firewall questions, the model should:
 
-1. **Begin with zones and conduits, not rules.** Ask what boundary is being protected and what conduit specification it must enforce (from `Network-Segmentation.md`).
+1. **Begin with zones and conduits, not rules.** Ask what boundary is being protected and what conduit specification it must enforce (from [Network-Segmentation.md](Network-Segmentation.md)).
 2. **Default deny + explicit allow.** Communication is approved, never implicitly permitted; every rule is documented, justified, minimal, reviewable and auditable.
 3. **Map one conduit → one documented ruleset.** A firewall rule is *documentation of a business requirement*, not just configuration.
-4. **Distinguish Layer-3/4 filtering from industrial DPI** (protocol-aware inspection), and reference `OT-Protocols.md` for protocol detail rather than restating it.
+4. **Distinguish Layer-3/4 filtering from industrial DPI** (protocol-aware inspection), and reference [OT-Protocols.md](OT-Protocols.md) for protocol detail rather than restating it.
 5. **Respect OT constraints**: latency, determinism, availability and safety. A security control must never break a control loop, a deterministic bus (PROFINET IRT, POWERLINK) or a safety function.
 6. **Treat the firewall as one layer of Defense in Depth**, never the primary or sole control.
-7. **Recommend the right device for the boundary** — enterprise NGFW, industrial DPI firewall, host-based firewall, or a unidirectional gateway/data diode — and reference `Network-Segmentation.md`/NIST SP 800-82 Rev. 3.
+7. **Recommend the right device for the boundary** — enterprise NGFW, industrial DPI firewall, host-based firewall, or a unidirectional gateway/data diode — and reference [Network-Segmentation.md](Network-Segmentation.md)/NIST SP 800-82 Rev. 3.
 
 ---
 
@@ -64,7 +47,7 @@ Industrial firewalls are a primary technical control for enforcing communication
 
 # 2. Scope
 
-Covers firewall architecture and placement, rule design, policy management, deep packet inspection (DPI), logging, monitoring, high availability, change management and OT-specific operational considerations. **Out of scope (referenced):** where boundaries belong (`Network-Segmentation.md`), zone/conduit/SL theory (`IEC62443.md`), protocol detail (`OT-Protocols.md`), and vendor configuration.
+Covers firewall architecture and placement, rule design, policy management, deep packet inspection (DPI), logging, monitoring, high availability, change management and OT-specific operational considerations. **Out of scope (referenced):** where boundaries belong ([Network-Segmentation.md](Network-Segmentation.md)), zone/conduit/SL theory ([IEC62443.md](../02-Standards/IEC62443.md)), protocol detail ([OT-Protocols.md](OT-Protocols.md)), and vendor configuration.
 
 # 3. Security Philosophy
 
@@ -72,7 +55,7 @@ The most common misconception is *"installing a firewall makes the network secur
 
 # 4. Firewall Objectives
 
-Enforce trust boundaries; reduce attack surface; prevent unauthorized communication; support monitoring and auditability; simplify incident response; enforce least privilege. The firewall must not become a substitute for proper network architecture (`Network-Segmentation.md`).
+Enforce trust boundaries; reduce attack surface; prevent unauthorized communication; support monitoring and auditability; simplify incident response; enforce least privilege. The firewall must not become a substitute for proper network architecture ([Network-Segmentation.md](Network-Segmentation.md)).
 
 # 5. Relationship with Zones and Conduits
 
@@ -92,7 +75,7 @@ Monitoring
 Continuous Review
 ```
 
-Designing rules before defining conduits produces inconsistent security. The conduit specification (see `Network-Segmentation.md` §7.1) is the direct input to each ruleset. Firewall enforcement realizes IEC 62443 **FR5 — Restricted Data Flow** (and supports **FR1** access, **FR6** monitoring); see `IEC62443.md`.
+Designing rules before defining conduits produces inconsistent security. The conduit specification (see [Network-Segmentation.md](Network-Segmentation.md) §7.1) is the direct input to each ruleset. Firewall enforcement realizes IEC 62443 **FR5 — Restricted Data Flow** (and supports **FR1** access, **FR6** monitoring); see [IEC62443.md](../02-Standards/IEC62443.md).
 
 # 6. Choosing the Right Enforcement Device
 
@@ -110,7 +93,7 @@ Avoid consumer-grade firewalls in critical industrial environments. Avoid using 
 # 7. Typical Firewall Placements
 
 - **Enterprise ↔ Industrial DMZ** — protects business networks from OT and vice versa; the IT/OT boundary is the critical one (NIST SP 800-82 Rev. 3).
-- **Industrial DMZ ↔ Operations** — both sides terminate in the DMZ; nothing passes straight through (see `Network-Segmentation.md` §8 and `ISA95.md` Industrial DMZ design rules).
+- **Industrial DMZ ↔ Operations** — both sides terminate in the DMZ; nothing passes straight through (see [Network-Segmentation.md](Network-Segmentation.md) §8 and [ISA95.md](../02-Standards/ISA95.md) Industrial DMZ design rules).
 - **Engineering Zone ↔ Control Zone** — restrict programming/engineering protocols to named stations.
 - **Safety Zone ↔ Control Zone** — protect the SIS from unintended communication.
 - **Vendor Access Gateway** — control and record remote maintenance sessions.
@@ -134,7 +117,7 @@ Prefer specific host endpoints over subnets where practical; avoid `any` in sour
 
 # 9. Industrial Protocol Awareness & Deep Packet Inspection (DPI)
 
-Modern industrial firewalls inspect **protocol semantics**, not just Layer-3/4 headers. Typical OT protocol awareness: OPC UA, Modbus TCP, PROFINET, EtherNet/IP, DNP3, S7 Communication (see `OT-Protocols.md` for protocol-by-protocol detail and ports). DPI capabilities include **function-code validation**, protocol anomaly detection, **unauthorized write-request blocking**, restriction of engineering/programming operations, and protocol-compliance verification.
+Modern industrial firewalls inspect **protocol semantics**, not just Layer-3/4 headers. Typical OT protocol awareness: OPC UA, Modbus TCP, PROFINET, EtherNet/IP, DNP3, S7 Communication (see [OT-Protocols.md](OT-Protocols.md) for protocol-by-protocol detail and ports). DPI capabilities include **function-code validation**, protocol anomaly detection, **unauthorized write-request blocking**, restriction of engineering/programming operations, and protocol-compliance verification.
 
 DPI provides far greater visibility than port filtering — but it **must be validated for latency and device compatibility**, and should **not** be inserted into hard-real-time segments (PROFINET IRT, POWERLINK) where it could break determinism. Place DPI at north-south conduits, not inside deterministic field networks.
 
@@ -144,7 +127,7 @@ Every firewall must generate security logs and forward them to centralized loggi
 
 # 11. Monitoring & Rule Hygiene
 
-Monitor for policy violations, unexpected communication, new endpoints, **configuration drift**, high connection rates, failed VPN authentication, rule modifications and threat-detection alerts. Monitoring validates that policies still reflect operational reality. Maintain **rule hygiene**: periodically review for shadowed/duplicated/overly-broad/expired rules and undocumented exceptions; reconcile the live ruleset against the conduit inventory in `Network-Segmentation.md`.
+Monitor for policy violations, unexpected communication, new endpoints, **configuration drift**, high connection rates, failed VPN authentication, rule modifications and threat-detection alerts. Monitoring validates that policies still reflect operational reality. Maintain **rule hygiene**: periodically review for shadowed/duplicated/overly-broad/expired rules and undocumented exceptions; reconcile the live ruleset against the conduit inventory in [Network-Segmentation.md](Network-Segmentation.md).
 
 # 12. High Availability and OT Fail Behaviour
 
@@ -166,7 +149,7 @@ The firewall is itself a high-value target and must be hardened: restrict and au
 
 # 16. Regulatory Verification & Audit Mapping
 
-| Firewall concern | IEC 62443 (`IEC62443.md`) | NIS2 (`NIS2.md`) | Czech Act 264/2025 (`Czech-Cybersecurity-Act.md`) |
+| Firewall concern | IEC 62443 ([IEC62443.md](../02-Standards/IEC62443.md)) | NIS2 ([NIS2.md](../01-Legislation/NIS2.md)) | Czech Act 264/2025 ([Czech-Cybersecurity-Act.md](../01-Legislation/Czech-Cybersecurity-Act.md)) |
 |---|---|---|---|
 | Enforce conduits / restrict data flow | FR5 (RDF); Conduits; Defense in Depth | Art. 21 — network security | Domain 5 — Network security & segmentation |
 | Least-privilege access across boundaries | FR1; SL-T per conduit | Art. 21 — access control | Domain 4 — IAM |
@@ -188,7 +171,7 @@ Policies evolve with the industrial process; review after any process, asset or 
 
 # 18. Relationship with IEC 62443 (referenced)
 
-Firewall deployment supports IEC 62443 **Zones and Conduits**, **FR5 Restricted Data Flow**, **Least Privilege**, **Defense in Depth**, **Secure Communications**, **FR6 monitoring** and **FR1 access control**. IEC 62443 deliberately does **not** prescribe firewall vendors or products. See `IEC62443.md` for the requirements; this document covers how to *implement* them.
+Firewall deployment supports IEC 62443 **Zones and Conduits**, **FR5 Restricted Data Flow**, **Least Privilege**, **Defense in Depth**, **Secure Communications**, **FR6 monitoring** and **FR1 access control**. IEC 62443 deliberately does **not** prescribe firewall vendors or products. See [IEC62443.md](../02-Standards/IEC62443.md) for the requirements; this document covers how to *implement* them.
 
 # 19. Common Design Mistakes
 
@@ -196,9 +179,9 @@ Firewall deployment supports IEC 62443 **Zones and Conduits**, **FR5 Restricted 
 
 # 20. Decision Support
 
-1. Which trust boundary requires protection (from `Network-Segmentation.md`)?
+1. Which trust boundary requires protection (from [Network-Segmentation.md](Network-Segmentation.md))?
 2. Which communication is operationally required — and can it be reduced?
-3. Which industrial protocols cross the boundary (see `OT-Protocols.md`)?
+3. Which industrial protocols cross the boundary (see [OT-Protocols.md](OT-Protocols.md))?
 4. Is DPI required, supported, and safe for the segment's latency budget?
 5. What are the availability requirements and the chosen fail behaviour?
 6. How will policy changes be approved, tested and rolled back?
@@ -211,9 +194,9 @@ A frequent architectural failure is treating the firewall as the primary securit
 
 # 22. AI Guidance (summary for the model)
 
-- Start with zones and conduits (from `Network-Segmentation.md`), not firewall rules.
+- Start with zones and conduits (from [Network-Segmentation.md](Network-Segmentation.md)), not firewall rules.
 - Recommend **default deny + explicit, documented, least-privilege allow**, one ruleset per conduit.
-- Explain the difference between Layer-3/4 filtering and **industrial DPI**, and reference `OT-Protocols.md` for protocol specifics.
+- Explain the difference between Layer-3/4 filtering and **industrial DPI**, and reference [OT-Protocols.md](OT-Protocols.md) for protocol specifics.
 - Match the device to the boundary (NGFW vs industrial DPI firewall vs host-based vs data diode).
 - Respect latency, determinism, availability and safety; make **fail-open/closed** a conscious, risk-based decision.
 - Treat firewall rules as documentation of business requirements; require change management, expiry on temporary rules, logging to SIEM, and periodic rule hygiene.
@@ -245,13 +228,13 @@ A frequent architectural failure is treating the firewall as the primary securit
 
 # Appendix C — Related Documents
 
-- `Network-Segmentation.md` — defines the zones/conduits this document enforces.
-- `IEC62443.md` — Zones & Conduits, SL, FR/SR (esp. FR5/FR6/FR7), SL Risk Assessment (3-2), Defense in Depth, Secure Lifecycle.
-- `OT-Protocols.md` — protocol semantics, ports and DPI considerations.
-- `ISA95.md` — Industrial DMZ design rules and integration patterns.
-- `NIS2.md` — Article 21 (network security/access control), Article 23 (incident reporting).
-- `Czech-Cybersecurity-Act.md` — Zákon 264/2025 Sb.; Domain 5 (segmentation), Domain 4 (IAM), Domain 7 (logging/monitoring), Domain 12 (business continuity); Vyhl. 408/409/410.
-- `Secure-Remote-Access.md`, `Identity-Management.md`, `Monitoring.md`, `Logging.md`.
+- [Network-Segmentation.md](Network-Segmentation.md) — defines the zones/conduits this document enforces.
+- [IEC62443.md](../02-Standards/IEC62443.md) — Zones & Conduits, SL, FR/SR (esp. FR5/FR6/FR7), SL Risk Assessment (3-2), Defense in Depth, Secure Lifecycle.
+- [OT-Protocols.md](OT-Protocols.md) — protocol semantics, ports and DPI considerations.
+- [ISA95.md](../02-Standards/ISA95.md) — Industrial DMZ design rules and integration patterns.
+- [NIS2.md](../01-Legislation/NIS2.md) — Article 21 (network security/access control), Article 23 (incident reporting).
+- [Czech-Cybersecurity-Act.md](../01-Legislation/Czech-Cybersecurity-Act.md) — Zákon 264/2025 Sb.; Domain 5 (segmentation), Domain 4 (IAM), Domain 7 (logging/monitoring), Domain 12 (business continuity); Vyhl. 408/409/410.
+- [Secure-Remote-Access.md](Secure-Remote-Access.md), [Identity-Management.md](../05-Identity/Identity-Management.md), [Monitoring.md](../09-Operations/Monitoring.md), [Logging.md](../09-Operations/Logging.md).
 
 # Revision History
 
@@ -259,3 +242,4 @@ A frequent architectural failure is treating the firewall as the primary securit
 |---|---|---|
 | 1.0 | 2026-06 | Initial production release |
 | **1.1.0** | **2026-06** | Revised and expanded as RAG/LLM skill: added enforcement-device selection (NGFW vs industrial DPI firewall vs host-based vs data diode), conduit-to-rule mapping, rule hygiene/anti-sprawl, OT fail-open/closed decision, firewall-as-hardened-asset, expanded DPI/latency guidance referencing OT-Protocols.md, and a regulatory verification & audit mapping to IEC62443.md, NIS2.md and Czech-Cybersecurity-Act.md (Zákon 264/2025 Sb.); scoped zone/conduit/SL theory to references; aligned with Network-Segmentation.md (NIST SP 800-82 Rev. 3 grounding) |
+| 1.2.0 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings; migrated from skill-style front matter |

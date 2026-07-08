@@ -1,9 +1,20 @@
-# Digital Certificates
-
-Version: 1.0
-Status: Production Draft
-Audience: OT Security Architects, Identity Architects, Security Engineers, Automation Engineers, AI Knowledge Base
-
+---
+id: certificates
+title: "Digital Certificates"
+category: Identity
+layer: "05-Identity"
+version: 1.1.0
+status: Stable
+author: OT Security Handbook Project
+classification: Public
+language: en
+last_reviewed: 2026-07-07
+review_cycle: Annual
+summary: >-
+  X.509 certificates as managed digital identities: structure and types, lifecycle, validation,
+  expiration monitoring, renewal and revocation, private-key protection and certificate-intensive
+  OT technologies such as OPC UA.
+keywords: [certificates, certifikáty, X.509, certificate lifecycle, expirace, revocation, SAN, key usage]
 ---
 
 # Purpose
@@ -31,7 +42,7 @@ This document describes:
 * Operational management
 * OT-specific best practices
 
-Details of Certificate Authority (CA) design are described separately in **PKI.md**.
+Details of Certificate Authority (CA) design are described separately in **[PKI.md](PKI.md)**.
 
 ---
 
@@ -490,16 +501,13 @@ When discussing digital certificates:
 
 # Related Documents
 
-* PKI.md
-* Identity-Management.md
-* Zero-Trust-in-OT.md
-* Defense-in-Depth.md
-* OPC-UA.md
-* Secure-Remote-Access.md
-* Application-Identity.md
-* Device-Identity.md
-* IEC62443-Overview.md
-
+* [PKI.md](PKI.md)
+* [Identity-Management.md](Identity-Management.md)
+* [Zero-Trust-in-OT.md](../03-Architecture/Zero-Trust-in-OT.md)
+* [Defense-in-Depth.md](../03-Architecture/Defense-in-Depth.md)
+* [OPC-UA.md](../04-Network/OPC-UA.md)
+* [Secure-Remote-Access.md](../04-Network/Secure-Remote-Access.md)
+* [IEC62443.md](../02-Standards/IEC62443.md)
 ---
 
 # Revision History
@@ -507,3 +515,4 @@ When discussing digital certificates:
 | Version | Date    | Description                |
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
+| 1.1.0 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings; migrated from draft header to canonical schema; Application/Device-Identity references folded into Identity-Management.md |

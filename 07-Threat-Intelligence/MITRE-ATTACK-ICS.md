@@ -1,12 +1,20 @@
 ---
-title: MITRE ATT&CK for ICS
+id: mitre-attack-ics
+title: "MITRE ATT&CK for ICS"
 category: Threat-Intelligence
-version: 1.1.0
+layer: "07-Threat-Intelligence"
+version: 1.1.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
-last_reviewed: 2026-07-01
+language: en
+last_reviewed: 2026-07-07
 review_cycle: Annual
+summary: >-
+  Applying MITRE ATT&CK for ICS (12 tactics, 83 techniques) in architecture and operations:
+  detection and mitigation strategy, mapping to IEC 62443 and Purdue, threat hunting and
+  monitoring priorities.
+keywords: [MITRE ATT&CK, ICS, tactics, techniques, taktiky, techniky, detection, threat hunting, EMB3D]
 ---
 
 # Purpose
@@ -407,19 +415,19 @@ When using MITRE ATT&CK for ICS:
 
 # Related Documents
 
-* [OT-Security-Philosophy.md](OT-Security-Philosophy.md)
-* [Risk-Based-Security.md](Risk-Based-Security.md)
-* [CVE.md](CVE.md)
-* [CVSS.md](CVSS.md)
-* [EPSS.md](EPSS.md)
-* [CISA-KEV.md](CISA-KEV.md)
-* [Network-Segmentation.md](Network-Segmentation.md)
-* [IEC62443.md](IEC62443.md)
-* [Firewall-Design.md](Firewall-Design.md)
-* [Identity-Management.md](Identity-Management.md)
-* [Incident-Response.md](Incident-Response.md)
-* [Monitoring.md](Monitoring.md)
-* [Logging.md](Logging.md)
+* [OT-Security-Philosophy.md](../00-Core/OT-Security-Philosophy.md)
+* [Risk-Based-Security.md](../03-Architecture/Risk-Based-Security.md)
+* [CVE.md](../06-Vulnerability-Management/CVE.md)
+* [CVSS.md](../06-Vulnerability-Management/CVSS.md)
+* [EPSS.md](../06-Vulnerability-Management/EPSS.md)
+* [CISA-KEV.md](../06-Vulnerability-Management/CISA-KEV.md)
+* [Network-Segmentation.md](../04-Network/Network-Segmentation.md)
+* [IEC62443.md](../02-Standards/IEC62443.md)
+* [Firewall-Design.md](../04-Network/Firewall-Design.md)
+* [Identity-Management.md](../05-Identity/Identity-Management.md)
+* [Incident-Response.md](../09-Operations/Incident-Response.md)
+* [Monitoring.md](../09-Operations/Monitoring.md)
+* [Logging.md](../09-Operations/Logging.md)
 
 ---
 
@@ -429,3 +437,4 @@ When using MITRE ATT&CK for ICS:
 | ------- | ------- | -------------------------- |
 | 1.0     | 2026-06 | Initial production release |
 | 1.1.0   | 2026-07-01 | Converted to YAML front matter (category: Threat-Intelligence) and semver; fixed links (IEC62443-Overview.md → IEC62443.md; removed retired Zones-and-Conduits.md reference); accuracy note (12 tactics incl. Evasion, 83 techniques); delegated campaign-stage lifecycle to ICS-Kill-Chain.md; added Sources/Grounding; markdown Related Documents |
+| 1.1.1 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings |
