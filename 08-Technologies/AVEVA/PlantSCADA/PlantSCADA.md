@@ -5,7 +5,7 @@ category: Technologies
 layer: "08-Technologies/AVEVA/PlantSCADA"
 vendor: "AVEVA"
 product: "Plant SCADA"
-version: 2.0.1
+version: 2.0.2
 status: Stable
 author: OT Security Handbook Project
 classification: Public
@@ -199,7 +199,7 @@ Phased, in dependency order; each phase concludes with validation and a configur
 
 ## 4.1 Phase 1 — Platform (OS) Baseline
 
-Windows servers/clients hardened per organizational baseline (see [Windows-Hardening.md](../../../09-Operations/Windows-Hardening.md), planned): minimal roles/features, application allowlisting on servers and operator clients, removable-media policy, EDR where vendor-supported, no browsing/email capability on operator stations.
+Windows servers/clients hardened per organizational baseline (see [Windows-Hardening.md](../../../09-Operations/Windows-Hardening.md)): minimal roles/features, application allowlisting on servers and operator clients, removable-media policy, EDR where vendor-supported, no browsing/email capability on operator stations.
 
 ## 4.2 Phase 2 — Installation Minimization
 
@@ -368,6 +368,7 @@ When discussing AVEVA Plant SCADA:
 * [Configuration-Management.md](../../../09-Operations/Configuration-Management.md)
 * [Patch-Management.md](../../../09-Operations/Patch-Management.md)
 * [Vulnerability-Management.md](../../../09-Operations/Vulnerability-Management.md)
+* [OPC-UA.md](../../../04-Network/OPC-UA.md) — the OPC UA security deep-dive for the southbound driver Plant SCADA prefers.
 * [PI-System.md](../PI%20System/PI-System.md) — the typical downstream historian consuming Plant SCADA data.
 * [GeoSCADA.md](../../Schneider%20Electric/GeoSCADA/GeoSCADA.md)
 * [MITRE-ATTACK-ICS.md](../../../07-Threat-Intelligence/MITRE-ATTACK-ICS.md)
@@ -383,3 +384,4 @@ When discussing AVEVA Plant SCADA:
 | 1.1.0 | 2026-07-07 | Corpus restructure: canonical YAML front matter (id, layer, summary, keywords, language); links converted to layer-relative paths per the numbered directory tree; dangling targets remapped; LF line endings; migrated from draft header (no front matter) to canonical schema |
 | 2.0.0 | 2026-07-07 | Expanded from architecture overview to a full platform security reference matching the S7-1500/M580 document standard: lineage and version-capability evolution (Citect → Plant SCADA; TLS from 2018), component table with security relevance, threat model (engineering, Cicode/CtAPI, alarm path, southbound spoofing), IEC 62443 alignment, identity model (roles / privilege 1–8 / areas / AD), phased hardening, conduit-flow table, monitoring detections, redundancy-vs-recovery and rolling patching; cross-linked to GeoSCADA.md |
 | 2.0.1 | 2026-07-07 | Added cross-link to PI-System.md as the typical downstream historian |
+| 2.0.2 | 2026-07-07 | Resolved Windows-Hardening.md and added OPC-UA.md cross-link now that both documents exist |

@@ -5,7 +5,7 @@ generated: 2026-07-07
 schema:
   front_matter: "id, title, category, layer, [vendor, product for 08-Technologies], version, status, author, classification, language, last_reviewed, review_cycle, summary, keywords"
   link_convention: "relative paths within the numbered layer tree; basenames are corpus-unique"
-statistics: { documents: 61, planned: 8 }
+statistics: { documents: 69, planned: 0 }
 documents:
   - id: ot-architecture-principles
     path: "00-Core/OT-Architecture-Principles.md"
@@ -151,12 +151,21 @@ documents:
     language: en
     summary: "Implementing zones, conduits and trust boundaries: segmentation vs isolation, the Industrial DMZ, unidirectional gateways, specialized cases (SIS, engineering, vendor, wireless/IIoT) and the segmentation lifecycle."
     keywords: ["network segmentation", "segmentace sítě", "zones and conduits", "IDMZ", "VLAN", "data diode", "micro-segmentation", "trust boundaries"]
+  - id: opc-ua
+    path: "04-Network/OPC-UA.md"
+    title: "OPC UA — Security Architecture Deep-Dive"
+    category: Network
+    status: Stable
+    version: "1.0.0"
+    language: en
+    summary: "OPC UA security deep-dive and single source of truth for the protocol: security policies and modes (None/Sign/SignAndEncrypt), certificate and trust-list lifecycle, user authentication and node-level access control, PubSub and OPC UA over TSN/FX, architecture placement, and detection."
+    keywords: ["OPC UA", "IEC 62541", "security policy", "Sign and Encrypt", "certificate", "trust list", "GDS", "PubSub", "OPC UA over TSN", "OPC UA FX", "node-level access control", "role permissions"]
   - id: ot-protocols
     path: "04-Network/OT-Protocols.md"
     title: "Industrial OT Communication Protocols — Architecture, Security and Platform Reference"
     category: Network
     status: Stable
-    version: "1.3.3"
+    version: "1.3.4"
     language: en
     summary: "Security reference for industrial protocols — Modbus, S7comm, PROFINET, EtherNet/IP (CIP), OPC UA/DA, POWERLINK, DNP3, IEC 60870-5-104, IEC 61850, MQTT — with default ports, DPI, monitoring and platform notes (S7-1500, M580, Twido, X20)."
     keywords: ["industrial protocols", "průmyslové protokoly", "Modbus", "PROFINET", "S7comm", "OPC UA", "DNP3", "IEC 61850", "MQTT", "default ports"]
@@ -273,7 +282,7 @@ documents:
     title: "AVEVA PI System (formerly OSIsoft PI) — Security Architecture and Engineering Reference"
     category: Technologies
     status: Stable
-    version: "1.0.1"
+    version: "1.0.2"
     language: en
     vendor: "AVEVA"
     product: "PI System"
@@ -284,7 +293,7 @@ documents:
     title: "AVEVA Plant SCADA — Security Architecture and Engineering Reference"
     category: Technologies
     status: Stable
-    version: "2.0.1"
+    version: "2.0.2"
     language: en
     vendor: "AVEVA"
     product: "Plant SCADA"
@@ -312,12 +321,23 @@ documents:
     product: "WebAccess/DMP"
     summary: "Security reference for the Advantech WebAccess/DMP device-management platform: management-plane threat model (fleet-wide configuration/firmware push, ZTP trust bootstrapping, API tokens), deployment models and placement, identity and tenant governance, hardening, network flows, monitoring and platform recovery for ICR router fleets."
     keywords: ["WebAccess/DMP", "Advantech", "device management", "management plane", "Zero Touch Provisioning", "ZTP", "digital twin", "WireGuard", "fleet management", "ICR routers", "API security"]
+  - id: automation-studio
+    path: "08-Technologies/B&R/Automation-Studio/Automation-Studio.md"
+    title: "B&R Automation Studio — Engineering Platform Security and Governance"
+    category: Technologies
+    status: Stable
+    version: "1.0.0"
+    language: en
+    vendor: "B&R Industrial Automation"
+    product: "Automation Studio"
+    summary: "Engineering platform security and governance reference for B&R Automation Studio: the project/Automation Runtime build relationship, workstation hardening, user/role management source of truth, secure transfer and deployment control, version and library governance, Technology Guarding, and integration with PAM/MFA and change management."
+    keywords: ["Automation Studio", "B&R", "ABB", "engineering workstation", "Automation Runtime", "Technology Guarding", "secure transfer", "POWERLINK", "mapp", "project governance", "PAM"]
   - id: br-x20
     path: "08-Technologies/B&R/X20/BR-X20.md"
     title: "B&R X20 System — Security Architecture and Engineering Reference"
     category: Technologies
     status: Stable
-    version: "1.0.0"
+    version: "1.0.1"
     language: en
     vendor: "B&R Industrial Automation"
     product: "X20 System"
@@ -339,7 +359,7 @@ documents:
     title: "PTC Kepware Server (KEPServerEX) — Security Architecture and Engineering Reference"
     category: Technologies
     status: Stable
-    version: "1.0.0"
+    version: "1.0.1"
     language: en
     vendor: "PTC"
     product: "Kepware Server (KEPServerEX)"
@@ -405,7 +425,7 @@ documents:
     title: "Schneider Electric EcoStruxure Geo SCADA Expert — Security Architecture and Engineering Reference"
     category: Technologies
     status: Stable
-    version: "1.0.0"
+    version: "1.0.1"
     language: en
     vendor: "Schneider Electric"
     product: "EcoStruxure Geo SCADA Expert"
@@ -449,7 +469,7 @@ documents:
     title: "Softing dataFEED OPC Suite — Security Architecture and Engineering Reference"
     category: Technologies
     status: Stable
-    version: "1.0.0"
+    version: "1.0.1"
     language: en
     vendor: "Softing Industrial Automation"
     product: "dataFEED OPC Suite"
@@ -509,6 +529,15 @@ documents:
     language: en
     summary: "Baselines, versioning and drift detection for IACS configurations: the trusted \"golden\" state, version-controlled projects and device configs, drift as a security signal, and re-baselining only through approved change."
     keywords: ["configuration management", "konfigurační management", "baseline", "drift detection", "versioning", "golden configuration"]
+  - id: detection-engineering
+    path: "09-Operations/Detection-Engineering.md"
+    title: "Detection Engineering"
+    category: Operations
+    status: Stable
+    version: "1.0.0"
+    language: en
+    summary: "Designing, testing, tuning and maintaining detection rules mapped to ATT&CK for ICS: the detection lifecycle, coverage mapping, false-positive management, detection-as-code and validation, and the feedback loop from Threat Hunting and Incident Response."
+    keywords: ["detection engineering", "detekční inženýrství", "detection rule", "ATT&CK for ICS coverage", "false positive", "purple team", "detection-as-code", "SIEM tuning"]
   - id: disaster-recovery-plan
     path: "09-Operations/Disaster-Recovery-Plan.md"
     title: "Disaster Recovery Plan (DRP)"
@@ -527,6 +556,15 @@ documents:
     language: en
     summary: "Disaster Recovery as an architectural capability: restoring a Trusted Operational State, recovery strategies and priorities, dependency mapping, recovery objectives and operational validation before production resumes."
     keywords: ["disaster recovery", "obnova po havárii", "trusted operational state", "recovery strategy", "dependencies", "RTO", "RPO"]
+  - id: fat
+    path: "09-Operations/FAT.md"
+    title: "Factory Acceptance Test (FAT)"
+    category: Operations
+    status: Stable
+    version: "1.0.0"
+    language: en
+    summary: "Factory Acceptance Test: security validation scope and procedures performed at the vendor's/ integrator's facility before shipment — hardening baseline, credential and default-account checks, and functional security testing on the as-built system prior to site integration."
+    keywords: ["FAT", "Factory Acceptance Test", "testovací akceptace", "security validation", "hardening baseline", "pre-shipment testing", "SAT"]
   - id: incident-response
     path: "09-Operations/Incident-Response.md"
     title: "Incident Response"
@@ -572,6 +610,24 @@ documents:
     language: en
     summary: "Validating recovery capability: exercise types from documentation review and tabletop to full DR exercises, success criteria and metrics (RTO/RPO achievement), Trusted-Operational-State verification and lessons learned."
     keywords: ["recovery testing", "testování obnovy", "tabletop exercise", "DR exercise", "RTO", "RPO", "success criteria"]
+  - id: risk-assessment
+    path: "09-Operations/Risk-Assessment.md"
+    title: "Risk Assessment"
+    category: Operations
+    status: Stable
+    version: "1.0.0"
+    language: en
+    summary: "Operational execution of OT risk assessment per IEC 62443-2-1/-3-2: the SLRA process from zone/conduit scoping through Cybersecurity Requirements Specification, the risk register, reassessment triggers, roles, and a worked example — the practice this handbook's risk principles and risk-based strategy are applied through."
+    keywords: ["risk assessment", "SLRA", "řízení rizik", "risk register", "Target Security Level", "Cybersecurity Requirements Specification", "CRS", "IEC 62443-3-2", "reassessment"]
+  - id: sat
+    path: "09-Operations/SAT.md"
+    title: "Site Acceptance Test (SAT)"
+    category: Operations
+    status: Stable
+    version: "1.0.0"
+    language: en
+    summary: "Site Acceptance Test: on-site functional and security validation after network integration and before handover to operations — real conduits, real identity infrastructure, real operating conditions, and the formal transition into the operational security baseline."
+    keywords: ["SAT", "Site Acceptance Test", "testovací akceptace", "integration testing", "network validation", "handover", "go-live", "FAT"]
   - id: siem
     path: "09-Operations/SIEM.md"
     title: "SIEM"
@@ -581,6 +637,15 @@ documents:
     language: en
     summary: "The SIEM as the correlation and detection layer between logging and monitoring: passive-first OT ingestion, industrial data sources and protocol-aware parsing, data-residency constraints and high-value detections."
     keywords: ["SIEM", "correlation", "korelace", "detection", "OT data sources", "passive collection", "data residency"]
+  - id: threat-hunting
+    path: "09-Operations/Threat-Hunting.md"
+    title: "Threat Hunting"
+    category: Operations
+    status: Stable
+    version: "1.0.0"
+    language: en
+    summary: "Proactive, hypothesis-driven investigation in OT telemetry beyond automated detection: hunting hypotheses grounded in ATT&CK for ICS and the ICS Kill Chain, data sources, cadence, a maturity model, and the relationship to Monitoring and Detection Engineering."
+    keywords: ["threat hunting", "proaktivní vyhledávání hrozeb", "hypothesis-driven", "ATT&CK for ICS", "hunting maturity model", "engineering workstation", "OT telemetry"]
   - id: vulnerability-management
     path: "09-Operations/Vulnerability-Management.md"
     title: "Vulnerability Management"
@@ -590,44 +655,13 @@ documents:
     language: en
     summary: "Hub for vulnerability management: the consolidated prioritisation workflow (CVE → CVSS v4.0 → EPSS → CISA KEV → criticality/exposure → operational context → risk decision), compensating controls and worked examples."
     keywords: ["vulnerability management", "řízení zranitelností", "prioritisation workflow", "CVE", "CVSS", "EPSS", "KEV", "compensating controls"]
-planned:
-  - id: opc-ua
-    path: "04-Network/OPC-UA.md"
-    status: Planned
-    summary: "OPC UA security deep-dive: security profiles (None/Sign/SignAndEncrypt), certificate and trust-list management, node-level access control."
-    referenced_by: ["Zero-Trust-in-OT.md", "OT-Protocols.md", "Logging.md", "Monitoring.md", "Identity-Management.md", "PKI.md", "Certificates.md", "MFA.md", "PlantSCADA.md"]
-  - id: automation-studio
-    path: "08-Technologies/B&R/Automation-Studio/Automation-Studio.md"
-    status: Planned
-    summary: "B&R Automation Studio engineering-platform security and governance."
-    referenced_by: ["OT-Protocols.md"]
-  - id: detection-engineering
-    path: "09-Operations/Detection-Engineering.md"
-    status: Planned
-    summary: "Designing, testing and maintaining detection rules mapped to ATT&CK for ICS."
-    referenced_by: ["Logging.md"]
-  - id: fat
-    path: "09-Operations/FAT.md"
-    status: Planned
-    summary: "Factory Acceptance Test: security validation scope and procedures before shipment."
-    referenced_by: ["OT-Lifecycle.md"]
-  - id: risk-assessment
-    path: "09-Operations/Risk-Assessment.md"
-    status: Planned
-    summary: "Operational execution of risk assessment: running assessments, maintaining the risk register, periodic reassessment (IEC 62443-2-1 / 62443-3-2)."
-    referenced_by: ["OT-Security-Philosophy.md", "Risk-Management-Principles.md", "Risk-Based-Security.md", "Security-Decision-Framework.md"]
-  - id: sat
-    path: "09-Operations/SAT.md"
-    status: Planned
-    summary: "Site Acceptance Test: on-site functional and security validation before handover to operations."
-    referenced_by: ["OT-Lifecycle.md"]
-  - id: threat-hunting
-    path: "09-Operations/Threat-Hunting.md"
-    status: Planned
-    summary: "Proactive, behaviour-driven investigation in OT telemetry beyond automated detection."
-    referenced_by: ["Logging.md"]
   - id: windows-hardening
     path: "09-Operations/Windows-Hardening.md"
-    status: Planned
-    summary: "Hardening of Windows hosts in OT (SCADA servers, engineering workstations, historians); required context for OPC DA / DCOM environments."
-    referenced_by: ["OT-Protocols.md"]
+    title: "Windows Hardening in OT"
+    category: Operations
+    status: Stable
+    version: "1.0.0"
+    language: en
+    summary: "Hardening Windows hosts in OT (SCADA/historian/OPC servers, engineering workstations, jump hosts): OT domain architecture, service and RPC/DCOM minimisation, identity and privilege controls, PowerShell/logging, patching within OT constraints, EDR/allowlisting, and the DCOM containment this handbook's OPC DA guidance depends on."
+    keywords: ["Windows hardening", "zabezpečení Windows", "DCOM", "GPO", "LAPS", "PowerShell logging", "engineering workstation", "OT domain", "application allowlisting", "CIS Benchmark"]
+planned:

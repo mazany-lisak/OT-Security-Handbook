@@ -3,7 +3,7 @@ id: ot-protocols
 title: "Industrial OT Communication Protocols — Architecture, Security and Platform Reference"
 category: Network
 layer: "04-Network"
-version: 1.3.3
+version: 1.3.4
 status: Stable
 author: OT Security Handbook Project
 classification: Public
@@ -183,6 +183,8 @@ This section establishes *just enough* binding to drive protocol-level design, r
 **Architecture.** Encryption is **not** a substitute for segmentation. Place OPC UA servers in the Industrial DMZ / supervisory zone, use explicit conduits, and monitor trust (failed cert validation, expiries, new/unexpected clients, policy changes). OPC UA supports IEC 62443 FR1/FR3/FR4 but does **not** by itself deliver compliance.
 
 **Platform notes.** S7-1500 has a built-in OPC UA **server and client** (FW v2.0+, best with TIA Portal V16+); M580 supports **OPC UA Secure** (via OPC UA module); B&R is a pioneer of **OPC UA over TSN** and **OPC UA FX** (field-level). See platform chapters.
+
+> **Deep-dive delegation.** The material above is the protocol-survey level. Full security depth — security policy/mode selection, the certificate and trust-list lifecycle ("successful OPC UA projects are PKI projects"), user authentication vs. node-level Role Permissions authorization, PubSub security, and OPC UA over TSN/FX — is maintained in [OPC-UA.md](OPC-UA.md), the single source of truth for OPC UA security in this handbook.
 
 # 13. OPC Classic (OPC DA)
 
@@ -426,8 +428,8 @@ Platform and protocol facts in this document were reconciled against primary/off
 - [Czech-Cybersecurity-Act.md](../01-Legislation/Czech-Cybersecurity-Act.md) — Zákon 264/2025 Sb. + Vyhl. 408/409/410/2025; capability domains (esp. 4 IAM, 5 segmentation, 6 cryptography, 7 logging/monitoring, 8 vulnerability mgmt).
 - [Network-Segmentation.md](Network-Segmentation.md), [Firewall-Design.md](Firewall-Design.md), [Secure-Remote-Access.md](Secure-Remote-Access.md) — architecture controls (out of scope here).
 - [Identity-Management.md](../05-Identity/Identity-Management.md), [PKI.md](../05-Identity/PKI.md), [Certificates.md](../05-Identity/Certificates.md) — identity and certificate lifecycle (critical for OPC UA, CIP Security, IEC 62351, M580 IPsec, S7-1500 certificates).
-- [Windows-Hardening.md](../09-Operations/Windows-Hardening.md) *(planned)* — required for OPC DA / DCOM environments.
-- Platform docs: [S7-1500.md](../08-Technologies/SIEMENS/S7-1500/S7-1500.md), [TIA-Portal.md](../08-Technologies/SIEMENS/TIA%20Portal/TIA-Portal.md), [Modicon-M580.md](../08-Technologies/Schneider%20Electric/Modicon%20M580/Modicon-M580.md), [EcoStruxure-Control-Expert.md](../08-Technologies/Schneider%20Electric/Control%20Expert/EcoStruxure-Control-Expert.md), [PlantSCADA.md](../08-Technologies/AVEVA/PlantSCADA/PlantSCADA.md), [WebAccess-DMP.md](../08-Technologies/Advantech/WebAccess-DMP/WebAccess-DMP.md), [ICR-2734.md](../08-Technologies/Advantech/ICR-Series/ICR-2734.md), [BR-X20.md](../08-Technologies/B&R/X20/BR-X20.md), [Modicon-Twido.md](../08-Technologies/Schneider%20Electric/Modicon%20Twido/Modicon-Twido.md), [Modicon-Premium.md](../08-Technologies/Schneider%20Electric/Modicon%20Premium/Modicon-Premium.md), [MOXA-NPort-5000.md](../08-Technologies/Moxa/NPort/MOXA-NPort-5000.md), [S7-300.md](../08-Technologies/SIEMENS/S7-300/S7-300.md), [S7-400.md](../08-Technologies/SIEMENS/S7-400/S7-400.md), [PI-System.md](../08-Technologies/AVEVA/PI%20System/PI-System.md), [Kepware-Server.md](../08-Technologies/PTC/Kepware%20Server/Kepware-Server.md), [dataFEED-OPC-Suite.md](../08-Technologies/Softing/dataFEED%20OPC%20Suite/dataFEED-OPC-Suite.md); planned: [Automation-Studio.md](../08-Technologies/B&R/Automation-Studio/Automation-Studio.md).
+- [Windows-Hardening.md](../09-Operations/Windows-Hardening.md) — required for OPC DA / DCOM environments.
+- Platform docs: [S7-1500.md](../08-Technologies/SIEMENS/S7-1500/S7-1500.md), [TIA-Portal.md](../08-Technologies/SIEMENS/TIA%20Portal/TIA-Portal.md), [Modicon-M580.md](../08-Technologies/Schneider%20Electric/Modicon%20M580/Modicon-M580.md), [EcoStruxure-Control-Expert.md](../08-Technologies/Schneider%20Electric/Control%20Expert/EcoStruxure-Control-Expert.md), [PlantSCADA.md](../08-Technologies/AVEVA/PlantSCADA/PlantSCADA.md), [WebAccess-DMP.md](../08-Technologies/Advantech/WebAccess-DMP/WebAccess-DMP.md), [ICR-2734.md](../08-Technologies/Advantech/ICR-Series/ICR-2734.md), [BR-X20.md](../08-Technologies/B&R/X20/BR-X20.md), [Modicon-Twido.md](../08-Technologies/Schneider%20Electric/Modicon%20Twido/Modicon-Twido.md), [Modicon-Premium.md](../08-Technologies/Schneider%20Electric/Modicon%20Premium/Modicon-Premium.md), [MOXA-NPort-5000.md](../08-Technologies/Moxa/NPort/MOXA-NPort-5000.md), [S7-300.md](../08-Technologies/SIEMENS/S7-300/S7-300.md), [S7-400.md](../08-Technologies/SIEMENS/S7-400/S7-400.md), [PI-System.md](../08-Technologies/AVEVA/PI%20System/PI-System.md), [Kepware-Server.md](../08-Technologies/PTC/Kepware%20Server/Kepware-Server.md), [dataFEED-OPC-Suite.md](../08-Technologies/Softing/dataFEED%20OPC%20Suite/dataFEED-OPC-Suite.md), [Automation-Studio.md](../08-Technologies/B&R/Automation-Studio/Automation-Studio.md). The OPC UA security deep-dive is [OPC-UA.md](OPC-UA.md).
 
 # Revision History
 
@@ -440,3 +442,4 @@ Platform and protocol facts in this document were reconciled against primary/off
 | 1.3.1 | 2026-07-07 | Appendix D updated to link the new platform documents (BR-X20, Modicon-Twido, Modicon-Premium, MOXA-NPort-5000) now that they exist; only Automation-Studio remains planned |
 | 1.3.2 | 2026-07-07 | Appendix D updated to link the new platform documents (S7-300, S7-400, PI-System) now that they exist |
 | 1.3.3 | 2026-07-07 | Appendix D updated to link the new OPC-aggregation platform documents (Kepware-Server, dataFEED-OPC-Suite) |
+| 1.3.4 | 2026-07-07 | Added deep-dive delegation note in §12 pointing to the new OPC-UA.md; Appendix D updated — Windows-Hardening.md and Automation-Studio.md links resolved (no longer planned) now that both documents exist |

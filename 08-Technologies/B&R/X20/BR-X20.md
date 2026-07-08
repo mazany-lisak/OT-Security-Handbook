@@ -5,7 +5,7 @@ category: Technologies
 layer: "08-Technologies/B&R/X20"
 vendor: "B&R Industrial Automation"
 product: "X20 System"
-version: 1.0.0
+version: 1.0.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
@@ -36,6 +36,7 @@ Two things shape X20 security specifically: it is programmed and managed through
 
 * [Automation-Studio.md](../Automation-Studio/Automation-Studio.md) — the engineering platform (project, Automation Runtime build, user management source); governance detail lives there.
 * [OT-Protocols.md](../../../04-Network/OT-Protocols.md) — POWERLINK, OPC UA, Modbus, EtherNet/IP, PROFINET security (single source of truth).
+* [OPC-UA.md](../../../04-Network/OPC-UA.md) — the OPC UA security deep-dive behind BR-X20.md § 3 Phase 6.
 * [Modicon-M580.md](../../Schneider%20Electric/Modicon%20M580/Modicon-M580.md), [S7-1500.md](../../SIEMENS/S7-1500/S7-1500.md) — peer modern-controller references (comparable hardening model).
 * [IEC62443.md](../../../02-Standards/IEC62443.md) — zones/conduits, FR/SL, 62443-4-2 component requirements.
 * [Network-Segmentation.md](../../../04-Network/Network-Segmentation.md), [Firewall-Design.md](../../../04-Network/Firewall-Design.md) — enforcing the controller/cell zone.
@@ -320,3 +321,4 @@ When discussing the B&R X20:
 | Version | Date | Description |
 | ------- | ---- | ----------- |
 | 1.0.0 | 2026-07-07 | Initial release — new 08-Technologies platform reference for the B&R (ABB) X20 modular PLC, written to the M580/S7-1500 document standard: CPU-generation capability framing (Automation Runtime as the security gate), POWERLINK-isolation and OPC UA hardening, engineering-toolchain (Automation Studio) governance, user/role management, openSAFETY security/safety boundary, firmware/Runtime and technology-guarding handling, monitoring/backup/recovery, and IEC 62443-4-2 alignment; cross-linked to the planned Automation-Studio.md; resolves the Planned manifest entry |
+| 1.0.1 | 2026-07-07 | Added OPC-UA.md cross-link now that the document exists; Automation-Studio.md reference resolved |

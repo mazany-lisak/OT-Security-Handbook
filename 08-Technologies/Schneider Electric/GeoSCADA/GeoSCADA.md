@@ -5,7 +5,7 @@ category: Technologies
 layer: "08-Technologies/Schneider Electric/GeoSCADA"
 vendor: "Schneider Electric"
 product: "EcoStruxure Geo SCADA Expert"
-version: 1.0.0
+version: 1.0.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
@@ -179,7 +179,7 @@ Default pattern: **encrypt and mutually authenticate the WAN conduit regardless 
 
 Phased; each phase ends with validation and a baseline capture ([Configuration-Management.md](../../../09-Operations/Configuration-Management.md)).
 
-**Phase 1 — Platform baseline.** Hardened Windows Server for Main/Standby ([Windows-Hardening.md](../../../09-Operations/Windows-Hardening.md), planned); minimal roles; allowlisting; EDR where vendor-supported; ViewX hosts hardened like operator stations.
+**Phase 1 — Platform baseline.** Hardened Windows Server for Main/Standby ([Windows-Hardening.md](../../../09-Operations/Windows-Hardening.md)); minimal roles; allowlisting; EDR where vendor-supported; ViewX hosts hardened like operator stations.
 
 **Phase 2 — Least functionality.** Install/enable only required drivers and interfaces; remove demo/sample database content; disable WebX, ODBC and automation interfaces without documented consumers; remove or seal legacy accounts (incl. any guest access).
 
@@ -332,3 +332,4 @@ When discussing EcoStruxure Geo SCADA Expert:
 | Version | Date | Description |
 | ------- | ---- | ----------- |
 | 1.0.0 | 2026-07-07 | Initial release — new 08-Technologies platform security reference for EcoStruxure Geo SCADA Expert (formerly ClearSCADA), written to the S7-1500/M580/Plant SCADA document standard: integrated-server architecture and object database, wide-area trust model (field-site zones, WAN conduits), threat model incl. telemetry manipulation, backfill poisoning and comms-loss cover, per-object permission design, DNP3 SAv5 / IEC 60870-5-104 / VPN transport guidance, phased hardening, field-site/RTU controls, telemetry-aware monitoring, and DR incl. outstation re-homing; resolves the Planned entry from the corpus manifest |
+| 1.0.1 | 2026-07-07 | Resolved Windows-Hardening.md reference now that the document exists |

@@ -5,7 +5,7 @@ category: Technologies
 layer: "08-Technologies/PTC/Kepware Server"
 vendor: "PTC"
 product: "Kepware Server (KEPServerEX)"
-version: 1.0.0
+version: 1.0.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
@@ -36,6 +36,7 @@ That aggregation role is precisely what makes Kepware security-critical: unlike 
 
 * [dataFEED-OPC-Suite.md](../../Softing/dataFEED%20OPC%20Suite/dataFEED-OPC-Suite.md) — the peer OPC aggregation platform in this handbook; comparable threat model, different architecture (modular components, OPC UA Tunnel vs. plugin drivers).
 * [PI-System.md](../../AVEVA/PI%20System/PI-System.md) — a common northbound consumer of Kepware-aggregated data; contrast its read-mostly aggregation model against Kepware's bidirectional control-path role.
+* [OPC-UA.md](../../../04-Network/OPC-UA.md) — the OPC UA security deep-dive for Kepware's preferred northbound interface.
 * [ISA95.md](../../../02-Standards/ISA95.md) — defines the OPC-aggregation-server pattern this document implements in detail; read together, especially the OPC DA→firewall termination rule.
 * [OT-Protocols.md](../../../04-Network/OT-Protocols.md) — southbound native-protocol and OPC DA/UA security detail (single source of truth).
 * [Network-Segmentation.md](../../../04-Network/Network-Segmentation.md), [Firewall-Design.md](../../../04-Network/Firewall-Design.md) — placing and bounding the aggregation server as a conduit termination point.
@@ -200,7 +201,7 @@ NTP on the Kepware host for reliable event correlation with SCADA, historian and
 
 Phased; each phase ends with validation and a baseline capture ([Configuration-Management.md](../../../09-Operations/Configuration-Management.md)).
 
-**Phase 1 — Platform baseline.** Hardened Windows host ([Windows-Hardening.md](../../../09-Operations/Windows-Hardening.md), planned); minimal roles; allowlisting; patched per vendor cadence.
+**Phase 1 — Platform baseline.** Hardened Windows host ([Windows-Hardening.md](../../../09-Operations/Windows-Hardening.md)); minimal roles; allowlisting; patched per vendor cadence.
 
 **Phase 2 — Driver minimisation.** Install and enable only the driver plugins actually required by connected devices; remove/disable the rest; document the enabled-driver list as part of the asset record ([Asset-Management.md](../../../09-Operations/Asset-Management.md)).
 
@@ -332,3 +333,4 @@ When discussing PTC Kepware Server / KEPServerEX:
 | Version | Date | Description |
 | ------- | ---- | ----------- |
 | 1.0.0 | 2026-07-07 | Initial release — new 08-Technologies platform reference for PTC Kepware Server (KEPServerEX), implementing in detail the "OPC aggregation server" conduit-termination pattern already named in ISA95.md: plugin-driver architecture and attack-surface implications, the bidirectional-conduit threat model (read AND write reach across every connected protocol), the OPC DA/DCOM legacy containment rule, OPC UA certificate-based hardening, IoT Gateway/ThingWorx cloud-egress governance, User Manager identity scoping, phased hardening, monitoring and recovery; first PTC vendor branch and first pure OPC-aggregation-class document in 08-Technologies |
+| 1.0.1 | 2026-07-07 | Resolved Windows-Hardening.md and added OPC-UA.md cross-link now that both documents exist |

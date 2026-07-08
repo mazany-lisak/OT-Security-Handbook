@@ -4,7 +4,7 @@ A structured, vendor-aware knowledge base on Operational Technology (OT/ICS) cyb
 
 It covers the full stack from regulatory obligation (NIS2, the Czech Cybersecurity Act) through standards and architecture (IEC 62443, ISA-95, Purdue, Zero Trust, Defense in Depth) to operational discipline (patch/change/vulnerability management, incident response, backup and recovery) and vendor-specific platform hardening (Siemens, Schneider Electric, B&R, Advantech, Moxa, AVEVA, PTC, Softing).
 
-> **Current state:** 61 documents, 8 planned, 0 broken internal links. See [INDEX.md](INDEX.md) for the full catalogue and [index.yaml](index.yaml) for the machine-readable manifest.
+> **Current state:** 69 documents, 0 planned, 0 broken internal links. See [INDEX.md](INDEX.md) for the full catalogue and [index.yaml](index.yaml) for the machine-readable manifest.
 
 ---
 
@@ -101,12 +101,6 @@ keywords: [english term, český termín, abbreviation, synonym]
 ## Classification and scope of authority
 
 All documents are `classification: Public` and are **foundational/engineering references, not normative text**. Where a document discusses a legal obligation (NIS2, the Czech Cybersecurity Act) or a standard (IEC 62443), it explicitly says so and directs the reader to the current official text for anything that carries legal or certification weight. Nothing in this corpus should be cited as compliance evidence on its own.
-
-## License
-
-This work is licensed under **[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)** (Attribution-ShareAlike) — see [LICENSE](LICENSE).
-
-In practice: **using** this corpus — reading it, running it in your own RAG pipeline, drawing on it in paid consulting or engineering work — is unrestricted and is one of this project's explicit goals. **Redistributing it, or a derivative of it, as a product** (e.g. repackaging the corpus itself for sale) requires attribution and requires that derivative to be shared under the same CC BY-SA 4.0 license. This corpus is provided for informational/educational purposes and is not a substitute for the current official text of the laws, standards, and vendor documentation it references.
 
 ## Contributing
 

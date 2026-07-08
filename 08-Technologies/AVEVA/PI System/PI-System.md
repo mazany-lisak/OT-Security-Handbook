@@ -5,7 +5,7 @@ category: Technologies
 layer: "08-Technologies/AVEVA/PI System"
 vendor: "AVEVA"
 product: "PI System"
-version: 1.0.1
+version: 1.0.2
 status: Stable
 author: OT Security Handbook Project
 classification: Public
@@ -237,7 +237,7 @@ All Data Archive, AF and interface nodes on the organisational NTP hierarchy; ti
 
 Phased, in dependency order; each phase concludes with validation and a baseline capture ([Configuration-Management.md](../../../09-Operations/Configuration-Management.md)).
 
-**Phase 1 — Platform baseline.** Harden the OS of Data Archive, AF, interface and Vision/Web API hosts per organizational Windows baseline ([Windows-Hardening.md](../../../09-Operations/Windows-Hardening.md), planned); minimal roles per server; patched per vendor cadence.
+**Phase 1 — Platform baseline.** Harden the OS of Data Archive, AF, interface and Vision/Web API hosts per organizational Windows baseline ([Windows-Hardening.md](../../../09-Operations/Windows-Hardening.md)); minimal roles per server; patched per vendor cadence.
 
 **Phase 2 — Identity migration.** Audit and migrate PI Trusts to Identity Mappings (3.2); establish the PI Identity model (3.1); inventory and least-privilege every service account (3.3).
 
@@ -381,3 +381,4 @@ When discussing the AVEVA PI System:
 | ------- | ---- | ----------- |
 | 1.0.0 | 2026-07-07 | Initial release — new 08-Technologies platform reference for the AVEVA PI System (formerly OSIsoft PI), written to the platform-document standard but framed around its distinct data-aggregation/IT-OT-boundary role: component architecture (Data Archive, AF, Interfaces/Connectors, buffering, Vision, Web API, cloud connectors), estate-wide-reconnaissance threat model, the PI Trusts-to-Identity-Mappings migration as the platform's signature identity decision, the IDMZ PI-to-PI replication pattern, Database Security segmentation, web/API/cloud governance, phased hardening, monitoring and HA-vs-backup distinction; resolves a Planned-equivalent manifest gap; first Historian-class platform document in 08-Technologies |
 | 1.0.1 | 2026-07-07 | Added cross-links to Kepware-Server.md and dataFEED-OPC-Suite.md as typical upstream OPC aggregation sources |
+| 1.0.2 | 2026-07-07 | Resolved Windows-Hardening.md reference now that the document exists |

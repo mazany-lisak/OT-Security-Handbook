@@ -5,7 +5,7 @@ category: Technologies
 layer: "08-Technologies/Softing/dataFEED OPC Suite"
 vendor: "Softing Industrial Automation"
 product: "dataFEED OPC Suite"
-version: 1.0.0
+version: 1.0.1
 status: Stable
 author: OT Security Handbook Project
 classification: Public
@@ -36,6 +36,7 @@ Where dataFEED OPC Suite differs materially from a plugin-driver server is its *
 
 * [Kepware-Server.md](../../PTC/Kepware%20Server/Kepware-Server.md) — the peer OPC aggregation platform in this handbook; read together for the shared bidirectional-conduit threat model, contrasted architectures (plugin-driver vs. modular components), and the OPC UA Tunnel vs. plugin-based DCOM containment approaches.
 * [PI-System.md](../../AVEVA/PI%20System/PI-System.md) — a common northbound consumer of aggregated OPC data.
+* [OPC-UA.md](../../../04-Network/OPC-UA.md) — the OPC UA security deep-dive underlying the OPC UA Tunnel and native OPC UA interfaces.
 * [ISA95.md](../../../02-Standards/ISA95.md) — defines the OPC-aggregation-server conduit-termination pattern this document implements.
 * [OT-Protocols.md](../../../04-Network/OT-Protocols.md) — southbound native-protocol, PROFIBUS/PROFINET and OPC DA/UA security detail (single source of truth).
 * [Network-Segmentation.md](../../../04-Network/Network-Segmentation.md), [Firewall-Design.md](../../../04-Network/Firewall-Design.md) — placing and bounding the aggregation server and its tunnel endpoints.
@@ -182,7 +183,7 @@ The **Redundancy Manager** coordinates failover between redundant OPC data sourc
 
 Phased; each phase ends with validation and a baseline capture ([Configuration-Management.md](../../../09-Operations/Configuration-Management.md)).
 
-**Phase 1 — Platform baseline.** Hardened Windows hosts for each deployed component ([Windows-Hardening.md](../../../09-Operations/Windows-Hardening.md), planned); patched per vendor cadence.
+**Phase 1 — Platform baseline.** Hardened Windows hosts for each deployed component ([Windows-Hardening.md](../../../09-Operations/Windows-Hardening.md)); patched per vendor cadence.
 
 **Phase 2 — Component minimisation.** Deploy only the protocol-specific OPC server components actually required by connected devices; maintain a central inventory of every deployed component instance and its host ([Asset-Management.md](../../../09-Operations/Asset-Management.md)) to close the sprawl gap noted in § 2.2.7.
 
@@ -316,3 +317,4 @@ When discussing Softing dataFEED OPC Suite:
 | Version | Date | Description |
 | ------- | ---- | ----------- |
 | 1.0.0 | 2026-07-07 | Initial release — new 08-Technologies platform reference for Softing dataFEED OPC Suite, implementing the "OPC aggregation server" conduit-termination pattern from ISA95.md with a modular-component architecture distinct from Kepware's plugin-driver model: the OPC UA Tunnel as a native DCOM-elimination pattern (deployment, certificate governance, and the "is it actually carrying the traffic" audit question), fieldbus/PROFIBUS-PROFINET southbound heritage, Redundancy Manager availability-vs-security framing and failover monitoring, component-sprawl asset-management guidance specific to the modular architecture, phased hardening, monitoring and recovery; first Softing vendor branch; cross-referenced throughout with Kepware-Server.md as the peer aggregation platform |
+| 1.0.1 | 2026-07-07 | Resolved Windows-Hardening.md and added OPC-UA.md cross-link now that both documents exist |
